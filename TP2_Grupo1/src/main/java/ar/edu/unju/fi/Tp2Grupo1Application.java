@@ -8,7 +8,7 @@ public class Tp2Grupo1Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Tp2Grupo1Application.class, args);
-		System.out.println("Test");
+		System.out.println("Test 2");
 	}
 
 }
