@@ -12,11 +12,30 @@
                 list-style: none;
                 padding: 5px;
 			}
+			section {
+			    width: 80%;
+			    float: left;
+			}
+			
+			aside {
+			    width: 20%;
+			    float: right;
+			    background-color: #e0e0e0;
+			}
+			footer {
+			    clear: both;
+			    align-content: center;
+			    text-align: center;
+			    background-color: #CFD8DC;
+			}
+			.padre {
+				display: flex;
+			} 
 		</style>
 	</head>
 	<body>
 		<header>
-			<h1>Trabajo Práctico 2 - Programación Visual</h1>
+			<h1>El mundo de las mascotas</h1>
 			<img src="../static/images/logoUnju.png" alt="Logo de la facultad" title="Logo"width="480" height="180">
 		</header>
 		<nav>
@@ -29,5 +48,37 @@
 				<li><a href="Contacto.html">Contáctenos</a></li>
 			</ul>
 		</nav>
+		<div class="padre">
+			<section>
+				<article>
+				<h2>Sobre nosotros</h2>
+				<p>Somos una empresa dedicada al servicio de las mascotas en distintos ámbitos.
+				Nuestros rubros incluyen la venta de alimentos en distintas presentaciones para 
+				todo tipo de mascotas, servicio de cuidado y paseo de perros y gatos y medicina
+				veterinaria de excelente calidad.</p>
+				</article>
+				<article>
+					<h2>Venta de alimentos</h2>
+					<p>Nuestra gran variedad de alimentos tanto en presentación como en calidad le brindan
+					al cliente la posibilidad de tener todo a su disposición.</p>
+					<p>Le brindamos los mejores precios y ofertas todos los días.</p>
+				</article>
+				<article>
+					<h2>Servicio de cuidado y paseo</h2>
+					<p>Contamos con entrenadores certificados para el cuidado de tu compañero, como así
+					el servicio de paseo en la hora que elijas.</p>
+				</article>
+				<article>
+					<h2>Medicina veterinaria</h2>
+					<p>Nuestro grupo de veterinarios 100% certificados y excelentes refernecias le asegura
+					el cuidado y salud de cualquier animal doméstico.</p>
+					<p>También contamos con la medicina correspondiente para tratar cualquier situación 
+					en cualquier momento.</p>
+				</article>
+			</section>
+			<aside><p>"Hasta que no hayas amado a un animal, una parte de tu alma permanecerá dormida"</p><p>-Anatole France</p></aside>
+		</div>
+		<footer><p>Copyright 2023 - El mundo de las mascotas - Diseñado por Grupo 01 -
+        Jujuy - República Argentina</p></footer>
 	</body>
 </html>
