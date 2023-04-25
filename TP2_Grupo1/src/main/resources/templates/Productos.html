@@ -1,82 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Productos</title>
+  <meta charset="UTF-8">
+  <title>Productos</title>
+  <link rel="stylesheet" href="../static/css/estilos.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<style>
+    html {
+      text-align: center;
+    }
 
-<style>
-			html{
-				text-align: center;
-			}
-			li {
-				display: inline-block;
-                list-style: none;
-                padding: 5px;
-			}
-			section {
-			    width: 80%;
-			    float: left;
-			}
-			
-			aside {
-			    width: 20%;
-			    float: right;
-			    background-color: #e0e0e0;
-			}
-			footer {
-			    clear: both;
-			    align-content: center;
-			    text-align: center;
-			    background-color: #CFD8DC;
-			}
-			.padre {
-				display: flex;
-			} 
-</style>
+    li {
+      display: inline-block;
+      list-style: none;
+      padding: 5px;
+    }
+
+    section {
+      width: 80%;
+      float: left;
+    }
+
+    aside {
+      width: 20%;
+      float: right;
+      background-color: #e0e0e0;
+    }
+
+    footer {
+      clear: both;
+      align-content: center;
+      text-align: center;
+      background-color: #CFD8DC;
+    }
+  </style> -->
 
 </head>
 
 <body>
 <header>
-	<h1>Productos</h1>
-	<img src="../static/images/logoUnju.png" alt="Logo de la facultad" title="Logo"width="480" height="180">
+  <h1>Productos</h1>
+  <img src="../static/images/logoUnju.png" alt="Logo de la facultad" title="Logo" width="480" height="180">
 </header>
-
 <nav>
-			<ul>
-				<li><a href="index.html">Index</a></li>
-				<li><a href="Productos.html">Productos</a></li>
-				<li><a href="ServicioDePaseos.html">Servicio de paseos</a></li>
-				<li><a href="consejoSalud.html">Consejos de Salud</a></li>
-				<li><a href="sucursales.html">Sucursales</a></li>
-				<li><a href="Contacto.html">Contáctenos</a></li>
-			</ul>
-		</nav>
-		
-<ul>
-		<li>
-			<img src="../static/images/producto1.jpg" alt="Producto-Mandarina" title="Producto-Mandarina">
-			<h3>OLYMPIC PERRO ADULTO 15KG</h3>
-			<p>$5750</p>
-		</li>
-		<li>
-			<img src="../static/images/producto2.jpg" alt="Producto-Limon" title="Producto-Limon">
-			<h3>COMPLETE PERRO CACHORRO RAZA PEQUEÑA 20 KG.</h3>
-			<p><del>$10837 </del>$8664</p>
-		</li>
-		<li>
-			<img src="../static/images/producto3.jpg" alt="Producto-Anana" title="Producto-Anana">
-			<h3>EXCELLENT GATOS SKIN CARE 1 KG</h3>
-			<p><del>$2360 </del>$1534</p>
-		</li>
-		<li>
-			<img src="../static/images/producto4.jpg" alt="Producto-Frutilla" title="Producto-Frutilla">
-			<h3>PERFORMANCE ADULTO 20 KG.</h3>
-			<p><del>$18.577,78 </del>$16.720</p>
-		</li>
-		
-	</ul>
+  <ul>
+    <li><a href="index.html">Index</a></li>
+    <li><a href="Productos.html">Productos</a></li>
+    <li><a href="ServicioDePaseos.html">Servicio de paseos</a></li>
+    <li><a href="consejoSalud.html">Consejos de Salud</a></li>
+    <li><a href="sucursales.html">Sucursales</a></li>
+    <li><a href="Contacto.html">Contáctenos</a></li>
+  </ul>
+</nav>
+
+
+
+<main>
+	<section class="productos">
+		<!-- producto1 -->
+		<div class="producto">
+			<img class="producto-img" src="../static/images/producto1.jpg" alt="Producto-Mandarina" title="Producto-Mandarina">
+			<div class="producto-info">
+				<h3 class="producto-nombre">OLYMPIC PERRO ADULTO 19KG</h3>
+				<p class="producto-precio">$5750</p>
+			</div>
+		</div>
+		<!-- producto2 -->
+		<div class="producto">
+			<img class="producto-img" src="../static/images/producto2.jpg" alt="Producto-Limon" title="Producto-Limon">
+			<div class="producto-info">
+				<h3 class="producto-nombre">COMPLETE PERRO CACHORRO RAZA PEQUEÑA 20 KG.</h3>
+				<p class="producto-precio"><del>$10837</del>$8664</p>
+			</div>
+		</div>
+		<!-- producto3 -->
+		<div class="producto">
+			<img class="producto-img" src="../static/images/producto3.jpg" alt="Producto-Anana" title="Producto-Anana">
+			<div class="producto-inf">
+				<h3 class="producto-nombre">EXCELLENT GATOS SKIN CARE 1 KG</h3>
+				<p class="producto-precio"><del>$2360</del>$1534</p>
+			</div>
+		</div>
+		<!-- producto4-->
+		<div class="producto">
+			<img class="producto-img" src="../static/images/producto4.jpg" alt="Producto-Frutilla" title="Producto-Frutilla">
+			<div class="producto-inf">
+				<h3 class="producto-nombre">PERFORMANCE ADULTO 20 KG.</h3>
+				<p class="producto-precio"><del>$18.577,78</del>$16.720</p>
+			</div>
+		</div>
+		<!-- producto5 -->
+		<div class="producto">
+			<img class="producto-img" src="../static/images/producto1.jpg" alt="Producto-Mandarina" title="Producto-Mandarina">
+			<div class="producto-info">
+				<h3 class="producto-nombre">OLYMPIC PERRO ADULTO 19KG</h3>
+				<p class="producto-precio">$5750</p>
+			</div>
+		</div>
+		<!-- producto6 -->
+		<div class="producto">
+			<img class="producto-img" src="../static/images/producto2.jpg" alt="Producto-Limon" title="Producto-Limon">
+			<div class="producto-info">
+				<h3 class="producto-nombre">COMPLETE PERRO CACHORRO RAZA PEQUEÑA 20 KG.</h3>
+				<p class="producto-precio"><del>$10837</del>$8664</p>
+			</div>
+		</div>
+		<!-- producto7 -->
+		<div class="producto">
+			<img class="producto-img" src="../static/images/producto3.jpg" alt="Producto-Anana" title="Producto-Anana">
+			<div class="producto-inf">
+				<h3 class="producto-nombre">EXCELLENT GATOS SKIN CARE 1 KG</h3>
+				<p class="producto-precio"><del>$2360</del>$1534</p>
+			</div>
+		</div>
+	</section>
+</main>
+<footer>
+  <p>Copyright 2023 - El mundo de las mascotas - Diseñado por Grupo 01 - Jujuy - República Argentina</p>
+</footer>
 </body>
-<footer><p>Copyright 2023 - El mundo de las mascotas - Diseñado por Grupo 01 -
-        Jujuy - República Argentina</p></footer>
+
 </html>
