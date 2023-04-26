@@ -102,3 +102,48 @@ footer {
         opacity: 1;
     }
 }
+
+
+/* Inicio css consejoSalud*/
+#container-salud .seccion-salud{
+	background-color: #f2e8c4;
+	margin-bottom : 0%;
+	text-align: center;
+	padding-bottom: 1%;
+	font-family: 'Comic Neue', cursive;
+}
+#container-salud .seccion-salud img{
+	width :70%;
+	height: 360px;
+	border-radius : 12px;
+	
+}
+
+#container-salud .seccion-salud h2{
+	padding-top: 25px;
+	font-size: 40px;
+}
+#container-salud .articulo-salud{
+	background-color:#f7f8fc;
+	border-radius : 12px; 
+	margin: 13%;
+	margin-top: 2%;
+	padding: 15px;
+	margin-bottom: 0%;
+	
+}
+
+#container-salud .articulo-salud h3,h4{
+	text-align:left;
+
+	padding: 5px;
+	padding-top: 15px;
+	font-size: 25px;
+}
+#container-salud .articulo-salud p{
+	color:#55617e;
+	text-align:left;
+	padding: 10px;
+	font-size: 20px;
+}/* Fin css consejoSalud*/
+
