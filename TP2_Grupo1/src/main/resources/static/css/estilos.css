@@ -1,6 +1,104 @@
-@charset "ISO-8859-1";
+/**@charset "ISO-8859-1";*/
+
 *{
 	margin: 0px;
 	padding: 0px;
+}
+
+.encabezado {
+	background-color: #8D7B68;
+	text-align: center;
+	padding: 10px;
+	overflow: auto;
 	
+}
+
+.encabezado h1 {
+	padding-bottom: 20px;
+	text-transform: uppercase;
+	color: white;
+	padding-top: 20px;
+	font-family: 'Comic Neue', cursive;
+	
+}
+
+.cuerpo {
+	background-color: #f2e8c4;
+}
+
+#logo {
+	border-radius: 10px;
+	border: solid;
+	border-color: #746556;
+	animation: aparicionLogo 2s forwards;
+}
+
+li {
+	display: inline;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: solid;
+	padding: 10px;
+	border-radius: 10px;
+	border-color: #746556;
+	animation: aparicionBtn 2s forwards;
+}
+
+a {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: white;
+	
+}
+
+li:hover, li:active {
+	background-color: #746556;
+ 	color: #ffff;
+}
+
+nav {
+	display: flex;
+	justify-content: center;
+	padding: 30px;
+}
+
+footer {
+	text-align: center;
+	padding: 20px;
+	background-color: #8D7B68;
+	color: white;
+	font-style: italic;
+}
+
+@keyframes aparicionLogo{
+    from{
+        transform: translateY(100);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes aparicionTitulo{
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes aparicionBtn{
+    from{
+        transform: translateY(100);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0%);
+        opacity: 1;
+    }
 }
