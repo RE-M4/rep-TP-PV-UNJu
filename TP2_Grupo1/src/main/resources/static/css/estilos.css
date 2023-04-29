@@ -1,8 +1,8 @@
 /**@charset "ISO-8859-1";*/
 
 *{
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 .encabezado {
@@ -28,8 +28,7 @@
 
 #logo {
 	border-radius: 10px;
-	border: solid;
-	border-color: #746556;
+	border: solid #746556;
 	animation: aparicionLogo 2s forwards;
 }
 
@@ -37,10 +36,9 @@ li {
 	display: inline;
 	margin-left: 10px;
 	margin-right: 10px;
-	border: solid;
 	padding: 10px;
 	border-radius: 10px;
-	border-color: #746556;
+	border: solid #746556;
 	animation: aparicionBtn 2s forwards;
 }
 
@@ -72,7 +70,7 @@ footer {
 
 @keyframes aparicionLogo{
     from{
-        transform: translateY(100);
+        transform: translateY(100%);
         opacity: 0;
     }
     to{
@@ -94,7 +92,7 @@ footer {
 
 @keyframes aparicionBtn{
     from{
-        transform: translateY(100);
+        transform: translateY(100%);
         opacity: 0;
     }
     to{
@@ -107,7 +105,7 @@ footer {
 /* Inicio css consejoSalud*/
 #container-salud .seccion-salud{
 	background-color: #f2e8c4;
-	margin-bottom : 0%;
+	margin-bottom : 0;
 	text-align: center;
 	padding-bottom: 1%;
 	font-family: 'Comic Neue', cursive;
@@ -129,7 +127,7 @@ footer {
 	margin: 13%;
 	margin-top: 2%;
 	padding: 15px;
-	margin-bottom: 0%;
+	margin-bottom: 0;
 	
 }
 
@@ -152,7 +150,8 @@ footer {
 	max-width: 120rem;
 	margin: 0 auto;
 	text-transform: uppercase;
-	display: grid;
+  display: flex;
+  flex-wrap: wrap;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 2rem;
 }
@@ -167,6 +166,11 @@ footer {
 }
 .producto-img{
 	width: 100%;
+  transition:transform 0.25s ease;
+}
+.producto-img:hover {
+  -webkit-transform:scale(2.3);
+  transform:scale(1.5);
 }
 .producto-nombre, .producto-precio{
 	text-align: center;
