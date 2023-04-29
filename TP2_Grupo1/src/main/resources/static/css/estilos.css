@@ -23,7 +23,8 @@
 
 #logo {
 	border-radius: 10px;
-	border: solid #746556;
+	border: solid;
+	border-color: #746556;
 	animation: aparicionLogo 2s forwards;
 }
 
@@ -31,9 +32,10 @@ li {
 	display: inline;
 	margin-left: 10px;
 	margin-right: 10px;
+	border: solid;
 	padding: 10px;
 	border-radius: 10px;
-	border: solid #746556;
+	border-color: #746556;
 	animation: aparicionBtn 2s forwards;
 }
 
@@ -348,3 +350,4 @@ footer {
 .piePagina {
 	clear: both;
 }
+
