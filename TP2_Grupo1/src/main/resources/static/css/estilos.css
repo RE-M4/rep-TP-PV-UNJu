@@ -152,6 +152,13 @@ footer {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
+.productos-titulo{
+	text-align: center;
+	padding-top: 1rem;
+	font-size: 2.5rem;
+	text-transform: uppercase;
+	margin: 0 13%;
+}
 .productos{
 	display: grid;
 	gap: 3rem;
@@ -175,9 +182,6 @@ footer {
 .producto-img img{
 	width: 100%;
 }
-.producto:hover {
-	/*transform: scale(1.1);*/
-}
 .producto-nombre, .producto-precio{
 	text-align: center;
 	margin: 1rem;
@@ -197,27 +201,58 @@ footer {
 }
 
 /*--- SUCURSALES ---*/
+.container-sucursales{
+	font-size: 62.5%; /*1rem = 10px*/;
+	overflow-x: hidden;
+	background-color:#f2e8c4;
+
+}
+.columns-sucursales{
+	display: grid;
+	place-items: center;
+	overflow-x: hidden;
+	margin: 0 13% 3rem;
+}
+.sucursal-titulo{
+	text-align: center;
+	padding: 1rem;
+	font-size: 2.5rem;
+	text-transform: uppercase;
+	margin: 0 13%;
+}
 
 .sucursales{
 	max-width: 120rem;
-	width: 90%;
 	margin: 0 auto;
-
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 2rem;
+	overflow-x: hidden;
 }
-.sucursales h2{
-	display: inline-block;
+@media (max-width: 768px) {
+	.sucursales{
+		grid-template-columns: 1fr;
+	}
+}
+.sucursales .sucursales-mapa{
+	overflow-x: hidden;
 }
 
+.sucursal-mapa img {
+	width: 100%;
+	height: 100%;
+	max-width: 80rem;
+	border-radius: 0.7rem;
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.2);
+	object-fit: cover;
+}
 .sucursales-contenido{
 	display: flex;
-	background: #FFFFFF;
-	border: 1px solid #E1E1E1;
-	border-radius: 8px;
-	padding: 18px 0;
-	width: auto;
+	gap: 2rem;
+	/*border: 1px solid #E1E1E1;*/
+	/*border-radius: 8px;*/
+	padding: 0 0 1.8rem;
 	transition: all ease 0.2s;
-	margin-bottom: 12px;
-	margin-right: 0 !important;
 	max-height: fit-content;
 	align-items: center;
 	justify-content: center;
@@ -241,20 +276,15 @@ footer {
 	border-width: 1px;
 	border-style: solid;
 	border-radius: 10px;
+	background-color: rgb(247,247,247);;
 	border-color: #f2e8c4;
+	margin: 0 0 0.5rem;
 	padding: 1rem;
-	margin: 2rem;
-
-}
-.sucursal-mapa {
-	display: flex;
-	flex-direction: row-reverse;
-	position: relative;
+	max-width: 296px;
+	max-height: 150px;
 	width: 100%;
-	max-width: 73.5rem;
-	margin: 0;
-	gap: 1rem;
 }
+
 
 .sucursal-nombre,.sucursal-calle , .sucursal-tel, .sucursal-horario{
 	padding: 0.5rem;
