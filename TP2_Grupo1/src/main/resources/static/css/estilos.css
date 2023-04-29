@@ -321,12 +321,13 @@ footer {
 /** Style-ServiciosDePaseo.html - Burgoz Javier. A ---*/
 
 #contenedorTabla {
-    padding-top: 30px;
     margin: auto;
-    width: 50%;
+    width: 65%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
+    padding: 10px;
 }
+
 #contenedorTabla td {
     padding: 20px;
     text-align: center;
@@ -344,6 +345,10 @@ footer {
     background-color: #aa9f94;
 }
 
+.bodyServicios {
+	background-color: #f2e8c4;
+}
+
 /**--- Style-Contacto.html - Burgoz Javier. A ---*/
 
 /** Estilos para el contenedor principal */
@@ -359,6 +364,11 @@ footer {
     text-align: left;
     font-family: Arial, sans-serif;
 }
+
+.bodyContacto {
+	background-color: #f2e8c4;
+}
+
 /** Estilos para el título */
 .contacto h1 {
     text-transform: uppercase;
