@@ -184,6 +184,9 @@ footer {
 .producto-img img{
 	width: 100%;
 }
+.producto:hover {
+	/*transform: scale(1.1);*/
+}
 .producto-nombre, .producto-precio{
 	text-align: center;
 	margin: 1rem;
@@ -351,3 +354,87 @@ footer {
 	clear: both;
 }
 
+/** Style-ServiciosDePaseo.html - Burgoz Javier. A ---*/
+
+#contenedorTabla {
+    padding-top: 30px;
+    margin: auto;
+    width: 50%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+#contenedorTabla td {
+    padding: 20px;
+    text-align: center;
+    font-family: 'Comic Neue', cursive;
+    color: #E1E1E1;
+    border-radius: 10px;
+}
+#encabezadoTabla {
+    border: 3px solid #8a6f50;
+    background-color: #8D7B68;
+    font-size: 20px;
+    font-weight: bold;
+}
+#formatoCelda {
+    background-color: #aa9f94;
+}
+
+/**--- Style-Contacto.html - Burgoz Javier. A ---*/
+
+/** Estilos para el contenedor principal */
+.contacto {
+    border: 3px solid #8a6f50;
+    background-color: #aa9f94;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    text-align: left;
+    font-family: Arial, sans-serif;
+}
+/** Estilos para el título */
+.contacto h1 {
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+/** Estilos para la información de contacto */
+.contacto p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+/** Estilos para las redes sociales */
+.contacto .redes-sociales {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.contacto .redes-sociales li {
+    margin: 0 10px;
+}
+.contacto .redes-sociales a {
+    display: block;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.contacto .redes-sociales a:hover {
+    color: #fff;
+}
+/** Estilos para el formulario */
+.contacto form {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.contacto form label {
+    display: block;
+    margin-bottom: 10px;
+}
