@@ -405,7 +405,7 @@ footer {
 	background-color: #f2e8c4;
 }
 
-/** Estilos para el título */
+/** Estilos para el tÃ­tulo */
 .contacto h1 {
     text-transform: uppercase;
     font-size: 36px;
@@ -413,7 +413,7 @@ footer {
     margin-bottom: 20px;
     text-align: center;
 }
-/** Estilos para la información de contacto */
+/** Estilos para la informaciÃ³n de contacto */
 .contacto p {
     font-size: 16px;
     line-height: 1.5;
@@ -447,4 +447,3 @@ footer {
 .contacto form label {
     display: block;
     margin-bottom: 10px;
-}
