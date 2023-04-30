@@ -230,8 +230,8 @@ footer {
 	max-width: 120rem;
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 1rem;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 2rem;
 	overflow-x: hidden;
 }
 @media (max-width: 768px) {
