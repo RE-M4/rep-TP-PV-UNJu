@@ -1,38 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org/" lang= "es">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../static/css/estilos.css">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
-
-<title>Consejos de Salud</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+	<title>Consejos de Salud</title>
 </head>
 <body>
 	<div id="container-salud">
 		<div class="encabezado">
-			<header>
-			<h1>El mundo de las mascotas</h1>
-				<img id="logo" src="../static/images/logoUnju.png" alt="Logo de la facultad" title="Logo"width="480" height="180">
-				<nav>
-					<ul>
-						<li><a href="index.html">Index</a></li>
-						<li><a href="Productos.html">Productos</a></li>
-						<li><a href="ServicioDePaseos.html">Servicio de paseos</a></li>
-						<li><a href="consejoSalud.html">Consejos de Salud</a></li>
-						<li><a href="sucursales.html">Sucursales</a></li>
-						<li><a href="Contacto.html">Contactenos</a></li>
-					</ul>
-				</nav>
-			</header>
+			<header th:replace="layouts/header :: header"></header>
+			<nav th:replace="layouts/navigation :: navigation"></nav>
 		</div>
-			
 		<section class="seccion-salud"  >
 			<h2>Consejos de salud para perros y gatos</h2>
 			<article class="articulo-salud">
 				<div class="parte-1">
-					<img alt="aca una imagen" src="../static/images/saludMascotas4.jpg" >
+					<img alt="aca una imagen" th:src="@{images/saludMascotas4.jpg}" >
 				</div>
 				<div class="parte-2">
 					<h3>La importancia de desparasitar a su paciente felino, incluso si no sale de casa</h3>
@@ -46,7 +32,7 @@
 	
 			<article class="articulo-salud">
 				<div class="parte-1">
-					<img alt="aca una imagen" src="../static/images/saludMascotas2.jpg" >
+					<img alt="aca una imagen" th:src="@{images/saludMascotas2.jpg}" >
 				</div>
 				<div class="parte-2">	
 					<h3>La importancia de la prevención parasitaria continuada</h3>
@@ -63,7 +49,7 @@
 
 			<article class="articulo-salud">
 				<div class="parte-1">
-					<img alt="aca una imagen" src="../static/images/saludMascotas3.jpg" >
+					<img alt="aca una imagen" th:src="@{images/saludMascotas3.jpg}" >
 					</div>
 				<div class="parte-2">
 					<h3>Manejo de la Diabetes en Perros y Gatos</h3>
@@ -84,7 +70,7 @@
 
 			<article class="articulo-salud">
 				<div class="parte-1">
-					<img alt="aca una imagen" src="../static/images/saludMascotas5.jpg" >
+					<img alt="aca una imagen" th:src="@{images/saludMascotas5.jpg}" >
 				</div>
 				<div class="parte-2">
 					<h3>Alimentación acorde para tu mascota</h3>
@@ -97,7 +83,7 @@
 			
 			<article class="articulo-salud">
 				<div class="parte-1">
-					<img alt="aca una imagen" src="../static/images/saludMascotas6.jpg" >
+					<img alt="aca una imagen" th:src="@{images/saludMascotas6.jpg}" >
 				</div>
 				<div class="parte-2">
 					<h3>Limpieza y cuidados ‘beauty’ 🚿</h3>
@@ -112,7 +98,7 @@
 			</article>
 			<article class="articulo-salud">
 				<div class="parte-1">
-					<img alt="aca una imagen" src="../static/images/saludMascotas7.jpg" >
+					<img alt="aca una imagen" th:src="@{images/saludMascotas7.jpg}" >
 				</div>
 				<div class="parte-2">
 					<h3>Ejercicio para peludos 🐾</h3>
@@ -126,7 +112,7 @@
 			</article>
 				<article class="articulo-salud">
 				<div class="parte-1">
-					<img alt="Aca una imagen" src="../static/images/saludMascotas1.jpg" >
+					<img alt="Aca una imagen" th:src="@{images/saludMascotas1.jpg}" >
 				</div>
 				<div class="parte-2">	
 					<h3>Manejo y tratamiento de la incontinencia urinaria en perras</h3>
@@ -167,10 +153,7 @@
 			</article>
 		</section>
 		
-		<footer>
-			<p>Copyright 2023 - El mundo de las mascotas - Diseñado por Grupo 01 -
-	        Jujuy - República Argentina</p>
-		</footer>
+		<footer th:replace="layouts/footer :: footer"></footer>
 	</div>
 </body>
 </html>
