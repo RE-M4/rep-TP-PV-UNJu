@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="es">
 <head>
 <meta charset="UTF-8">
 <title>Contacto</title>
@@ -8,20 +8,8 @@
 
 <body>
 	<div class="encabezado">
-		<header>
-        <h1>Contáctenos</h1>
-        <img src="../static/images/logoUnju.png" alt="Logo de la facultad" title="Logo" width="480" height="180">
-    </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Index</a></li>
-            <li><a href="Productos.html">Productos</a></li>
-            <li><a href="ServicioDePaseos.html">Servicio de paseos</a></li>
-            <li><a href="consejoSalud.html">Consejos de Salud</a></li>
-            <li><a href="sucursales.html">Sucursales</a></li>
-            <li><a href="Contacto.html">Contáctenos</a></li>
-        </ul>
-    </nav>
+		<header th:replace="layouts/header :: header"></header>
+		<nav th:replace="layouts/navigation :: navigation"></nav>
 	</div>
     <div class="bodyContacto">
     	<div class="contacto">
@@ -57,7 +45,6 @@
         </form>
     </div>
     </div>
-    <footer>Copyright 2023 - El mundo de las mascotas - Diseñado por Grupo 01 -
-        Jujuy - República Argentina</footer>
+    <footer th:replace="layouts/footer :: footer"></footer>
 
 </html>
