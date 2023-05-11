@@ -1,19 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/" lang= "es">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Sucursales</title>
-	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<link rel="stylesheet" href="../static/css/estilos.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--
+	<style>
+		html{
+			text-align: center;
+		}
+		li {
+			display: inline-block;
+			list-style: none;
+			padding: 5px;
+		}
+	</style>
+	-->
 </head>
 
 
 
 <body>
-	<div class="encabezado">
-		<header th:replace="layouts/header :: header"></header>
-		<nav th:replace="layouts/navigation :: navigation"></nav>
-	</div>
+<div class="encabezado">
+	<header>
+		<h1>El mundo de las mascotas</h1>
+		<img id="logo" src="../static/images/logoUnju.png" alt="Logo de la facultad" title="Logo" width="480" height="180">
+		<nav>
+			<ul>
+				<li><a href="index.html">Index</a></li>
+				<li><a href="Productos.html">Productos</a></li>
+				<li><a href="ServicioDePaseos.html">Servicio de paseos</a></li>
+				<li><a href="consejoSalud.html">Consejos de Salud</a></li>
+				<li><a href="sucursales.html">Sucursales</a></li>
+				<li><a href="Contacto.html">Contactenos</a></li>
+			</ul>
+		</nav>
+	</header>
+</div>
 
 <div class="container-sucursales">
 	<div class="columns-sucursales">
@@ -58,9 +82,10 @@
 		</section>
 	</div>
 </div>
-		<div class="piePagina">
-			<footer th:replace="layouts/footer :: footer"></footer>
-		</div>
+<footer>
+	<p>Copyright 2023 - El mundo de las mascotas - Diseñado por Grupo 01 -
+	Jujuy - República Argentina</p>
+</footer>
 </body>
 
 </html>
