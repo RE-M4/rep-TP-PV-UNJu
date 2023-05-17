@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Contacto</title>
-<link rel="stylesheet" href="../static/css/estilos.css">
+<link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 
 <body>
 	<div class="encabezado">
-		<header th:replace="layouts/header :: header"></header>
-		<nav th:replace="layouts/navigation :: navigation"></nav>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 	</div>
     <div class="bodyContacto">
     	<div class="contacto">
@@ -28,23 +28,23 @@
         </ul>
         <hr>
         <!-- Formulario-->
-        <form>
+        <form th:action="@{/guardarMensaje}" th:object="${Contacto}" method="post">
             <label for="Nombre">Nombre</label>
-            <input type="text" id="nombre" name="Ingrese su nombre" placeholder="Ingrese su nombre"><br>
+            <input type="text" th:field="*{nombre}" id="nombre" name="Ingrese su nombre" placeholder="Ingrese su nombre"><br>
 
             <label for="Email">Email</label>
-            <input type="email" id="email" name="Ingrese un email vÃ¡lido" placeholder="Ingrese un email válido"><br>
+            <input type="email" th:field="*{email}" id="email" name="Ingrese un email vÃ¡lido" placeholder="Ingrese un email válido"><br>
 
             <label for="Ciudad">Ciudad</label>
-            <input type="text" id="Ciudad" name="Ingrese su ciudad" placeholder="Ingrese su ciudad"><br>
+            <input type="text" th:field="*{ciudad}" id="Ciudad" name="Ingrese su ciudad" placeholder="Ingrese su ciudad"><br>
 
             <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="Mensaje"></textarea><br>
+            <textarea id="mensaje" th:field="*{mensaje}" name="Mensaje"></textarea><br>
 
-            <input type="submit" value="Enviar">
+            <input type="submit" value="Guardar">
         </form>
     </div>
     </div>
-    <footer th:replace="layouts/footer :: footer"></footer>
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
 
 </html>
