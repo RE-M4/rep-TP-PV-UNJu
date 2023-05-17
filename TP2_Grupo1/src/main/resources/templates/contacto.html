@@ -8,8 +8,10 @@
 
 <body>
 	<div class="encabezado">
-		<header th:replace="layouts/header :: header"></header>
-		<nav th:replace="layouts/navigation :: navigation"></nav>
+		<header th:replace="{layouts/header :: header}"></header>
+		<nav th:replace="{layouts/navigation :: navigation}"></nav>
+		<!--Falnta agregar en el idex 
+		<li><a th:href="@{peticion}" target="_blank">Contactenos</a></li> -->
 	</div>
     <div class="bodyContacto">
     	<div class="contacto">
@@ -45,6 +47,6 @@
         </form>
     </div>
     </div>
-    <footer th:replace="layouts/footer :: footer"></footer>
+    <footer th:replace="{layouts/footer :: footer}"></footer>
 
 </html>
