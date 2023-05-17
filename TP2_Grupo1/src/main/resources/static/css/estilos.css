@@ -184,9 +184,7 @@ footer {
 .producto-img img{
 	width: 100%;
 }
-.producto:hover {
-	/*transform: scale(1.1);*/
-}
+
 .producto-nombre, .producto-precio{
 	text-align: center;
 	margin: 1rem;
@@ -451,4 +449,9 @@ footer {
 
 #mensaje {
 	font-size: 14pt;
+}
+
+.botonAgregar {
+	text-align: center;
+	padding-top: 10px;
 }
