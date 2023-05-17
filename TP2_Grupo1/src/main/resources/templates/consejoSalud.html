@@ -11,26 +11,25 @@
 <body>
 	<div id="container-salud">
 		<div class="encabezado">
-			<header th:replace="layouts/header :: header"></header>
-			<nav th:replace="layouts/navigation :: navigation"></nav>
+			<header th:replace="~{layouts/header :: header}"></header>
+			<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 		</div>
 		<section class="seccion-salud"  >
 			<h2>Consejos de salud para perros y gatos</h2>
-			<article class="articulo-salud">
+			<div class="contenedor" style="margin-top: 3%; text-align:left; padding-left: 14% ">
+				<a th:href="@{nuevo_consejo}" style="display: inline-block; padding: 10px 20px; background-color: #F2C94C; color: #000000; font-size: 20px; text-decoration: none; border-radius: 5px; border: none; transition: background-color 0.3s ease;" >Nuevo Consejo</a>
+			</div>
+			<article class="articulo-salud" th:each="consejo : ${listaConsejo}">
 				<div class="parte-1">
-					<img alt="aca una imagen" th:src="@{images/saludMascotas4.jpg}" >
+					<img alt="aca una imagen" th:src="@{${consejo.img}}" >
 				</div>
 				<div class="parte-2">
-					<h3>La importancia de desparasitar a su paciente felino, incluso si no sale de casa</h3>
-					<p>Los felinos, al igual que todos los animales de compañía e incluso los humanos, son 
-					afectados por una amplia gama de parásitos. Por definición, el parásito produce
-					efectos dañinos en su hospedador y se considera que aquellos que viven en la 
-					superficie externa del hospedador o en la piel, denominados ectoparásitos, 
-					causan infestaciones. </p>
+					<h3 th:text="${consejo.titulo}"></h3>
+					<p th:text="${consejo.descripcion}"> </p>
 				</div>
 			</article>
 	
-			<article class="articulo-salud">
+			<!-- <article class="articulo-salud">
 				<div class="parte-1">
 					<img alt="aca una imagen" th:src="@{images/saludMascotas2.jpg}" >
 				</div>
@@ -150,10 +149,10 @@
 					imágenes diagnósticas específicas según el diagnóstico presuntivo.
 					</p>
 				</div>
-			</article>
+			</article> -->
 		</section>
 		
-		<footer th:replace="layouts/footer :: footer"></footer>
+		<footer th:replace="~{layouts/footer :: footer}"></footer>
 	</div>
 </body>
 </html>
