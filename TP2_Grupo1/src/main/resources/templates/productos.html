@@ -5,108 +5,38 @@
   <title>Productos</title>
   <link rel="stylesheet" th:href="@{/css/estilos.css}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 
 <body>
 <div class="encabezado">
-	<header>
-		<h1>El mundo de las mascotas</h1>
-		<img id="logo" src="../static/images/logoUnju.png" alt="Logo de la facultad" title="Logo" width="480" height="180">
-		<nav>
-			<ul>
-				<li><a href="index.html">Index</a></li>
-				<li><a href="Productos.html">Productos</a></li>
-				<li><a href="ServicioDePaseos.html">Servicio de paseos</a></li>
-				<li><a href="consejoSalud.html">Consejos de Salud</a></li>
-				<li><a href="sucursales.html">Sucursales</a></li>
-				<li><a href="Contacto.html">Contactenos</a></li>
-			</ul>
-		</nav>
-	</header>
+	<header th:replace="~{layouts/header :: header}"></header>
+	<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 </div>
 
 <main class="container-productos">
-	<h2 class="productos-titulo"> ALIMENTOS CANINOS	</h2>
+	<h2 class="productos-titulo">PRODUCTOS</h2>
+	<div class="botonAgregar">
+		<a th:href="@{nuevo_producto}">Agregar Producto</a>
+	</div>
 	<section class="productos">
-		<!-- producto1 -->
-		<div class="producto">
+		<!--Productos-->
+		<div class="producto" th:each="producto : ${productos}">
 			<div class="producto-img">
 				<img src="../static/images/producto1.jpg" alt="Producto alimento para perro" title="Producto alimento para perro">
 			</div>
 			<div class="producto-info">
-				<h3 class="producto-nombre">OLYMPIC PERRO ADULTO 19KG</h3>
-				<p class="producto-precio">$5750</p>
-<!--				<p class="producto-comp">-->
-<!--					<button class="agregar-carrito">Comprar</button>-->
-<!--				</p>-->
-			</div>
-		</div>
-		<!-- producto2 -->
-		<div class="producto">
-			<div class="producto-img">
-				<img src="../static/images/producto2.jpg" alt="Producto alimento para perro" title="Producto alimento para perro">
-			</div>
-			<div class="producto-info">
-				<h3 class="producto-nombre">COMPLETE PERRO CACHORRO RAZA PEQUEÑA 20 KG.</h3>
-				<p class="producto-precio"><del>$10837</del>$8664</p>
-			</div>
-		</div>
-		<!-- producto3 -->
-		<div class="producto">
-			<div class="producto-img">
-				<img src="../static/images/producto3.jpg" alt="Producto alimento para perro" title="Producto alimento para perro">
-			</div>
-			<div class="producto-inf">
-				<h3 class="producto-nombre">EXCELLENT GATOS SKIN CARE 1 KG</h3>
-				<p class="producto-precio"><del>$2360</del>$1534</p>
-			</div>
-		</div>
-		<!-- producto4-->
-		<div class="producto">
-			<div class="producto-img">
-				<img src="../static/images/producto4.jpg" alt="Producto alimento para perro" title="Producto alimento para perro">
-			</div>
-			<div class="producto-inf">
-				<h3 class="producto-nombre">PERFORMANCE ADULTO 20 KG.</h3>
-				<p class="producto-precio"><del>$18.577,78</del>$16.720</p>
-			</div>
-		</div>
-		<!-- producto5 -->
-		<div class="producto">
-				<div class="producto-img">
-					<img src="../static/images/producto1.jpg" alt="Producto alimento para perro" title="Producto alimento para perro">
+				<h3 class="producto-nombre" th:text="${producto.nombre}"></h3>
+				<div th:if="${producto.descuento == 0}">
+					<p class="producto-precio" th:text="${producto.precio}"></p>
 				</div>
-			<div class="producto-info">
-				<h3 class="producto-nombre">OLYMPIC PERRO ADULTO 19KG</h3>
-				<p class="producto-precio">$5750</p>
-			</div>
-		</div>
-		<!-- producto6 -->
-		<div class="producto">
-			<div class="producto-img">
-			<img src="../static/images/producto2.jpg" alt="Producto alimento para perro" title="Producto alimento para perro">
-			</div>
-			<div class="producto-info">
-				<h3 class="producto-nombre">COMPLETE PERRO CACHORRO RAZA PEQUEÑA 20 KG.</h3>
-				<p class="producto-precio"><del>$10837</del>$8664</p>
-			</div>
-		</div>
-		<!-- producto7 -->
-		<div class="producto">
-			<div class="producto-img">
-				<img src="../static/images/producto3.jpg" alt="Producto alimento para perro" title="Producto alimento para perro">
-			</div>
-			<div class="producto-inf">
-				<h3 class="producto-nombre">EXCELLENT GATOS SKIN CARE 1 KG</h3>
-				<p class="producto-precio"><del>$2360</del>$1534</p>
+				<div th:if="${producto.descuento != 0}">
+					<del class="producto-precio" th:text="${producto.precio}"></del> <span class="producto-precio" th:text="${producto.calcularDescuento()}"></span>
+				</div>
 			</div>
 		</div>
 	</section>
 </main>
-<footer>
-  <p>Copyright 2023 - El mundo de las mascotas - Diseñado por Grupo 01 - Jujuy - República Argentina</p>
-</footer>
+<footer th:replace="~{layouts/footer :: footer}"></footer>
 </body>
 
 </html>
