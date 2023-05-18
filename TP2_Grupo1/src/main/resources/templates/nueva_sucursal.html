@@ -23,9 +23,9 @@
 	<div>
 		<label for="provincia">Selecciona una provincia:</label>
 		<select id="provincia" name="provincia" th:field="*{provincia}" required>
-			<option value="buenos_aires">Buenos Aires</option>
-			<option value="cordoba">Córdoba</option>
-			<option value="santa_fe">Santa Fe</option>
+			<option value="Buenos Aires">Buenos Aires</option>
+			<option value="Córdoba">Córdoba</option>
+			<option value="Santa Fe">Santa Fe</option>
 		</select>
 	</div>
 	<!-- Horario de Atencion -->
@@ -43,11 +43,12 @@
 	</div>
 	<div>
 		<label for="horaApertura">Hora de apertura:</label>
-		<input type="time" id="horaApertura" name="horaApertura" th:field="*{horaApertura}" required>
+		<input type="number" id="horaApertura" name="horaApertura" th:field="*{horaApertura}" min="0" max="23" required>
 	</div>
 	<div>
 		<label for="horaCierre">Hora de cierre:</label>
-		<input type="time" id="horaCierre">
+		<input type="number" id="horaCierre" name="horaCierre" th:field="*{horaCierre}" min="0" max="23" required>
+
 	</div>
 	<br>
 

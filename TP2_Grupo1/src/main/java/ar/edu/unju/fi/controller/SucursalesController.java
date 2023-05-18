@@ -11,6 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/sucursales")
 public class SucursalesController {
 	ListasSucursales listaSucursales = new ListasSucursales();
+
+	@GetMapping("")
+	public String sucursalesPage(Model model){
+		return "sucursales";
+	}
+	public ListasSucursales getListaSucursales() {
+		return listaSucursales;
+	}
+
 	@GetMapping("/listado")
 	public String getListaSucursalesPageTabla(Model model) {
 		model.addAttribute("sucursales", listaSucursales.getSucursales());

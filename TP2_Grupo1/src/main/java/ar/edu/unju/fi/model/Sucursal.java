@@ -8,8 +8,8 @@ public class Sucursal {
     private String provincia;
     private String diaApertura;
     private String diaCierre;
-    private LocalTime horaApertura;
-    private LocalTime horaCierre;
+    private int horaApertura;
+    private int horaCierre;
     private boolean horariosEspeciales;
     private LocalTime horaAperturaEspecial;
     private LocalTime horaCierreEspecial;
@@ -20,7 +20,7 @@ public class Sucursal {
     }
 
 
-    public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, LocalTime horaApertura, LocalTime horaCierre, boolean horariosEspeciales, LocalTime horaAperturaEspecial, LocalTime horaCierreEspecial, String telefono) {
+    public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre, boolean horariosEspeciales, LocalTime horaAperturaEspecial, LocalTime horaCierreEspecial, String telefono) {
         this.nombre = nombre;
         this.calle = calle;
         this.provincia = provincia;
@@ -74,19 +74,19 @@ public class Sucursal {
         this.diaCierre = diaCierre;
     }
 
-    public LocalTime getHoraApertura() {
+    public int getHoraApertura() {
         return horaApertura;
     }
 
-    public void setHoraApertura(LocalTime horaApertura) {
+    public void setHoraApertura(int horaApertura) {
         this.horaApertura = horaApertura;
     }
 
-    public LocalTime getHoraCierre() {
+    public int getHoraCierre() {
         return horaCierre;
     }
 
-    public void setHoraCierre(LocalTime horaCierre) {
+    public void setHoraCierre(int horaCierre) {
         this.horaCierre = horaCierre;
     }
 
