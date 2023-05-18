@@ -17,7 +17,7 @@
 		<section class="seccion-salud"  >
 			<h2>Consejos de salud para perros y gatos</h2>
 			<div class="contenedor" style="margin-top: 3%; text-align:left; padding-left: 14% ">
-				<a th:href="@{nuevo_consejo}" style="display: inline-block; padding: 10px 20px; background-color: #F2C94C; color: #000000; font-size: 20px; text-decoration: none; border-radius: 5px; border: none; transition: background-color 0.3s ease;" >Nuevo Consejo</a>
+				<a th:href="@{/nuevo_consejo}" style="display: inline-block; padding: 10px 20px; background-color: #F2C94C; color: #000000; font-size: 20px; text-decoration: none; border-radius: 5px; border: none; transition: background-color 0.3s ease;" >Nuevo Consejo</a>
 			</div>
 			<article class="articulo-salud" th:each="consejo : ${listaConsejo}">
 				<div class="parte-1">
@@ -27,6 +27,10 @@
 					<h3 th:text="${consejo.titulo}"></h3>
 					<p th:text="${consejo.descripcion}"> </p>
 				</div>
+				<div style="text-align: right; ">
+		      		<a th:href="@{modificar_consejo/}+${consejo.titulo}" type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);">Modificar</a>
+					<a th:href="@{eliminar_consejo/}+${consejo.titulo}" onclick="return confirm('¿Estás seguro de que deseas eliminar este consejo?')" type="submit" style="background-color: #dc3545; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);">Eliminar</a>
+		   		 </div>
 			</article>
 	
 			<!-- <article class="articulo-salud">
