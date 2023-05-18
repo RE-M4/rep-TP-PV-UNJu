@@ -19,6 +19,7 @@
 
 		<section class="sucursales">
 		<div class="sucursales-contenido scroll">
+			<a th:href="@{sucursal/nuevo}">Nueva Sucursal</a>
 			<article class="sucursal">
 				<h3 class="sucursal-nombre">Sucursal Humberto 1°</h3>
 				<p class="sucursal-calle">CASTRO BARROS 1639 | Córdoba Capital | Córdoba</p>
@@ -43,11 +44,13 @@
 				<p class="sucursal-horario">Horario: Lunes a Viernes de 9 a 17hs y Sábados de 8 a 12hs.</p>
 				<p class="sucursal-tel"> 0800 123 4567</p>
 			</article>
-			<article class="sucursal">
-				<h3 class="sucursal-nombre">Sucursal San Lorenzo 1°</h3>
-				<p class="sucursal-calle">RUTA "A" 005 1980, KM 4,1 | RIO CUARTO | Córdoba</p>
-				<p class="sucursal-horario">Horario: Lunes a Viernes de 9 a 17hs.</p>
-				<p class="sucursal-tel"> 0800 123 4567</p>
+			<article class="sucursal" th:each="sucursal2: ${sucursales}">
+				<h3 class="sucursal-nombre" th:text="${sucursal2.nombre}"></h3>
+				<p class="sucursal-calle" th:text="${sucursal2.calle + ' | ' + sucursal2.provincia}"></p>
+				<td>
+					<span th:text="'Horario: ' + ${sucursal2.diaApertura} + ' a ' + ${sucursal2.diaCierre} + ' de ' + ${#temporals.format(sucursal2.horaApertura, 'HH:mm')} + ' a ' + ${#temporals.format(sucursal2.horaCierre, 'HH:mm')} + 'hs'"></span>
+				</td>
+				<p class="sucursal-tel" th:text="${sucursal2.telefono}"></p>
 			</article>
 		</div>
 		<div class="sucursal-mapa" style="display: contents">
