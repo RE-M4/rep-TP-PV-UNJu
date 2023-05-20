@@ -2,7 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ServiciosDePaseoLista;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-//@RequestMapping("/servicioDePaseos") Hace falta esta línea para no mezclar los GetMapping o PostMapping de otros Controllers
+@RequestMapping("/servicioDePaseos") /*Hace falta esta línea para no mezclar los GetMapping o PostMapping de otros Controllers*/
 public class ServicioDePaseosController {
 	/*Se crea un objeto tipo lista*/
 	ServiciosDePaseoLista serviciosLista = new ServiciosDePaseoLista();
 	/*GetMapping que usa el método "get" del objeto tipo lista y lo carga en el HTML*/
-	@GetMapping("/servicioDePaseos")
+	@GetMapping("/listado")
 	public String getServicioDePaseos(Model model) {
 		model.addAttribute("servicios", serviciosLista.getServiciosDePaseo());
 		return "servicioDePaseos";
