@@ -25,8 +25,8 @@
                 <td id="formatoCelda" th:text="${servicio.dia}"></td>
                 <td id="formatoCelda" th:text="${servicio.horario}"></td>
                 <td>
-                	<a th:href="@{/modificarDatos/}+${servicio.paseador}">Modificar</a>
-                	<a th:href="@{/eliminarDatos/}+${servicio.paseador}">Eliminar</a>
+                	<a th:href="@{/servicioDePaseos/modificarDatos/}+${servicio.paseador}">Modificar</a>
+                	<a th:href="@{/servicioDePaseos/eliminarDatos/}+${servicio.paseador}">Eliminar</a>
                 </td>
             </tr>
         </table>
