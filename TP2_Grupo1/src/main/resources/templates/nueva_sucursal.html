@@ -6,11 +6,9 @@
 </head>
 <body>
 <!--<h3 th:text="${edicion} ? 'Modificar Producto' : 'Nuevo Producto'"></h3>-->
-<!--<form method="post"-->
-<!--	  th:action="${edicion ? '/sucursales/Op' : '/sucursales/nueva_sucursal'}"-->
-<!--	  th:object="${sucursal}">-->
 <!--<h3 th:text="Nuevo Producto"></h3>-->
-<form method="post" th:action="@{/sucursales/guardar}" th:object="${sucursal}">
+<!--<form th:action="@{/sucursales/guardar}" th:object="${sucursal}" method="post">-->
+<form th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}" method="post">-
 	<div>
 		<label for="nombre">Nombre:</label>
 		<input type="text" id="nombre" name="nombre" th:field="*{nombre}" required>
@@ -51,22 +49,15 @@
 
 	</div>
 	<br>
-
-
 	<div>
 		<label for="telefono">Telefono:</label>
 		<input type="text" min="0" max="50" id="telefono" name="telefono" th:field="*{telefono}" required>
 	</div>
-
+<!--	<button type="submit" style="display:block;background-color: #4CAF50; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;" th:text="${edicion}?'Modificar':'Guardar'"></button>-->
 	<input type="submit" th:value="Guardar"/>
 </form>
 
 
-
-<!-- 	<h1 th:text="${titulo}"></h1> -->
-<!-- 	si el arreglo esta vacio muestra este mensaje -->
-<!-- <div th:if="${muestraProductos.size()==0}">No hay productos registrados</div>-->
-<!-- 	sino ejecuta el for each-->
 	<table>
 		<thead>
 			<tr>
@@ -92,7 +83,6 @@
 				<td>
 					<a th:href="@{/sucursales/modificar/{nombre}(nombre=${sucursal1.nombre})}">Editar</a>
 					<a th:href="@{/sucursales/eliminar/{nombre}(nombre=${sucursal1.nombre})}">Eliminar</a>
-
 				</td>
 			</tr>
 		</tbody>

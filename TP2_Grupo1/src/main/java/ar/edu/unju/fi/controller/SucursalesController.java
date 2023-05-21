@@ -54,21 +54,59 @@ public class SucursalesController {
 		return modelView;
 	}
 
-	@GetMapping("/modificar/{nombre}")
-	public ModelAndView getModificarSucursalPage(Model model, @PathVariable(value = "nombre") String nombre) {
-		Sucursal sucursalEncontrada = new Sucursal();
-		boolean edicion = true;
-		for (Sucursal sucu : listaSucursales.getSucursales()) {
-			if (sucu.getNombre().equals(nombre)) {
-				sucursalEncontrada = sucu;
-				break;
-			}
+//	@GetMapping("/modificar/{nombre}")
+//	public ModelAndView getModificarSucursalPage(Model model, @PathVariable(value = "nombre") String nombre) {
+//		Sucursal sucursalEncontrada = new Sucursal();
+//		boolean edicion = true;
+//		for (Sucursal sucu : listaSucursales.getSucursales()) {
+//			if (sucu.getNombre().equals(nombre)) {
+//				sucursalEncontrada = sucu;
+//				break;
+//			}
+//		}
+//		ModelAndView modelView = new ModelAndView("nueva_sucursal");
+//		model.addAttribute("sucursal", sucursalEncontrada);
+//		model.addAttribute("edicion", edicion);
+//		return modelView;
+//	}
+
+//	@PostMapping("/modificar")
+//	public String modificarSucursal(@ModelAttribute("sucursal") Sucursal sucursal) {
+//		for (Sucursal sucu : listaSucursales.getSucursales()) {
+//			if (sucu.getNombre().equals(sucursal.getNombre())) {
+//				sucu.setCalle(sucursal.getCalle());
+//				sucu.setProvincia(sucursal.getProvincia());
+//				sucu.setDiaApertura(sucursal.getDiaApertura());
+//				sucu.setDiaCierre(sucursal.getDiaCierre());
+//				sucu.setHoraApertura(sucursal.getHoraApertura());
+//				sucu.setHoraCierre(sucursal.getHoraCierre());
+//				sucu.setTelefono(sucursal.getTelefono());
+//				break;
+//			}
+//		}
+//		return "redirect:/sucursales/listado";
+//	}
+@GetMapping("/modificar/{nombre}")
+public ModelAndView getModificarSucursalPage(@PathVariable(value = "nombre") String nombre) {
+	ModelAndView modelAndView = new ModelAndView("nueva_sucursal");
+	Sucursal sucursalEncontrada = null;
+	boolean edicion = true;
+	for (Sucursal sucu : listaSucursales.getSucursales()) {
+		if (sucu.getNombre().equals(nombre)) {
+			sucursalEncontrada = sucu;
+			break;
 		}
-		ModelAndView modelView = new ModelAndView("nueva_sucursal");
-		model.addAttribute("sucursal", sucursalEncontrada);
-		model.addAttribute("edicion", edicion);
-		return modelView;
 	}
+	if (sucursalEncontrada != null) {
+		modelAndView.addObject("edicion", edicion);
+		modelAndView.addObject("sucursal", sucursalEncontrada);
+		return modelAndView;
+	} else {
+		// Manejar el caso de que la sucursal no se encuentre en la lista
+		// Puedes redirigir a una página de error o hacer algo más
+		return new ModelAndView("error");
+	}
+}
 
 	@PostMapping("/modificar")
 	public String modificarSucursal(@ModelAttribute("sucursal") Sucursal sucursal) {
