@@ -4,60 +4,41 @@
 	<meta charset="UTF-8">
 	<title>Sucursales</title>
 	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+<!--	Import icon engranaje-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 	<div class="encabezado">
-		<header th:replace="layouts/header :: header"></header>
-		<nav th:replace="layouts/navigation :: navigation"></nav>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 	</div>
 
 <div class="container-sucursales">
 	<div class="columns-sucursales">
 		<h2 class="sucursal-titulo">Sucursales</h2>
 
+		<a class="gear-button" th:href="@{/sucursales/nuevo}" title="Editar Sucursales">
+			<i class="fas fa-cog"></i>
+		</a>
 		<section class="sucursales">
 		<div class="sucursales-contenido scroll">
-			<article class="sucursal">
-				<h3 class="sucursal-nombre">Sucursal Humberto 1°</h3>
-				<p class="sucursal-calle">CASTRO BARROS 1639 | Córdoba Capital | Córdoba</p>
-				<p class="sucursal-horario">Horario: Lunes a Viernes de 9 a 17hs y Sábados de 8 a 12hs.</p>
-				<p class="sucursal-tel"> 0800 123 4567</p>
-			</article>
-			<article class="sucursal">
-				<h3 class="sucursal-nombre">Sucursal Cerro 1°</h3>
-				<p class="sucursal-calle">AV. RAFAEL NUÑEZ 4460 | Córdoba Capital | Córdoba</p>
-				<p class="sucursal-horario">Horario: Lunes a Viernes de 9 a 17hs.</p>
-				<p class="sucursal-tel"> 0800 123 4567</p>
-			</article>
-			<article class="sucursal">
-				<h3 class="sucursal-nombre">Sucursal Nuevo Mundo 1°</h3>
-				<p class="sucursal-calle">SAN MARTÍN 1600 | Villa Carlos Paz | Córdoba</p>
-				<p class="sucursal-horario">Horario: Lunes a Viernes de 9 a 17hs.</p>
-				<p class="sucursal-tel"> 0800 123 4567</p>
-			</article>
-			<article class="sucursal">
-				<h3 class="sucursal-nombre">Sucursal Nueva Cordoba 1°</h3>
-				<p class="sucursal-calle">AV. 9 DE SEPTIEMBRE 25 | RIO TERCERO | Córdoba</p>
-				<p class="sucursal-horario">Horario: Lunes a Viernes de 9 a 17hs y Sábados de 8 a 12hs.</p>
-				<p class="sucursal-tel"> 0800 123 4567</p>
-			</article>
-			<article class="sucursal">
-				<h3 class="sucursal-nombre">Sucursal San Lorenzo 1°</h3>
-				<p class="sucursal-calle">RUTA "A" 005 1980, KM 4,1 | RIO CUARTO | Córdoba</p>
-				<p class="sucursal-horario">Horario: Lunes a Viernes de 9 a 17hs.</p>
-				<p class="sucursal-tel"> 0800 123 4567</p>
+			<article class="sucursal" th:each="sucursal2: ${sucursales}">
+				<h3 class="sucursal-nombre" th:text="${sucursal2.nombre}"></h3>
+				<p class="sucursal-calle" style="text-transform: uppercase" th:text="${sucursal2.calle + ' | ' + sucursal2.provincia}"></p>
+				<p class="sucursal-horario" th:text="'Horario: ' + ${sucursal2.diaApertura} + ' a ' + ${sucursal2.diaCierre} + ' de ' + ${sucursal2.horaApertura} + ' a ' + ${sucursal2.horaCierre} + 'hs'"></p>
+				<p class="sucursal-tel" th:text="${sucursal2.telefono}"></p>
 			</article>
 		</div>
 		<div class="sucursal-mapa" style="display: contents">
-			<img src="../static/images/sucursalesMapa.png" alt="imagen mapa sucursales">
+			<img th:src="@{../../images/sucursalesMapa.png}" alt="imagen mapa sucursales">
 		</div>
 		</section>
 	</div>
 </div>
 		<div class="piePagina">
-			<footer th:replace="layouts/footer :: footer"></footer>
+			<footer th:replace="~{layouts/footer :: footer}"></footer>
 		</div>
 </body>
 
