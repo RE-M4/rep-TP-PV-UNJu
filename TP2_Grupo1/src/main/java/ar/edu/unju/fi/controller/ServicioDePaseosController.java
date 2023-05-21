@@ -46,7 +46,7 @@ public class ServicioDePaseosController {
 				servicioOriginal.setHorario(servicioModificado.getHorario());
 			}
 		}
-		return "redirect:/servicioDePaseos";
+		return "redirect:/servicioDePaseos/listado";
 	}
 	@GetMapping("/eliminarDatos/{nombrePaseador}")
 	public String eliminarDatos(Model model, @PathVariable(value="nombrePaseador")String nombrePaseador){
@@ -60,6 +60,6 @@ public class ServicioDePaseosController {
 				break;
 			}
 		}
-		return "redirect:/servicioDePaseos";
+		return "redirect:/servicioDePaseos/listado";
 	}
 }
