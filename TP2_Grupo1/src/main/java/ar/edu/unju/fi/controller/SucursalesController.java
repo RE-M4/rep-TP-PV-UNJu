@@ -20,12 +20,6 @@ public class SucursalesController {
 
 	}
 
-	@GetMapping("/nueva_sucursal")
-	public String getNuevaSucursalListaPage(Model model) {
-		model.addAttribute("sucursales", listaSucursales.getSucursales());
-		return "nueva_sucursal";
-	}
-
 	@GetMapping("/nuevo")
 	public String getNuevaSucursalPage(Model model) {
 		boolean edicion = false;
