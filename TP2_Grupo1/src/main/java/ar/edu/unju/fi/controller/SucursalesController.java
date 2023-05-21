@@ -13,17 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class SucursalesController {
 	ListasSucursales listaSucursales = new ListasSucursales();
 
-//	@GetMapping("")
-//	public String sucursalesPage(Model model){
-//		if (listaSucursales == null) {
-//			listaSucursales = new ListasSucursales();
-//		}
-//		return "sucursales";
-//	}
-//	public ListasSucursales getListaSucursales() {
-//		return listaSucursales;
-//	}
-
 	@GetMapping("/listado")
 	public String getListaSucursalesPage(Model model) {
 		model.addAttribute("sucursales", listaSucursales.getSucursales());
@@ -42,6 +31,7 @@ public class SucursalesController {
 		boolean edicion = false;
 		model.addAttribute("sucursal", new Sucursal());
 		model.addAttribute("edicion", edicion);
+		model.addAttribute("sucursales", listaSucursales.getSucursales());
 		return "nueva_sucursal";
 	}
 
@@ -97,15 +87,10 @@ public ModelAndView getModificarSucursalPage(@PathVariable(value = "nombre") Str
 			break;
 		}
 	}
-	if (sucursalEncontrada != null) {
-		modelAndView.addObject("edicion", edicion);
-		modelAndView.addObject("sucursal", sucursalEncontrada);
-		return modelAndView;
-	} else {
-		// Manejar el caso de que la sucursal no se encuentre en la lista
-		// Puedes redirigir a una página de error o hacer algo más
-		return new ModelAndView("error");
-	}
+	modelAndView.addObject("edicion", edicion);
+	modelAndView.addObject("sucursal", sucursalEncontrada);
+	return modelAndView;
+
 }
 
 	@PostMapping("/modificar")

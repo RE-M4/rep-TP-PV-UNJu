@@ -5,10 +5,10 @@
 <title>Nueva sucursal</title>
 </head>
 <body>
-<!--<h3 th:text="${edicion} ? 'Modificar Producto' : 'Nuevo Producto'"></h3>-->
 <!--<h3 th:text="Nuevo Producto"></h3>-->
 <!--<form th:action="@{/sucursales/guardar}" th:object="${sucursal}" method="post">-->
-<form th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}" method="post">-
+<h3 th:text="${edicion} ? 'Modificar Sucursal' : 'Nueva Sucursal'"></h3>
+<form th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}" method="post">
 	<div>
 		<label for="nombre">Nombre:</label>
 		<input type="text" id="nombre" name="nombre" th:field="*{nombre}" required>
@@ -54,7 +54,7 @@
 		<input type="text" min="0" max="50" id="telefono" name="telefono" th:field="*{telefono}" required>
 	</div>
 <!--	<button type="submit" style="display:block;background-color: #4CAF50; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;" th:text="${edicion}?'Modificar':'Guardar'"></button>-->
-	<input type="submit" th:value="Guardar"/>
+	<input type="submit" th:value="${edicion}?'Modificar':'Guardar'"/>
 </form>
 
 
