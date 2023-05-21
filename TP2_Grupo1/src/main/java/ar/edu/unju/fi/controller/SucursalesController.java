@@ -7,86 +7,100 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 @RequestMapping("/sucursales")
 public class SucursalesController {
 	ListasSucursales listaSucursales = new ListasSucursales();
 
-	@GetMapping("")
-	public String sucursalesPage(Model model){
-		return "sucursales";
-	}
-	public ListasSucursales getListaSucursales() {
-		return listaSucursales;
-	}
+//	@GetMapping("")
+//	public String sucursalesPage(Model model){
+//		if (listaSucursales == null) {
+//			listaSucursales = new ListasSucursales();
+//		}
+//		return "sucursales";
+//	}
+//	public ListasSucursales getListaSucursales() {
+//		return listaSucursales;
+//	}
 
 	@GetMapping("/listado")
-	public String getListaSucursalesPageTabla(Model model) {
-		model.addAttribute("sucursales", listaSucursales.getSucursales());
-		return "nueva_sucursal";
-	}
-	@GetMapping("/visualizar")
-	public String getvisualizarSucursales(Model model) {
+	public String getListaSucursalesPage(Model model) {
 		model.addAttribute("sucursales", listaSucursales.getSucursales());
 		return "sucursales";
 	}
-	@GetMapping("/nuevo")
-	public String getNuevaSucursalPage(Model model) {
-		//boolean edicion = false;
-		model.addAttribute("sucursal", new Sucursal());
-		//model.addAttribute("edicion", edicion);
+
+	@GetMapping("/nueva_sucursal")
+	public String getNuevaSucursalListaPage(Model model) {
+		model.addAttribute("sucursales", listaSucursales.getSucursales());
 		return "nueva_sucursal";
 	}
 
+	@GetMapping("/nuevo")
+	public String getNuevaSucursalPage(Model model) {
+		boolean edicion = false;
+		model.addAttribute("sucursal", new Sucursal());
+		model.addAttribute("edicion", edicion);
+		return "nueva_sucursal";
+	}
+
+
+
+
 	@PostMapping("/guardar")
-	public ModelAndView getGuardarSucursalPage(@ModelAttribute("sucursal") Sucursal sucursales) {
-		ModelAndView modelView = new ModelAndView("sucursales");
-		listaSucursales.getSucursales().add(sucursales);
+	public ModelAndView getGuardarSucursalPage(@ModelAttribute("sucursal") Sucursal sucursal) {
+
+		listaSucursales.getSucursales().add(sucursal);
+
+		ModelAndView modelView = new ModelAndView("nueva_sucursal");
 		modelView.addObject("sucursales", listaSucursales.getSucursales());
+		modelView.addObject("sucursal", new Sucursal());
 		return modelView;
 	}
 
-	//	@GetMapping("/{nombre}/eliminar")
-//	public ModelAndView eliminarSucursal(@PathVariable(value = "nombre") String nombre) {
-//		Sucursal sucursal = buscarSucursalPorNombre(nombre);
-//		if (sucursal != null) {
-//			listaSucursales.getSucursales().remove(sucursal);
-//		}
-//		return new ModelAndView("redirect:/sucursales");
-//	}
-//
-//	@GetMapping("/{nombre}/editar")
-//	public String getEditarSucursalPage(Model model, @PathVariable(value = "nombre") String nombre) {
-//		Sucursal sucursal = buscarSucursalPorNombre(nombre);
-//		model.addAttribute("sucursal", sucursal);
-//		return "nueva_sucursal";
-//	}
-//
-//	@PostMapping("/editar")
-//	public ModelAndView editarSucursal(@ModelAttribute("sucursal") Sucursal sucursal) {
-//		Sucursal sucursalExistente = buscarSucursalPorNombre(sucursal.getNombre());
-//		if (sucursalExistente != null) {
-//			sucursalExistente.setCalle(sucursal.getCalle());
-//			sucursalExistente.setProvincia(sucursal.getProvincia());
-//			sucursalExistente.setDiaApertura(sucursal.getDiaApertura());
-//			sucursalExistente.setDiaCierre(sucursal.getDiaCierre());
-//			sucursalExistente.setHoraApertura(sucursal.getHoraApertura());
-//			sucursalExistente.setHoraCierre(sucursal.getHoraCierre());
-//			sucursalExistente.setHorariosEspeciales(sucursal.isHorariosEspeciales());
-//			sucursalExistente.setHoraAperturaEspecial(sucursal.getHoraAperturaEspecial());
-//			sucursalExistente.setHoraCierreEspecial(sucursal.getHoraCierreEspecial());
-//			sucursalExistente.setTelefono(sucursal.getTelefono());
-//		}
-//		return new ModelAndView("redirect:/sucursales");
-//	}
-//	private Sucursal buscarSucursalPorNombre(String nombre) {
-//		for (Sucursal sucursal : listaSucursales.getSucursales()) {
-//			if (sucursal.getNombre().equals(nombre)) {
-//				return sucursal;
-//			}
-//		}
-//		return null;
-//	}
+	@GetMapping("/modificar/{nombre}")
+	public ModelAndView getModificarSucursalPage(Model model, @PathVariable(value = "nombre") String nombre) {
+		Sucursal sucursalEncontrada = new Sucursal();
+		boolean edicion = true;
+		for (Sucursal sucu : listaSucursales.getSucursales()) {
+			if (sucu.getNombre().equals(nombre)) {
+				sucursalEncontrada = sucu;
+				break;
+			}
+		}
+		model.addAttribute("sucursal", sucursalEncontrada);
+		model.addAttribute("edicion", edicion);
+		return new ModelAndView("nueva_sucursal", model.asMap());
+	}
+
+	@PostMapping("/modificar")
+	public String modificarSucursal(@ModelAttribute("sucursal") Sucursal sucursal) {
+		for (Sucursal sucu : listaSucursales.getSucursales()) {
+			if (sucu.getNombre().equals(sucursal.getNombre())) {
+				sucu.setCalle(sucursal.getCalle());
+				sucu.setProvincia(sucursal.getProvincia());
+				sucu.setDiaApertura(sucursal.getDiaApertura());
+				sucu.setDiaCierre(sucursal.getDiaCierre());
+				sucu.setHoraApertura(sucursal.getHoraApertura());
+				sucu.setHoraCierre(sucursal.getHoraCierre());
+				sucu.setTelefono(sucursal.getTelefono());
+
+			}
+		}
+		return "redirect:/sucursales/listado";
+	}
+
+
+		@GetMapping("/eliminar/{nombre}")
+	public String eliminarSucursal(@PathVariable(value = "nombre") String nombre) {
+			for (Sucursal sucu : listaSucursales.getSucursales()) {
+				if (sucu.getNombre().equals(nombre)) {
+						listaSucursales.getSucursales().remove(sucu);
+					break;
+				}
+			}
+			return "redirect:/sucursales/listado";
+	}
 
 	@ModelAttribute("diasSemana")
 	public String[] getDiasSemana() {

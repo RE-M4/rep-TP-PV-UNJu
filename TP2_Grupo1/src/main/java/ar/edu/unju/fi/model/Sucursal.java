@@ -18,10 +18,9 @@ public class Sucursal {
     public Sucursal() {
 
     }
+	public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre, boolean horariosEspeciales, LocalTime horaAperturaEspecial, LocalTime horaCierreEspecial, String telefono) {
 
-
-    public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre, boolean horariosEspeciales, LocalTime horaAperturaEspecial, LocalTime horaCierreEspecial, String telefono) {
-        this.nombre = nombre;
+				this.nombre = nombre;
         this.calle = calle;
         this.provincia = provincia;
         this.diaApertura = diaApertura;
