@@ -2,10 +2,12 @@ package ar.edu.unju.fi.model;
 
 public class Producto {
 	/*Atributos*/
-	private String nombre, categoria; /*imagen*/
+	private String nombre, categoria,imagen;
 	private Integer codigo, descuento;
 	private Double precio;
 	
+	
+	//private int codigoId = 0;
 	/*Getters y Setters*/
 	public String getNombre() {
 		return nombre;
@@ -37,24 +39,29 @@ public class Producto {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-	/*public String getImagen() {
+	public String getImagen() {
 		return imagen;
 	}
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
-	}*/
+	}
 	/*Constructores*/
-	public Producto(String nombre, String categoria, Integer codigo, Integer descuento, Double precio) { /*String imagen*/
+	public Producto(String nombre, String categoria, Integer descuento, Double precio ,String imagen,Integer codigo) { /*String imagen*/
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
-		this.codigo = codigo;
 		this.descuento = descuento;
 		this.precio = precio;
-		/*this.imagen = imagen;*/
+		this.imagen = imagen;
+		this.codigo=codigo;
+	}
+	public Producto() {
+	
 	}
 	
 	/*Métodos*/
+	
+	
 	public Double calcularDescuento() {
 		if (getDescuento() == 0) {
 			return getPrecio();
@@ -62,4 +69,11 @@ public class Producto {
 			return getPrecio() - getPrecio()*(getDescuento()*0.01);
 		}
 	}
+	@Override
+	public String toString() {
+		return "Producto [nombre=" + nombre + ", categoria=" + categoria + ", imagen=" + imagen + ", codigo=" + codigo
+				+ ", descuento=" + descuento + ", precio=" + precio + "]";
+	}
+	
+	
 }
