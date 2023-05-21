@@ -9,8 +9,8 @@
 
 <body>
 	<div class="encabezado">
-		<header th:replace="layouts/header :: header"></header>
-		<nav th:replace="layouts/navigation :: navigation"></nav>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 	</div>
 
 <div class="container-sucursales">
@@ -61,7 +61,7 @@
 	</div>
 </div>
 		<div class="piePagina">
-			<footer th:replace="layouts/footer :: footer"></footer>
+			<footer th:replace="~{layouts/footer :: footer}"></footer>
 		</div>
 </body>
 

@@ -25,7 +25,7 @@ public class ContactoController {
 	public String guardar(Model model , Contacto contacto) {
 		listaMensajes.getListaMensaje().add(contacto); 
 		model.addAttribute("listaMensajes" , listaMensajes.getListaMensaje());
-		console.log("asdasdsa");
+		//console.log("asdasdsa");
     
     return "listaMensaje";
 

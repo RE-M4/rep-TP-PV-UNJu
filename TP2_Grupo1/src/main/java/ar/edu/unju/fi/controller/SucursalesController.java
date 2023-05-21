@@ -28,6 +28,7 @@ public class SucursalesController {
 	public String getListaSucursalesPage(Model model) {
 		model.addAttribute("sucursales", listaSucursales.getSucursales());
 		return "sucursales";
+
 	}
 
 	@GetMapping("/nueva_sucursal")
@@ -44,14 +45,9 @@ public class SucursalesController {
 		return "nueva_sucursal";
 	}
 
-
-
-
 	@PostMapping("/guardar")
 	public ModelAndView getGuardarSucursalPage(@ModelAttribute("sucursal") Sucursal sucursal) {
-
 		listaSucursales.getSucursales().add(sucursal);
-
 		ModelAndView modelView = new ModelAndView("nueva_sucursal");
 		modelView.addObject("sucursales", listaSucursales.getSucursales());
 		modelView.addObject("sucursal", new Sucursal());
@@ -68,9 +64,10 @@ public class SucursalesController {
 				break;
 			}
 		}
+		ModelAndView modelView = new ModelAndView("nueva_sucursal");
 		model.addAttribute("sucursal", sucursalEncontrada);
 		model.addAttribute("edicion", edicion);
-		return new ModelAndView("nueva_sucursal", model.asMap());
+		return modelView;
 	}
 
 	@PostMapping("/modificar")
@@ -84,7 +81,7 @@ public class SucursalesController {
 				sucu.setHoraApertura(sucursal.getHoraApertura());
 				sucu.setHoraCierre(sucursal.getHoraCierre());
 				sucu.setTelefono(sucursal.getTelefono());
-
+				break;
 			}
 		}
 		return "redirect:/sucursales/listado";

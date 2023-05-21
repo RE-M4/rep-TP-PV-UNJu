@@ -75,23 +75,25 @@
 				<th>Provincia</th>
 				<th>Horario</th>
 				<th>Telefono</th>
+				<th>Operaciones</th>
 			</tr>
 
 		</thead>
 		<tbody>
-			<tr th:each="sucursal: ${sucursales}">
-				<td th:text="${sucursal.nombre}"></td>
-				<td th:text="${sucursal.calle}"></td>
- 				<td th:text="${sucursal.provincia}"></td>
-				<td>
-					<span th:text="'Horario: ' + ${sucursal.diaApertura} + ' a ' + ${sucursal.diaCierre} + ' de ' + ${#temporals.format(sucursal.horaApertura, 'HH:mm')} + ' a ' + ${#temporals.format(sucursal.horaCierre, 'HH:mm')} + 'hs'"></span>
+			<tr th:each="sucursal1: ${sucursales}">
+				<td th:text="${sucursal1.nombre}"></td>
+				<td th:text="${sucursal1.calle}"></td>
+ 				<td th:text="${sucursal1.provincia}"></td>
+				<td
+					th:text="'Horario: ' + ${sucursal1.diaApertura} + ' a ' + ${sucursal1.diaCierre} + ' de ' + ${sucursal1.horaApertura} + ' a ' + ${sucursal1.horaCierre} + 'hs'">
 				</td>
-				<td th:text="${sucursal.telefono}"></td>
-				<!-- Operaciones -->
-<!--				<td>-->
-<!--					<a th:href="@{/productos/Op/{nombre}(nombre=${producto.nombre})}">Editar</a>-->
-<!--                    <a th:href="@{/productos/eliminar/{nombre}(nombre=${producto.nombre})}">Eliminar</a>-->
-<!--				</td>-->
+				<td th:text="${sucursal1.telefono}"></td>
+<!--				 Operaciones -->
+				<td>
+					<a th:href="@{/sucursales/modificar/{nombre}(nombre=${sucursal1.nombre})}">Editar</a>
+					<a th:href="@{/sucursales/eliminar/{nombre}(nombre=${sucursal1.nombre})}">Eliminar</a>
+
+				</td>
 			</tr>
 		</tbody>
 	</table>
