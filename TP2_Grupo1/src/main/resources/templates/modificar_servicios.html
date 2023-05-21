@@ -9,7 +9,7 @@
 		<div class="encabezado">
 			<header th:replace="~{layouts/header :: header}"></header>
 		</div>
-		<form th:action="@{/modificarDatos}" th:object="${ServicioDePaseo}" method="post"> <!-- th:action es el identificador para el PostMapping(/modificarDatos) |  th:object es el identificador para el GetMapping(/modificarDatos) y el PostMapping(/modificarDatos)-->
+		<form th:action="@{/servicioDePaseos/modificarDatos}" th:object="${ServicioDePaseo}" method="post"> <!-- th:action es el identificador para el PostMapping(/modificarDatos) |  th:object es el identificador para el GetMapping(/modificarDatos) y el PostMapping(/modificarDatos)-->
 					<label for="paseador">Nombre del Paseador: </label>
 					<input type="text" id="paseador" name="paseador" th:field="*{paseador}"><br>
 					<label for="dia">Día: </label>
@@ -19,7 +19,7 @@
 					<p><input type="submit" class="button" value="Guardar"></p>
 				</form>
 		<div>
-			<a th:href="@{/servicioDePaseos}" style="background-color: black">Cancelar</a>
+			<a th:href="@{/servicioDePaseos/listado}" style="background-color: black">Cancelar</a>
 		</div>
 	</body>
 </html>
