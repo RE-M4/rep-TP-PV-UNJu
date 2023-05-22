@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+<title>Nueva sucursal</title>
+</head>
+<body>
+	<div class="encabezado">
+		<header th:replace="~{layouts/header :: header}"></header>
+	</div>
+
+<div id="container-form">
+	<section class="seccion-form">
+		<div class="formulario">
+			<h2 th:text="${edicion} ? 'Modificar Sucursal' : 'Nueva Sucursal'"></h2>
+			<form th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}" method="post">
+				<div>
+					<label for="nombre">Nombre:</label>
+					<input type="text" id="nombre" name="nombre" th:field="*{nombre}" required>
+				</div>
+				<!--Lugar sucursal-->
+				<div>
+					<label for="calle">Calle:</label>
+					<input type="text" id="calle" name="calle" th:field="*{calle}" required>
+				</div>
+				<div>
+					<label for="provincia">Selecciona una provincia:</label>
+					<select id="provincia" name="provincia" th:field="*{provincia}" required>
+						<option value="Buenos Aires">Buenos Aires</option>
+						<option value="Córdoba">Córdoba</option>
+						<option value="Santa Fe">Santa Fe</option>
+					</select>
+				</div>
+				<!-- Horario de Atencion -->
+				<div>
+					<label for="diaApertura">Día de apertura:</label>
+					<select id="diaApertura" name="diaApertura" th:field="*{diaApertura}">
+						<option th:each="dia : ${diasSemana}" th:value="${dia}" th:text="${dia}"></option>
+					</select>
+				</div>
+				<div>
+					<label for="diaCierre">Día de cierre:</label>
+					<select id="diaCierre" name="diaCierre" th:field="*{diaCierre}">
+						<option th:each="dia : ${diasSemana}" th:value="${dia}" th:text="${dia}"></option>
+					</select>
+				</div>
+				<div>
+					<label for="horaApertura">Hora de apertura:</label>
+					<input type="number" id="horaApertura" name="horaApertura" th:field="*{horaApertura}" min="0" max="23" required>
+				</div>
+				<div>
+					<label for="horaCierre">Hora de cierre:</label>
+					<input type="number" id="horaCierre" name="horaCierre" th:field="*{horaCierre}" min="0" max="23" required>
+
+				</div>
+				<br>
+				<div>
+					<label for="telefono">Telefono:</label>
+					<input type="text" min="0" max="50" id="telefono" name="telefono" th:field="*{telefono}" required>
+				</div>
+				<!--	<button type="submit" style="display:block;background-color: #4CAF50; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;" th:text="${edicion}?'Modificar':'Guardar'"></button>-->
+				<input type="submit" th:value="${edicion}?'Modificar':'Guardar'"/>
+				<div style="text-align: left;">
+					<a th:href="@{/sucursales/listado}" style="text-transform:none;font-family: sans-serif;margin-right:74%;margin-top:2%;display:block;background-color: blue; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">Cancelar</a>
+				</div>
+			</form>
+
+		</div>
+	</section>
+
+
+	<table class="table-sucursal">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Calle</th>
+				<th>Provincia</th>
+				<th>Horario</th>
+				<th>Telefono</th>
+				<th>Operaciones</th>
+			</tr>
+
+		</thead>
+		<tbody>
+			<tr th:each="sucursal1: ${sucursales}">
+				<td th:text="${sucursal1.nombre}"></td>
+				<td th:text="${sucursal1.calle}"></td>
+ 				<td th:text="${sucursal1.provincia}"></td>
+				<td
+					th:text="${sucursal1.diaApertura} + ' a ' + ${sucursal1.diaCierre} + ' de ' + ${sucursal1.horaApertura} + ' a ' + ${sucursal1.horaCierre} + 'hs'">
+				</td>
+				<td th:text="${sucursal1.telefono}"></td>
+<!--				 Operaciones -->
+				<td>
+					<a th:href="@{/sucursales/modificar/{nombre}(nombre=${sucursal1.nombre})}">Editar</a>
+					<a th:href="@{/sucursales/eliminar/{nombre}(nombre=${sucursal1.nombre})}">Eliminar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

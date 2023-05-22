@@ -3,49 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Servicios de paseo</title>
-<link rel="stylesheet" href="../static/css/estilos.css">
+<link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 
 <body>
 
     <div class="encabezado">
-		<header th:replace="layouts/header :: header"></header>
-		<nav th:replace="layouts/navigation :: navigation"></nav>
+		<header th:replace="~{layouts/header :: header}"></header>
+		<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 	</div>
     <div class="bodyServicios">
     	<div id="contenedorTabla">
         <table>
             <tr>
-                <td id="encabezadoTabla">Día</td>
-                <td id="encabezadoTabla">Lunes</td>
-                <td id="encabezadoTabla">Martes</td>
-                <td id="encabezadoTabla">Miércoles</td>
-                <td id="encabezadoTabla">Jueves</td>
-                <td id="encabezadoTabla">Viernes</td>
-                <td id="encabezadoTabla">Sábado</td>
-            <tr>
-            <tr>
-                <td id="encabezadoTabla">Horario</td>
-                <td id="formatoCelda">9 a 12 - 16 a 18</td>
-                <td id="formatoCelda">9 a 12 - 16 a 18</td>
-                <td id="formatoCelda">9 a 12 - 16 a 18</td>
-                <td id="formatoCelda">9 a 12 - 16 a 18</td>
-                <td id="formatoCelda">9 a 12 - 16 a 18</td>
-                <td id="formatoCelda">9 a 12 - 16 a 18</td>
-            <tr>
-            <tr>
                 <td id="encabezadoTabla">Paseador</td>
-                <td id="formatoCelda">Juan Perez</td>
-                <td id="formatoCelda">Lucas Diaz</td>
-                <td id="formatoCelda">Juan Perez</td>
-                <td id="formatoCelda">Maria Gomez</td>
-                <td id="formatoCelda">Lucas Diaz</td>
-                <td id="formatoCelda">Roberto Vazquez</td>
-            <tr>
+                <td id="encabezadoTabla">Día</td>
+                <td id="encabezadoTabla">Hora</td>
+            </tr>
+            <tr th:each="servicio : ${servicios}">
+            	<td id="formatoCelda" th:text="${servicio.paseador}"></td>
+                <td id="formatoCelda" th:text="${servicio.dia}"></td>
+                <td id="formatoCelda" th:text="${servicio.horario}"></td>
+                <td>
+                	<a th:href="@{/servicioDePaseos/modificarDatos/}+${servicio.paseador}">Modificar</a>
+                	<a th:href="@{/servicioDePaseos/eliminarDatos/}+${servicio.paseador}">Eliminar</a>
+                </td>
+            </tr>
         </table>
     </div>
     </div>
-    <footer th:replace="layouts/footer :: footer"></footer>
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
 </body>
 
 </html>

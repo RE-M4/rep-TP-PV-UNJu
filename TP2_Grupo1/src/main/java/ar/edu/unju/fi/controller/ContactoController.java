@@ -29,27 +29,21 @@ public class ContactoController {
 		listaMensajes.getListaMensaje().add(contacto); 
 		model.addAttribute("listaMensajes" , listaMensajes.getListaMensaje());
     return "listaMensaje";
-
 	}
 	/*@GetMapping("/eliminarMensaje/{nombreMensaje}")
-	public String eliminarMensaje(Model model, @PathVariable(value="nombreMensaje")String nombreMensaje) {
-	Contacto mensajeEncontrado = new Contacto();
-	for(Contacto contacto : listaMensajes.getListaMensaje()) {
-	if(contacto.getNombre().equals(nombreMensaje)) {
-		mensajeEncontrado = contacto;
-		mensajeEncontrado.setNombre("");
-		mensajeEncontrado.setEmail("");
-		mensajeEncontrado.setCiudad("");
-		mensajeEncontrado.setMensaje("");
-		break;
-	}	
+    public String eliminarMensaje(Model model, @PathVariable(value="nombreMensaje")String nombreMensaje) {
+    Contacto mensajeEncontrado = new Contacto();
+    for(Contacto contacto : listaMensajes.getListaMensaje()) {
+    if(contacto.getNombre().equals(nombreMensaje)) {
+      mensajeEncontrado = contacto;
+      mensajeEncontrado.setNombre("");
+      mensajeEncontrado.setEmail("");
+      mensajeEncontrado.setCiudad("");
+      mensajeEncontrado.setMensaje("");
+      break;
+    }	
 	}
 	return "redirect:/contacto/listaMensaje";
 	}
 	*/
-
-		
 }	
-
-
-

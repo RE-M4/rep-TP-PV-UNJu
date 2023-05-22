@@ -1,5 +1,6 @@
 /**@charset "ISO-8859-1";*/
 *{
+	font-family: 'Comic Neue', sans-serif;
 	margin: 0;
 	padding: 0;
 }
@@ -184,9 +185,7 @@ footer {
 .producto-img img{
 	width: 100%;
 }
-.producto:hover {
-	/*transform: scale(1.1);*/
-}
+
 .producto-nombre, .producto-precio{
 	text-align: center;
 	margin: 1rem;
@@ -451,4 +450,104 @@ footer {
 
 #mensaje {
 	font-size: 14pt;
+}
+
+.botonAgregar {
+	text-align: center;
+	padding-top: 10px;
+}
+/*Icono engranaje sucursales*/
+.gear-button {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-size: 24px;
+	color: #333;
+	padding-bottom: 1rem;
+	display: flex;
+	justify-content: flex-end;
+	margin-right: auto;
+	padding-left: 2.5rem;
+}
+
+/* Estilos para el contenedor del formulario */
+
+#container-form {
+	max-width: 600px;
+	margin: 0 auto;
+	background-color: #f2f2f2;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+/* Estilos para el encabezado */
+.encabezado {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+/* Estilos para la sección del formulario */
+.seccion-form {
+	margin-bottom: 20px;
+}
+
+/* Estilos para el formulario */
+.formulario label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 10px;
+}
+
+/* Estilos para los botones */
+.formulario button {
+	display: block;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+/* Estilos para la tabla */
+.table-sucursal {
+	width: 70%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.table-sucursal th,
+.table-sucursal td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ccc;
+}
+
+.table-sucursal th {
+	background-color: #f2f2f2;
+}
+
+.table-sucursal td a {
+	margin-right: 5px;
+	text-transform: none;
+	font-family: sans-serif;
+	//margin-right: 74%;
+	margin-top: 2%;
+	display: block;
+	background-color: red;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
 }
