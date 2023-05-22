@@ -12,7 +12,11 @@ public class ListaContacto {
 	private List<Contacto> listaMensaje;
 	public ListaContacto () {
 		listaMensaje = new ArrayList<Contacto>();
+		listaMensaje.add(new Contacto("Juan","juan@gmail.com","San Salvador de Jujuy","Estoy muy conforme con los servicios brindados."));
+		
 	}
+	
+	
 	public List<Contacto> getListaMensaje() {
 		return listaMensaje;
 	}

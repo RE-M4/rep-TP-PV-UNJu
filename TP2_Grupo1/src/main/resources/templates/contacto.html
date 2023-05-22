@@ -29,17 +29,17 @@
         <hr>
         <!-- Formulario-->
         <form th:action="@{/guardarMensaje}" th:object="${Contacto}" method="post">
-            <label for="Nombre">Nombre</label>
-            <input type="text" th:field="*{nombre}" id="nombre" name="Ingrese su nombre" placeholder="Ingrese su nombre"><br>
+           <!--  <label for="Nombre">Nombre</label>
+            <input type="text" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Ingrese su nombre"><br>--> 
 
             <label for="Email">Email</label>
-            <input type="email" th:field="*{email}" id="email" name="Ingrese un email vÃ¡lido" placeholder="Ingrese un email válido"><br>
+            <input type="email" th:field="*{email}" id="email" name="email" placeholder="Ingrese un email válido"><br>
 
             <label for="Ciudad">Ciudad</label>
-            <input type="text" th:field="*{ciudad}" id="Ciudad" name="Ingrese su ciudad" placeholder="Ingrese su ciudad"><br>
+            <input type="text" th:field="*{ciudad}" id="Ciudad" name="ciudad" placeholder="Ingrese su ciudad"><br>
 
             <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" th:field="*{mensaje}" name="Mensaje"></textarea><br>
+            <textarea id="mensaje" th:field="*{mensaje}" name="mensaje"></textarea><br>
 
             <input type="submit" value="Guardar">
         </form>
