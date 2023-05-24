@@ -9,13 +9,13 @@
 		<div class="encabezado">
 			<header th:replace="~{layouts/header :: header}"></header>
 		</div>
-		<form th:action="@{/servicioDePaseos/modificarDatos}" th:object="${ServicioDePaseo}" method="post"> <!-- th:action es el identificador para el PostMapping(/modificarDatos) |  th:object es el identificador para el GetMapping(/modificarDatos) y el PostMapping(/modificarDatos)-->
-					<label for="paseador">Nombre del Paseador: </label>
-					<input type="text" id="paseador" name="paseador" th:field="*{paseador}"><br>
-					<label for="dia">Día: </label>
-					<input type="text" id="dia" name="dia" th:field="*{dia}"><br>
-					<label for="horario">Horario: </label>
-					<input type="text" id="horario" name="horario" th:field="*{horario}"><br>
+		<form th:action="${edicion}?@{/servicioDePaseos/modificarDatos}:@{/servicioDePaseos/guardarDato}" th:object="${ServicioDePaseo}" method="post"> <!-- th:action es el identificador para el PostMapping(/modificarDatos) |  th:object es el identificador para el GetMapping(/modificarDatos) y el PostMapping(/modificarDatos)-->
+					<label for="dato_paseador">Nombre del Paseador: </label>
+					<input type="text" id="paseador" name="dato_paseador" th:field="*{paseador}"><br>
+					<label for="dato_dia">Día: </label>
+					<input type="text" id="dia" name="dato_dia" th:field="*{dia}"><br>
+					<label for="dato_horario">Horario: </label>
+					<input type="text" id="horario" name="dato_horario" th:field="*{horario}"><br>
 					<p><input type="submit" class="button" value="Guardar"></p>
 				</form>
 		<div>
