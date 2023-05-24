@@ -3,6 +3,7 @@ package ar.edu.unju.fi.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ar.edu.unju.fi.listas.ListaContacto;
 
 import ar.edu.unju.fi.controller.ContactoController;
+
 import ar.edu.unju.fi.model.Contacto;
+import ar.edu.unju.fi.model.Sucursal;
 
 @Controller
 @RequestMapping("/contacto")
@@ -25,25 +28,31 @@ public class ContactoController {
 	}
 	
 	@PostMapping("/guardarMensaje")
-	public String guardar(Model model , Contacto contacto) {
+	public String guardar(Model model , @ModelAttribute("Contacto") Contacto contacto) {
+		System.out.println(contacto);
 		listaMensajes.getListaMensaje().add(contacto); 
 		model.addAttribute("listaMensajes" , listaMensajes.getListaMensaje());
-    return "listaMensaje";
+    return "redirect:/contacto/listaMensaje";
 	}
-	/*@GetMapping("/eliminarMensaje/{nombreMensaje}")
+	
+	@GetMapping("/contacto")
+	public String getContacto(Model model ) {
+		model.addAttribute("Contacto", new Contacto());
+		return "contacto";
+	}
+	
+	
+	
+	
+	@GetMapping("/eliminar_mensaje/{nombreMensaje}")
     public String eliminarMensaje(Model model, @PathVariable(value="nombreMensaje")String nombreMensaje) {
-    Contacto mensajeEncontrado = new Contacto();
-    for(Contacto contacto : listaMensajes.getListaMensaje()) {
-    if(contacto.getNombre().equals(nombreMensaje)) {
-      mensajeEncontrado = contacto;
-      mensajeEncontrado.setNombre("");
-      mensajeEncontrado.setEmail("");
-      mensajeEncontrado.setCiudad("");
-      mensajeEncontrado.setMensaje("");
-      break;
-    }	
+	for (Contacto contacto  : listaMensajes.getListaMensaje()) {
+		if (contacto.getNombre().equals(nombreMensaje)) {
+				listaMensajes.getListaMensaje().remove(contacto);
+			break;
+		}
 	}
 	return "redirect:/contacto/listaMensaje";
 	}
-	*/
+	
 }	
