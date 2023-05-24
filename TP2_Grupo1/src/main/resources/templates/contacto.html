@@ -11,7 +11,7 @@
 		<header th:replace="~{layouts/header :: header}"></header>
 		<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 	</div>
-    <div class="bodyContacto">
+    <div class="bodyContacto" style="text-align: center">
     	<div class="contacto">
         <!-- Título-->
         <h1>Contáctenos</h1>
@@ -28,9 +28,9 @@
         </ul>
         <hr>
         <!-- Formulario-->
-        <form th:action="@{/guardarMensaje}" th:object="${Contacto}" method="post">
-           <!--  <label for="Nombre">Nombre</label>
-            <input type="text" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Ingrese su nombre"><br>--> 
+        <form th:action="@{/contacto/guardarMensaje}" th:object="${Contacto}" method="post">
+            <label for="Nombre">Nombre</label>
+            <input type="text" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Ingrese su nombre"><br>
 
             <label for="Email">Email</label>
             <input type="email" th:field="*{email}" id="email" name="email" placeholder="Ingrese un email válido"><br>

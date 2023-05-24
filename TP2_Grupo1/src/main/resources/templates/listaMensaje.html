@@ -12,9 +12,9 @@
 		<nav th:replace="~{layouts/navigation :: navigation}"></nav>		
 	</div>
          
-    <div class="bodyServicios">
-    	<div id="contenedorTabla">
-        <table>
+    <div class="bodyServicios" style="text-align: center">
+    	<div id="contenedorTabla" style="align-content: center;">
+        <table style="align-content: center;">
             <tr>
                 <td id="encabezadoTabla">Nombre</td>
                 <td id="encabezadoTabla">Email</td>
@@ -27,9 +27,7 @@
                 <td style="color:white" th:text="${contacto.email}"></td>
                 <td style="color:white" th:text="${contacto.ciudad}"></td>
                 <td style="color:white" th:text="${contacto.mensaje}"></td>
-                <td>
-
-                </td>
+				<td><a th:href="@{/contacto/eliminar_mensaje/}+${contacto.nombre}" type="submit" > Eliminar</a></td>
             <tr>
             
         </table>
