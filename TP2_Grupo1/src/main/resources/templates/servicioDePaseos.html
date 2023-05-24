@@ -14,7 +14,7 @@
 	</div>
     <div class="bodyServicios">
     	<div id="contenedorTabla">
-    	<a th:href="@{/servicioDePaseos/nuevoServicio}">Nuevo Servicio</a>
+    	<a id="botonServicios" th:href="@{/servicioDePaseos/nuevoServicio}">Nuevo Servicio</a>
         <table>
             <tr>
                 <td id="encabezadoTabla">Paseador</td>
@@ -26,8 +26,8 @@
                 <td id="formatoCelda" th:text="${servicio.dia}"></td>
                 <td id="formatoCelda" th:text="${servicio.horario}"></td>
                 <td>
-                	<a th:href="@{/servicioDePaseos/modificarDatos/}+${servicio.paseador}">Modificar</a>
-                	<a th:href="@{/servicioDePaseos/eliminarDatos/}+${servicio.paseador}">Eliminar</a>
+                	<a id="botonServicios" th:href="@{/servicioDePaseos/modificarDatos/}+${servicio.paseador}">Modificar</a>
+                	<a id="botonServicios" th:href="@{/servicioDePaseos/eliminarDatos/}+${servicio.paseador}">Eliminar</a>
                 </td>
             </tr>
         </table>

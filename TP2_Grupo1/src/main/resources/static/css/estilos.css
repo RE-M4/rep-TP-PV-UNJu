@@ -357,7 +357,8 @@ footer {
 
 #contenedorTabla {
     margin: auto;
-    width: 65%;
+    display: flex;
+    justify-content: center;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     padding: 10px;
@@ -540,5 +541,6 @@ footer {
 .table-sucursal td a {
 	margin-right: 5px;
 }
-=======
+#botonServicios {
+	color: black;
 }
