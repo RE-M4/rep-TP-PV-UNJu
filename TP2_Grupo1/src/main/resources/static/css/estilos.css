@@ -357,7 +357,8 @@ footer {
 
 #contenedorTabla {
     margin: auto;
-    width: 65%;
+    display: flex;
+    justify-content: center;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     padding: 10px;
@@ -550,4 +551,7 @@ footer {
 	padding: 10px 20px;
 	font-size: 16px;
 	cursor: pointer;
+}
+#botonServicios {
+	color: black;
 }
