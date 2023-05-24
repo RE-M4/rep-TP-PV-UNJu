@@ -18,20 +18,40 @@ public Contacto(String nombre, String email, String ciudad, String mensaje) {
 }
 
 public Contacto() {}
+
+public String getNombre() {
+	return nombre;
+}
+
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+
+public String getEmail() {
+	return email;
+}
+
+public void setEmail(String email) {
+	this.email = email;
+}
+
+public String getCiudad() {
+	return ciudad;
+}
+
+public void setCiudad(String ciudad) {
+	this.ciudad = ciudad;
+}
+
+public String getMensaje() {
+	return mensaje;
+}
+
+public void setMensaje(String mensaje) {
+	this.mensaje = mensaje;
+}
 	
-	public String getnombre() {
-		return nombre;
-	}
-	
-	public String getemail() {
-		return email;
-	}
-	public String getciudad() {
-		return ciudad;
-	}
-	public String getmensaje() {
-		return mensaje;
-	}
+
 	
 
 }

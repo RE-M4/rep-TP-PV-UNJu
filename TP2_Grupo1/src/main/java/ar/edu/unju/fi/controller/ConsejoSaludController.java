@@ -13,7 +13,7 @@ import ar.edu.unju.fi.listas.ListaConsejoSalud;
 import ar.edu.unju.fi.model.ConsejoSalud;
 
 @Controller
-
+@RequestMapping("/ConsejoSalud")
 public class ConsejoSaludController {
 	
 	ListaConsejoSalud lista = new ListaConsejoSalud();
@@ -22,10 +22,11 @@ public class ConsejoSaludController {
 	 * Este metodo envia la lista de consejos usando como peticion /consejoSalud
 	 * @return
 	 */
-	@GetMapping("/consejoSalud")
+	@GetMapping("/listado")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new  ModelAndView("consejoSalud");
 		modelAndView.addObject("listaConsejo", lista.getListaConsejoSalud());
+		//System.out.println(lista.getListaConsejoSalud());
 		
 		return modelAndView;
 	}
@@ -49,8 +50,9 @@ public class ConsejoSaludController {
 	 */
 	@PostMapping("/guardar_consejo")
 	public ModelAndView guardarConsejoSalud(@ModelAttribute("Consejo") ConsejoSalud consejoSalud) {
+		consejoSalud.setId(lista.getListaConsejoSalud().get(lista.getListaConsejoSalud().size()-1).getId()+1);
 		lista.getListaConsejoSalud().add(consejoSalud);
-		ModelAndView modelAndView = new ModelAndView("redirect:/consejoSalud");
+		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
 		modelAndView.addObject("listaConsejo", lista.getListaConsejoSalud());
 		return modelAndView;
 	}
@@ -60,12 +62,12 @@ public class ConsejoSaludController {
 	 * @param titulo
 	 * @return
 	 */
-	@GetMapping("/modificar_consejo/{titulo}")
-	public ModelAndView getModificarConsejo(@PathVariable(value="titulo")String titulo) {
+	@GetMapping("/modificar_consejo/{id}")
+	public ModelAndView getModificarConsejo(@PathVariable(value="id")Integer id) {
 		ModelAndView modelAndView = new ModelAndView("nuevo_consejo");
 		ConsejoSalud consejoEncontrado = new ConsejoSalud();
 		for(ConsejoSalud consejo: lista.getListaConsejoSalud()) {
-			if(consejo.getTitulo().equals(titulo)) {
+			if(consejo.getId().equals(id)) {
 				consejoEncontrado = consejo;
 				break;
 			}
@@ -84,10 +86,10 @@ public class ConsejoSaludController {
 	 */
 	@PostMapping("/modificar_consejo")
 	public ModelAndView modificarConsejoSalud(@ModelAttribute("Consejo") ConsejoSalud consejoSalud) {
-		
-		ModelAndView modelAndView = new ModelAndView("redirect:/consejoSalud");
+		System.out.println(consejoSalud);
+		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
 		for(ConsejoSalud consejo: lista.getListaConsejoSalud()) {
-			if(consejo.getTitulo().equals(consejoSalud.getTitulo())) {
+			if(consejo.getId().equals(consejoSalud.getId())) {
 				consejo.setTitulo(consejoSalud.getTitulo());
 				consejo.setImg(consejoSalud.getImg());
 				consejo.setDescripcion(consejoSalud.getDescripcion());
@@ -108,7 +110,7 @@ public class ConsejoSaludController {
 	 */
 	@GetMapping("eliminar_consejo/{titulo}")
 	public ModelAndView eliminarConsejoSalud(@PathVariable(value="titulo")String titulo) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/consejoSalud");
+		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
 		for(ConsejoSalud consejo: lista.getListaConsejoSalud()) {
 			if(consejo.getTitulo().equals(titulo)) {
 				lista.getListaConsejoSalud().remove(consejo);
@@ -124,6 +126,6 @@ public class ConsejoSaludController {
 	 */
 	@GetMapping("/volver")
 	public String volverConsejoSalud() {
-		return "redirect:/consejoSalud";
+		return "redirect:/ConsejoSalud/listado";
 	}
 }

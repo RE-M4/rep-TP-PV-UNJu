@@ -475,7 +475,7 @@ footer {
 /* Estilos para el contenedor del formulario */
 
 #container-form {
-	max-width: 400px;
+	max-width: 600px;
 	margin: 0 auto;
 	background-color: #f2f2f2;
 	padding: 20px;
@@ -540,6 +540,17 @@ footer {
 
 .table-sucursal td a {
 	margin-right: 5px;
+	text-transform: none;
+	font-family: sans-serif;
+	//margin-right: 74%;
+	margin-top: 2%;
+	display: block;
+	background-color: red;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
 }
 #botonServicios {
 	color: black;

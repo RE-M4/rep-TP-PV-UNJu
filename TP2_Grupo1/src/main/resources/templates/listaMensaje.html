@@ -11,8 +11,7 @@
 		<header th:replace="~{layouts/header :: header}"></header>
 		<nav th:replace="~{layouts/navigation :: navigation}"></nav>		
 	</div>
-    
-<!--  th:each="consejo : ${listaConsejo}" -->>      
+         
     <div class="bodyServicios">
     	<div id="contenedorTabla">
         <table>
@@ -21,31 +20,23 @@
                 <td id="encabezadoTabla">Email</td>
                 <td id="encabezadoTabla">Ciudad</td>
                 <td id="encabezadoTabla">Mensaje</td>
+              
             <tr>
+            <tr th:each="contacto : ${contacto}">
+                <td style="color:white" th:text="${contacto.nombre}"></td>
+                <td style="color:white" th:text="${contacto.email}"></td>
+                <td style="color:white" th:text="${contacto.ciudad}"></td>
+                <td style="color:white" th:text="${contacto.mensaje}"></td>
+                <td>
+
+                </td>
             <tr>
-                <td id="formatoCelda">juan</td>
-                <td id="formatoCelda">juan@gmail.com</td>
-                <td id="formatoCelda">san salvador de jujuy</td>
-                <td id="formatoCelda">hola como estas</td>
-            <tr>
-            <tr>
-                <td id="formatoCelda"></td>
-                <td id="formatoCelda"></td>
-                <td id="formatoCelda"></td>
-                <td id="formatoCelda"></td>
-            <tr>
+            
         </table>
     </div>
     </div>
     
-    <div th:each="contacto : ${listaMensajes}">
-           <p th:text="${contacto.nombre}">juan</p>
-           <p th:text="${contacto.email}">jaun@gmail.com</p>
-           <p th:text="${contacto.ciudad}">san salvador de jujuy</p>
-           <p th:text="${contacto.mensaje}">hola como estas</p>
-           
    
-    </div>
     
     <footer th:replace="~{layouts/footer :: footer}"></footer>
 
