@@ -212,62 +212,42 @@ footer {
 /*--- SUCURSALES ---*/
 .container-sucursales{
 	font-size: 62.5%; /*1rem = 10px*/;
-	overflow-x: hidden;
 	background-color:#f2e8c4;
+	padding: 2rem 2rem 120px;
 
-}
-.columns-sucursales{
-	display: grid;
-	place-items: center;
-	overflow-x: hidden;
-	margin: 0 13% 3rem;
 }
 .sucursal-titulo{
-	text-align: center;
-	padding: 1rem;
 	font-size: 2.5rem;
 	text-transform: uppercase;
-	margin: 0 13%;
 }
 
-.sucursales{
-	max-width: 120rem;
-	margin: 0 auto;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 2rem;
-	overflow-x: hidden;
-}
-@media (max-width: 768px) {
-	.sucursales{
-		width: 320px;
-		display: block;
-	}
+.container-sucursales {
+	background-color: #f2e8c4;
+	padding: 2rem 2rem 120px;
 }
 
-.sucursal-mapa img {
-	display: grid;
+.margen-columnas {
+	margin: 8px;
+}
+
+.sucursal-container-mapa {
+	width: 100%;
+	height: 480px;
+	overflow: hidden;
+}
+
+.sucursal-mapa {
 	width: 100%;
 	height: 100%;
-	max-width: 80rem;
-	border-radius: 0.7rem;
-	box-shadow: 0 0 2px 0 rgba(0,0,0,0.2);
 	object-fit: cover;
-	grid-column: 2 / 4;
 }
-.sucursales-contenido{
-	gap: 2rem;
-	padding: 0 0 1.8rem;
-	transition: all ease 0.2s;
-	align-items: center;
-	justify-content: center;
 
-}
-/*@media (min-width: 768px) {
-	.sucursales-contenido{
-		grid-template-columns: repeat(3, 1fr);
+@media screen and (max-width: 968px) {
+	.sucursal-container-mapa {
+		height: 500px;
 	}
-}*/
+}
+
 @media screen and (min-width: 968px) {
 	.col-lg-9 {
 		flex-basis: 0;
@@ -286,7 +266,7 @@ footer {
 		overflow-x: hidden;
 	}
 }
-.sucursal{
+.sucursal-contenido{
 	box-sizing: border-box;
 	border-width: 1px;
 	border-style: solid;
@@ -294,13 +274,11 @@ footer {
 	background-color: rgb(247,247,247);;
 	border-color: #f2e8c4;
 	margin: 0 0 0.5rem;
-	max-width: 296px;
-	max-height: 160px;
-	width: 100%;
 	padding: 16px 18px;
 }
 .sucursal-calle, .sucursal-horario{
 	font-size: 14px;
+
 }
 .sucursal-nombre{
 	text-transform: uppercase;
