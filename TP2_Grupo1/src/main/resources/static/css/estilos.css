@@ -10,7 +10,6 @@
 	text-align: center;
 	padding: 10px;
 	overflow: auto;
-	
 }
 
 .encabezado h1 {
@@ -43,19 +42,16 @@ li {
 a {
 	text-transform: uppercase;
 	text-decoration: none;
-	color: white;
-	
+	color: white;	
+}
+
+.nav-link {
+	color:white;
 }
 
 li:hover, li:active {
 	background-color: #746556;
  	color: #ffff;
-}
-
-nav {
-	display: flex;
-	justify-content: center;
-	padding: 30px;
 }
 
 footer {
@@ -64,6 +60,15 @@ footer {
 	background-color: #8D7B68;
 	color: white;
 	font-style: italic;
+	border: solid medium black;
+	border-left-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+}
+
+.nav{
+	padding-top: 10px;
+	--bs-nav-link-hover-color: white;
 }
 
 @keyframes aparicionLogo{
@@ -315,6 +320,7 @@ footer {
 	float: left;
 	background-color: #f2e8c4;
 	border-style: solid;
+	border-bottom-style: none;
 }
 
 .cuerpo aside {
@@ -324,6 +330,7 @@ footer {
 	text-align: center;
 	border-style: solid;
 	border-left-style: none;
+	border-bottom-style: none;
 }
 
 .cuerpo aside #frase {
@@ -486,7 +493,6 @@ footer {
 /* Estilos para el encabezado */
 .encabezado {
 	text-align: center;
-	margin-bottom: 20px;
 }
 
 /* Estilos para la sección del formulario */
@@ -542,7 +548,7 @@ footer {
 	margin-right: 5px;
 	text-transform: none;
 	font-family: sans-serif;
-	//margin-right: 74%;
+	margin-right: 74%;
 	margin-top: 2%;
 	display: block;
 	background-color: red;
