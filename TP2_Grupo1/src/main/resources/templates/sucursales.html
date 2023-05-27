@@ -3,10 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Sucursales</title>
-	<link rel="stylesheet" th:href="@{/css/estilos.css}">
-<!--	Import icon engranaje-->
+	<!--	Import icon engranaje-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<!--	Import Font-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+	<!--	Import boostrap-->
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 
 <body>
@@ -14,32 +20,41 @@
 		<header th:replace="~{layouts/header :: header}"></header>
 		<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 	</div>
-
-<div class="container-sucursales">
-	<div class="columns-sucursales">
-		<h2 class="sucursal-titulo">Sucursales</h2>
-
-		<a class="gear-button" th:href="@{/sucursales/nuevo}" title="Editar Sucursales">
-			<i class="fas fa-cog"></i>
-		</a>
-		<section class="sucursales">
-		<div class="sucursales-contenido scroll">
-			<article class="sucursal" th:each="sucursal2: ${sucursales}">
-				<h3 class="sucursal-nombre" th:text="${sucursal2.nombre}"></h3>
-				<p class="sucursal-calle" style="text-transform: uppercase" th:text="${sucursal2.calle + ' | ' + sucursal2.provincia}"></p>
-				<p class="sucursal-horario" th:text="'Horario: ' + ${sucursal2.diaApertura} + ' a ' + ${sucursal2.diaCierre} + ' de ' + ${sucursal2.horaApertura} + ' a ' + ${sucursal2.horaCierre} + 'hs'"></p>
-				<p class="sucursal-tel" th:text="${sucursal2.telefono}"></p>
-			</article>
+	<section class="container-fluid container-sucursales ">
+		<div class="container">
+<!--			FILA TITULO - AGREGAR,QUITAR,ELIMINAR SUCURSALES-->
+			<div class="row text-center sucursal-titulo">
+				<h2>Sucursales</h2>
+				<a class="gear-button" th:href="@{/sucursales/nuevo}" title="Editar Sucursales">
+					<i class="fas fa-cog"></i>
+				</a>
+			</div>
+<!--			FILA CONTENIDO SUCURSAL-->
+			<div class="row">
+				<!--			IMAGEN MAPA-->
+				<div class="col-md-12 margen-columnas col-lg-9">
+					<div class="sucursal-container-mapa">
+						<img class="sucursal-mapa" th:src="@{../../images/sucursalesMapa.png}" alt="imagen mapa sucursales">
+					</div>
+				</div>
+				<!--			SUCURSALES-->
+				<div class="col-md-12 margen-columnas col-lg-3">
+					<div class="sucursal-scroll">
+						<article class="container-fluid d-flex flex-column sucursal-contenido" th:each="sucursal2: ${sucursales}">
+							<h3 class="sucursal-nombre" th:text="${sucursal2.nombre}"></h3>
+							<p class="sucursal-calle" th:text="${sucursal2.calle + ' | ' + sucursal2.provincia}"></p>
+							<p class="sucursal-horario" th:text="'Horario: ' + ${sucursal2.diaApertura} + ' a ' + ${sucursal2.diaCierre} + ' de ' + ${sucursal2.horaApertura} + ' a ' + ${sucursal2.horaCierre} + 'hs'"></p>
+							<p class="sucursal-tel" th:text="${sucursal2.telefono}"></p>
+						</article>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="sucursal-mapa" style="display: contents">
-			<img th:src="@{../../images/sucursalesMapa.png}" alt="imagen mapa sucursales">
-		</div>
-		</section>
-	</div>
-</div>
+	</section>
 		<div class="piePagina">
 			<footer th:replace="~{layouts/footer :: footer}"></footer>
 		</div>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 
 </html>
