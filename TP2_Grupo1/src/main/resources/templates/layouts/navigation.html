@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/" lang= "es">
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="@{/css/estilos.css}">
 </head>
-<body>
-	<nav th:fragment="navigation">
-		<ul>
-			<li><a th:href="@{../index}">Index</a></li>
-			<li><a th:href="@{../productos}">Productos</a></li>
-			<li><a th:href="@{../servicioDePaseos/listado}">Servicio de paseos</a></li>
-			<li><a th:href="@{../consejoSalud}">Consejos de Salud</a></li>
-			<li><a th:href="@{../sucursales/listado}">Sucursales</a></li>
-			<li><a th:href="@{../contacto}">Contactenos</a></li>
-		</ul>
-	</nav>
-</body>
+	<body>
+		<ul class="nav justify-content-center" th:fragment="navigation">
+	  <li class="nav-item">
+	    <a class="nav-link" aria-current="page" th:href="@{../index}">Inicio</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{../producto/productos}">Productos</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{../servicioDePaseos/listado}">Servicios</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{../ConsejoSalud/listado}">Consejos</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{../sucursales/listado}">Sucursales</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" th:href="@{../contacto/contacto}">Contacto</a>
+	  </li>
+	</ul>
+	</body>
 </html>

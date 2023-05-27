@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ServicioDePaseosController {
 	/*Se crea un objeto tipo lista*/
 	ServiciosDePaseoLista serviciosLista = new ServiciosDePaseoLista();
+	/*Se crea una variable controladora para saber que función tendrá el formulario cuando se lo invoque*/
+	Boolean edicion = false;
 	/*GetMapping que usa el método "get" del objeto tipo lista y lo carga en el HTML*/
 	@GetMapping("/listado")
 	public String getServicioDePaseos(Model model) {
@@ -34,10 +36,12 @@ public class ServicioDePaseosController {
 			}
 		}
 		model.addAttribute("ServicioDePaseo", servicioEncontrado);/*El objeto encontrado se envía a modificar_servicios.html | La etiqueta sirve para identificar dentro de th:object*/
+		model.addAttribute("edicion", edicion);
 		return "modificar_servicios";
 	}
 	@PostMapping("/modificarDatos")
-	public String modificarDatos(@ModelAttribute("ServicioDePaseo")ServicioDePaseo servicioModificado) {/*ModelAttribute sirve para indentificar un objeto a modificar | ServicioDePaseo (o sea, la etiqueta servicioModificado) es el th:object de modificar_servicios.html con sus atributos cambiados al momento de cambiar los inputs y pulsar "Guardar"*/
+	public String modificarDatos(@ModelAttribute("ServicioDePaseo")ServicioDePaseo servicioModificado) {/*ModelAttribute sirve para identificar un objeto a modificar | ServicioDePaseo (o sea, la etiqueta servicioModificado) es el th:object de modificar_servicios.html con sus atributos cambiados al momento de cambiar los inputs y pulsar "Guardar"*/
+		edicion = true;
 		for(ServicioDePaseo servicioOriginal : serviciosLista.getServiciosDePaseo()) {
 			if(servicioOriginal.getPaseador().equals(servicioModificado.getPaseador())) {
 				//servicioOriginal = servicioModificado /*Esta línea no modifica los datos de un objeto con otro objeto, solo crea 2 punteros al mismo objeto*/
@@ -46,7 +50,7 @@ public class ServicioDePaseosController {
 				servicioOriginal.setHorario(servicioModificado.getHorario());
 			}
 		}
-		return "redirect:/servicioDePaseos";
+		return "redirect:/servicioDePaseos/listado";
 	}
 	@GetMapping("/eliminarDatos/{nombrePaseador}")
 	public String eliminarDatos(Model model, @PathVariable(value="nombrePaseador")String nombrePaseador){
@@ -60,6 +64,19 @@ public class ServicioDePaseosController {
 				break;
 			}
 		}
-		return "redirect:/servicioDePaseos";
+		return "redirect:/servicioDePaseos/listado";
+	}
+	@GetMapping("/nuevoServicio")
+	public String nuevaSucursal(Model model) {
+		model.addAttribute("ServicioDePaseo", new ServicioDePaseo());//Se envia un nuevo objeto "ServicioDePaseo" que será el th:object de modificar_servicios.html.
+		model.addAttribute("edicion", edicion);
+		return "modificar_servicios";
+	}
+	@PostMapping("/guardarDato")
+	public String guardarNuevoDato(@ModelAttribute("ServicioDePaseo")ServicioDePaseo nuevoServicio) {
+		//ModelAndView modelAndView = new ModelAndView("servicioDePaseos"); Se crea un objeto ModelAndView, lo que está entre comillas es la página HTML a la que se va a redirigir.
+		serviciosLista.getServiciosDePaseo().add(nuevoServicio);
+		//modelAndView.addObject("servicioDePaseos", serviciosLista.getServiciosDePaseo());
+		return "redirect:/servicioDePaseos/listado";
 	}
 }
