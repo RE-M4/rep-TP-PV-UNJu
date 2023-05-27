@@ -268,14 +268,23 @@ footer {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }*/
-.scroll{
-	display: block;
-	margin: 0 auto;
-	text-align: start;
-	width: 260px;
-	height: 600px;
-	overflow-y: scroll;
-	scroll-behavior: smooth;
+@media screen and (min-width: 968px) {
+	.col-lg-9 {
+		flex-basis: 0;
+		flex-grow: 1;
+		max-width: 100%;
+	}
+	.col-lg-3 {
+		flex-basis: 0;
+		flex-grow: 1;
+		max-width: 286px;
+	}
+
+	.sucursal-scroll {
+		max-height: 490px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
 }
 .sucursal{
 	box-sizing: border-box;
