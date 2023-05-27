@@ -31,7 +31,13 @@
 			</div>
 <!--			FILA CONTENIDO SUCURSAL-->
 			<div class="row">
-				<section class="sucursales">
+				<!--			IMAGEN MAPA-->
+				<div class="col-md-12 margen-columnas col-lg-9">
+					<div class="sucursal-container-mapa">
+						<img class="sucursal-mapa" th:src="@{../../images/sucursalesMapa.png}" alt="imagen mapa sucursales">
+					</div>
+				</div>
+
 				<div class="sucursales-contenido scroll">
 					<article class="sucursal" th:each="sucursal2: ${sucursales}">
 						<h3 class="sucursal-nombre" th:text="${sucursal2.nombre}"></h3>
@@ -40,10 +46,7 @@
 						<p class="sucursal-tel" th:text="${sucursal2.telefono}"></p>
 					</article>
 				</div>
-				<div class="sucursal-mapa" style="display: contents">
-					<img th:src="@{../../images/sucursalesMapa.png}" alt="imagen mapa sucursales">
-				</div>
-				</section>
+
 			</div>
 		</div>
 	</section>
