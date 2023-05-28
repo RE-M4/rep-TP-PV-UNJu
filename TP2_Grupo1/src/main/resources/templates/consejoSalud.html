@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang= "es">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" th:href="@{/css/estilos.css}">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -15,28 +17,29 @@
 			<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 		</div>
 		<section class="seccion-salud"  >
-			<h2>Consejos de salud para perros y gatos</h2>
-			<div class="contenedor" style="margin-top: 3%; text-align:left; padding-left: 14% ">
-				<a th:href="@{/ConsejoSalud/nuevo_consejo}" style="display: inline-block; padding: 10px 20px; background-color: #F2C94C; color: #000000; font-size: 20px; text-decoration: none; border-radius: 5px; border: none; transition: background-color 0.3s ease;" >Nuevo Consejo</a>
+			<div class="container">
+				<h2>Consejos de salud para perros y gatos</h2>
+				<div class="contenedor" style="margin-top: 3%; text-align:left; ">
+					<a th:href="@{/ConsejoSalud/nuevo_consejo}" class="btn btn-warning" >Nuevo Consejo</a>
+				</div>
+				<article class="articulo-salud" th:each="consejo : ${listaConsejo}">
+					<div class="card mb-3">
+				  		<img alt="aca una imagen" th:src="@{${consejo.img}}" >
+				 	 	<div class="card-body">
+				    		<h5 class="card-title" th:text="${consejo.titulo}">Card title</h5>
+				    		<p class="card-text" th:text="${consejo.descripcion}"></p>
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				    			<a class="btn btn-primary" th:href="@{/ConsejoSalud/modificar_consejo/}+${consejo.id}" role="button">Modificar</a>
+				    			<a class="btn btn-danger" th:href="@{/ConsejoSalud/eliminar_consejo/}+${consejo.titulo}" role="button">Eliminar</a>
+				    		</div>	
+				  		</div>
+					</div>
+				</article>
 			</div>
-			<article class="articulo-salud" th:each="consejo : ${listaConsejo}">
-				<div class="parte-1">
-					<img alt="aca una imagen" th:src="@{${consejo.img}}" >
-				</div>
-				<div class="parte-2">
-					<h3 th:text="${consejo.titulo}"></h3>
-					<p th:text="${consejo.descripcion}"> </p>
-				</div>
-				<div style="text-align: right; ">
-		      		<a th:href="@{/ConsejoSalud/modificar_consejo/}+${consejo.id}" type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);">Modificar</a>
-					<a th:href="@{/ConsejoSalud/eliminar_consejo/}+${consejo.titulo}" onclick="return confirm('¿Estás seguro de que deseas eliminar este consejo?')" type="submit" style="background-color: #dc3545; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);">Eliminar</a>
-		   		 </div>
-			</article>
-	
-			
 		</section>
 		
 		<footer th:replace="~{layouts/footer :: footer}"></footer>
 	</div>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
