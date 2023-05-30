@@ -114,9 +114,9 @@ footer {
 	font-family: 'Comic Neue', cursive;
 }
 #container-salud .seccion-salud img{
-	width :70%;
+	/*width :70%;*/
 	height: 360px;
-	border-radius : 12px;
+	/*border-radius : 12px;*/
 	
 }
 
@@ -127,7 +127,7 @@ footer {
 #container-salud .articulo-salud{
 	background-color:#f7f8fc;
 	border-radius : 12px; 
-	margin: 13%;
+	/*margin: 13%;*/
 	margin-top: 2%;
 	padding: 15px;
 	margin-bottom: 0;
