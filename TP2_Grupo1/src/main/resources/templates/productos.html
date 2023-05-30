@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Productos</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" th:href="@{/css/estilos.css}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -12,40 +14,43 @@
 	<header th:replace="~{layouts/header :: header}"></header>
 	<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 </div>
-
-<main class="container-productos">
-	<h2 class="productos-titulo">PRODUCTOS</h2>
-	<div class="botonAgregar">
-	<div class="contenedor" style="margin-top: 3%; text-align:left; padding-left: 14% ">		
-		<a th:href="@{/producto/nuevo_producto}" style="display: inline-block; padding: 10px 20px; background-color: #F2C94C; color: #000000; font-size: 20px; text-decoration: none; border-radius: 5px; border: none; transition: background-color 0.3s ease;" >Nuevo Producto</a>
-	</div>
-	</div>
-	<section class="productos">
-		<!--Productos-->
-		<div class="producto" th:each="producto : ${productos}">
-			<div class="producto-img">
-			
-				<img th:src="@{${producto.imagen}}" alt="Producto alimento para perro" title="Producto alimento para perro">
+<div class="caja-productos">
+	<div class="container">
+		<h2 class="productos-titulo">PRODUCTOS</h2>
+		<section  >
+		<div class="container">
+			<div class="text-left mb-2">		
+				<a th:href="@{/producto/nuevo_producto}" class="btn btn-warning" >Nuevo Producto</a>
 			</div>
-			<div class="producto-info">
-				<h3 class="producto-nombre" th:text="${producto.nombre}"></h3>
-				<div th:if="${producto.descuento == 0}">
-					<p style="font-size: 20px" class="producto-precio" th:text="'Precio: $ '+${producto.precio}"></p>
-				</div>
-				<div th:if="${producto.descuento != 0}">
-				
-					<del style="display: block; font-size: 20px" class="producto-precio" th:text="'Precio: $ '+${producto.precio}"></del> <span style="display: block; font-size: 20px" class="producto-precio" th:text="'Precio con descuento '+${producto.descuento}+' %: '+'$ '+${producto.calcularDescuento()}"></span>
-			
+			<!--Productos-->
+			<div class=" row ">
+				<div class="col-12 col-sm-6 col-md-4 mb-2" th:each="producto : ${productos}">
+					<div class="card h-100" >
+					  <img class="card-img-top" th:src="@{${producto.imagen}}" alt="Producto alimento para perro" title="Producto alimento para perro">
+					  <div class="card-body">
+					    <h5 class="card-title producto-nombre" th:text="${producto.nombre}" >Card title</h5>
+					    <div th:if="${producto.descuento == 0}">
+							<p style="font-size: 20px" class="producto-precio" th:text="'Precio: $ '+${producto.precio}"></p>
+						</div>
+						<div th:if="${producto.descuento != 0}">
+							<del style="display: block; font-size: 20px" class="producto-precio" th:text="'Precio: $ '+${producto.precio}"></del> <span style="display: block; font-size: 20px" class="producto-precio" th:text="'Precio con descuento '+${producto.descuento}+' %: '+'$ '+${producto.calcularDescuento()}"></span>
+						</div>
+					  </div>
+					  <div class=" mb-2 d-grid gap-2 d-sm-flex justify-content-sm-center">
+					  	<a th:href="@{/producto/modificar_producto/}+${producto.codigo}" type="submit" class="btn btn-primary btn-sm">Modificar</a>
+						<a th:href="@{/producto/eliminar_producto/}+${producto.codigo}" onclick="return confirm('¿Estás seguro de que deseas eliminar este consejo?')" type="submit" class="btn btn-danger btn-sm">Eliminar</a>
+					   </div>
+					</div>	
 				</div>
 			</div>
-			<div style="text-align: right; ">
-		      		<a th:href="@{/producto/modificar_producto/}+${producto.codigo}" type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);">Modificar</a>
-					<a th:href="@{/producto/eliminar_producto/}+${producto.codigo}" onclick="return confirm('¿Estás seguro de que deseas eliminar este consejo?')" type="submit" style="background-color: #dc3545; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);">Eliminar</a>
-		   		 </div>
-		</div>
-	</section>
-</main>
+		</div>	
+			
+		</section>
+	</div>
+</div>	
 <footer th:replace="~{layouts/footer :: footer}"></footer>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 </body>
 
 </html>
