@@ -30,9 +30,10 @@
 		      </select>
 		    </div>
 		    
-		 	<div class="mb-3" th:if="${edicion}? *{codigo}">
-		      <label for="codigo" class="form-label">codigo:</label>
-		      <input  type="number" id="codigo" name="codigo" th:field="*{codigo}" class="form-control">
+		 	<div class="mb-3" >
+		 		<!-- La principal utilidad de utilizar hidden en formularios es ocultar campos que no deben ser visibles o 
+		 		modificables por los usuarios, pero que aún se deben enviar al servidor cuando se envía el formulario. -->
+		      <input  type="hidden" id="codigo" name="codigo" th:field="*{codigo}" class="form-control">
 		    </div>
 		    
 		    <div class="mb-3">
