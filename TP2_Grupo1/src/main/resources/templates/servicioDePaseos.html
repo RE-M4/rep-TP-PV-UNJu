@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="es">
+
 <head>
-<meta charset="UTF-8">
-<title>Servicios de paseo</title>
-<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+	<title>Servicios de paseo</title>
 </head>
 
 <body>
-
     <div class="encabezado">
 		<header th:replace="~{layouts/header :: header}"></header>
 		<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 	</div>
-    <div class="bodyServicios">
+    <div class="bodyServicios container-fluid">
+    	<div class="container d-none d-lg-block">
+    		<div class="row col-12">
+    			<a id="botonNuevoServicio" th:href="@{/servicioDePaseos/nuevoServicio}">Nuevo Servicio</a>
+    		</div>
+    	</div>
     	<div id="contenedorTabla">
-    	<a id="botonServicios" th:href="@{/servicioDePaseos/nuevoServicio}">Nuevo Servicio</a>
-        <table>
-            <tr>
-                <td id="encabezadoTabla">Paseador</td>
-                <td id="encabezadoTabla">Día</td>
-                <td id="encabezadoTabla">Hora</td>
-            </tr>
-            <tr th:each="servicio : ${servicios}">
-            	<td id="formatoCelda" th:text="${servicio.paseador}"></td>
-                <td id="formatoCelda" th:text="${servicio.dia}"></td>
-                <td id="formatoCelda" th:text="${servicio.horario}"></td>
-                <td>
-                	<a id="botonServicios" th:href="@{/servicioDePaseos/modificarDatos/}+${servicio.paseador}">Modificar</a>
-                	<a id="botonServicios" th:href="@{/servicioDePaseos/eliminarDatos/}+${servicio.paseador}">Eliminar</a>
-                </td>
-            </tr>
-        </table>
-    </div>
+    		<div class="container">
+    			<div class="row col-12">
+    				<table class="table table-hover">
+			            <thead>
+			            	<tr>
+				                <th id="encabezadoTabla" scope="col">Paseador</th>
+				                <th id="encabezadoTabla" scope="col">Día</th>
+				                <th id="encabezadoTabla" scope="col">Hora</th>
+				                <th id="encabezadoTabla" scope="col" class="d-none d-lg-block">Edición</th>
+			           		</tr>
+			            </thead>
+			            <tbody>
+			            	<tr th:each="servicio : ${servicios}">
+				            	<td id="formatoCelda" th:text="${servicio.paseador}"></td>
+				                <td id="formatoCelda" th:text="${servicio.dia}"></td>
+				                <td id="formatoCelda" th:text="${servicio.horario}"></td>
+				                <td>
+				                	<a class="d-none d-lg-block" id="botonServicios" th:href="@{/servicioDePaseos/modificarDatos/}+${servicio.paseador}">Modificar</a>
+				                	<a class="d-none d-lg-block" id="botonServicios" th:href="@{/servicioDePaseos/eliminarDatos/}+${servicio.paseador}">Eliminar</a>
+				                </td>
+			            	</tr>
+			            </tbody>
+	        		</table>
+    			</div>
+    		</div>
+   	 	</div>
     </div>
     <footer th:replace="~{layouts/footer :: footer}"></footer>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 
 </html>
