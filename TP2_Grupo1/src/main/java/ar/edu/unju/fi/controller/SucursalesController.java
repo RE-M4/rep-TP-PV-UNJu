@@ -2,9 +2,11 @@ package ar.edu.unju.fi.controller;
 
 import ar.edu.unju.fi.listas.ListasSucursales;
 import ar.edu.unju.fi.model.Sucursal;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class SucursalesController {
 
 	@Autowired
-	ListasSucursales listaSucursales;
+	private ListasSucursales listaSucursales;
 	@Autowired
 	private Sucursal sucursal;
 	@GetMapping("/listado")
@@ -34,9 +36,15 @@ public class SucursalesController {
 	}
 
 	@PostMapping("/guardar")
-	public ModelAndView getGuardarSucursalPage(@ModelAttribute("sucursal") Sucursal sucursal) {
-		listaSucursales.getSucursales().add(sucursal);
+	public ModelAndView getGuardarSucursalPage(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult resultadoValidacion) {
 		ModelAndView modelView = new ModelAndView("nueva_sucursal");
+		if (resultadoValidacion.hasErrors()) {
+			modelView.setViewName("nueva_sucursal");
+			modelView.addObject("sucursal", sucursal);
+			modelView.addObject("sucursales", listaSucursales.getSucursales());
+			return modelView;
+		}
+		listaSucursales.getSucursales().add(sucursal);
 		modelView.addObject("sucursales", listaSucursales.getSucursales());
 		modelView.addObject("sucursal", new Sucursal());
 		return modelView;

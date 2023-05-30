@@ -20,16 +20,19 @@
 			<form th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}" method="post">
 				<div>
 					<label for="nombre">Nombre:</label>
-					<input type="text" id="nombre" name="nombre" th:field="*{nombre}" required>
+					<input type="text" id="nombre" name="nombre" th:field="*{nombre}">
+					<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 				</div>
 				<!--Lugar sucursal-->
 				<div>
 					<label for="calle">Calle:</label>
-					<input type="text" id="calle" name="calle" th:field="*{calle}" required>
+					<input type="text" id="calle" name="calle" th:field="*{calle}">
+					<div class="text-danger" th:if="${#fields.hasErrors('calle')}" th:errors="*{calle}"></div>
 				</div>
 				<div>
 					<label for="provincia">Selecciona una provincia:</label>
-					<select id="provincia" name="provincia" th:field="*{provincia}" required>
+					<div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
+					<select id="provincia" name="provincia" th:field="*{provincia}">
 						<option value="Buenos Aires">Buenos Aires</option>
 						<option value="Córdoba">Córdoba</option>
 						<option value="Santa Fe">Santa Fe</option>
@@ -38,29 +41,33 @@
 				<!-- Horario de Atencion -->
 				<div>
 					<label for="diaApertura">Día de apertura:</label>
+					<div class="text-danger" th:if="${#fields.hasErrors('diaApertura')}" th:errors="*{diaApertura}"></div>
 					<select id="diaApertura" name="diaApertura" th:field="*{diaApertura}">
 						<option th:each="dia : ${diasSemana}" th:value="${dia}" th:text="${dia}"></option>
 					</select>
 				</div>
 				<div>
 					<label for="diaCierre">Día de cierre:</label>
+					<div class="text-danger" th:if="${#fields.hasErrors('diaCierre')}" th:errors="*{diaCierre}"></div>
 					<select id="diaCierre" name="diaCierre" th:field="*{diaCierre}">
 						<option th:each="dia : ${diasSemana}" th:value="${dia}" th:text="${dia}"></option>
 					</select>
 				</div>
 				<div>
 					<label for="horaApertura">Hora de apertura:</label>
-					<input type="number" id="horaApertura" name="horaApertura" th:field="*{horaApertura}" min="0" max="23" required>
+					<input type="number" id="horaApertura" name="horaApertura" th:field="*{horaApertura}" min="0" max="23">
+					<div class="text-danger" th:if="${#fields.hasErrors('horaApertura')}" th:errors="*{horaApertura}"></div>
 				</div>
 				<div>
 					<label for="horaCierre">Hora de cierre:</label>
-					<input type="number" id="horaCierre" name="horaCierre" th:field="*{horaCierre}" min="0" max="23" required>
-
+					<input type="number" id="horaCierre" name="horaCierre" th:field="*{horaCierre}" min="0" max="23">
+					<div class="text-danger" th:if="${#fields.hasErrors('horaCierre')}" th:errors="*{horaCierre}"></div>
 				</div>
 				<br>
 				<div>
 					<label for="telefono">Telefono:</label>
-					<input type="text" min="0" max="50" id="telefono" name="telefono" th:field="*{telefono}" required>
+					<input type="text" min="0" max="50" id="telefono" name="telefono" th:field="*{telefono}">
+					<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
 				</div>
 				<!--	<button type="submit" style="display:block;background-color: #4CAF50; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;" th:text="${edicion}?'Modificar':'Guardar'"></button>-->
 				<input type="submit" th:value="${edicion}?'Modificar':'Guardar'"/>
