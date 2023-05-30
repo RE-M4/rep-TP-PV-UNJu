@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ConsejoSalud {
 	
 	private String img;
@@ -8,12 +11,20 @@ public class ConsejoSalud {
 	private Integer id;
 	
 	
-	
-	 
-	
+	/**
+	 * Constructor sin parametros
+	 */
 	public ConsejoSalud() {
 	}
 	
+	
+	/**
+	 * Constructor con parametros
+	 * @param img
+	 * @param titulo
+	 * @param descripcion
+	 * @param id
+	 */
 	public ConsejoSalud(String img, String titulo, String descripcion,Integer id) {
 		super();
 		this.img = img;
@@ -22,7 +33,7 @@ public class ConsejoSalud {
 		this.id=id;
 	}
 	
-	
+	//Getter and Setters
 	public Integer getId() {
 		return id;
 	}
@@ -50,6 +61,10 @@ public class ConsejoSalud {
 		this.descripcion = descripcion;
 	}
 
+	
+	/**
+	 * toString para mostrar el objeto
+	 */
 	@Override
 	public String toString() {
 		return "ConsejoSalud [img=" + img + ", titulo=" + titulo + ", descripcion=" + descripcion + ", id=" + id + "]";

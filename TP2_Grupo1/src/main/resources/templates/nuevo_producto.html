@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang= "es">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" th:href="@{/css/estilos.css}">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -9,22 +11,6 @@
 <title>Nuevo producto</title>
 </head>
 <body>
-	<!--<div>
-		<form >
-		  <label>Nombre</label><br>
-		  <input type="text"><br>
-		  <label>Categoría</label><br>
-		  <input type="text"><br>
-		  <label>Código</label><br>
-		  <input type="number"><br>
-		  <label>Precio</label><br>
-		  <input type="number"><br>
-		  <label>Descuento</label><br>
-		  <input type="number"><br>
-		</form>
-		<button th:href="@{productos}">Volver a la página de Productos</button>
-		<button type="submit">Enviar datos</button>
-	</div>-->
 <div id="container-salud">
 	<div class="encabezado">
 			<header th:replace="~{layouts/header :: header}"></header>
@@ -32,57 +18,57 @@
 		<section class="seccion-salud"  >
 		
 			
-	<div style="max-width: 400px; margin: 0 auto; background-color: #f2f2f2; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-  		<h2 th:text="${edicion}?'Modificar Producto':'Nuevo Producto'"style="text-align: center; margin-bottom: 20px;"></h2>
-
-		  <form th:action="${edicion}?@{/producto/modificar_producto} : @{/producto/guardar_producto}" th:object="${Producto}" method="post">
-		    <div style="margin-bottom: 10px;">
-		      <label for="imagen" style="display: block; font-weight: bold;">Seleccionar imagen:</label>
-		      <select id="imagen" name="imagen" th:field="*{imagen}" required style="width: 100%; padding: 8px;">
+	<div class="container"><br>
+		  <form class="container rounded" style="background-color: #F5F5F5" th:action="${edicion}?@{/producto/modificar_producto} : @{/producto/guardar_producto}" th:object="${Producto}" method="post">
+		    <h2 th:text="${edicion}?'Modificar Producto':'Nuevo Producto'"style="text-align: center; margin-bottom: 20px;"></h2>
+		    <div class="mb-3">
+		      <label for="imagen" class="form-label">Seleccionar imagen:</label>
+		      <select id="imagen" name="imagen" th:field="*{imagen}" class="form-select">
 		        <option value="../images/producto3.jpg">Imagen de producto 1</option>
 		        <option value="../images/producto4.jpg">Imagen de producto 2</option>
 		        <option th:value="*{imagen}"  th:if="${edicion}">imagen actual</option>
 		      </select>
 		    </div>
-		 	    <div style="margin-bottom: 10px; margin-right: 20px"  th:if="${edicion}? *{codigo}">
-		      <label for="codigo" style="display: block; font-weight: bold;">codigo:</label>
-		      <input  type="number" id="codigo" name="codigo" th:field="*{codigo}" required style="width: 100%; padding: 8px;" readonly="readonly">
+		    
+		 	<div class="mb-3" >
+		 		<!-- La principal utilidad de utilizar hidden en formularios es ocultar campos que no deben ser visibles o 
+		 		modificables por los usuarios, pero que aún se deben enviar al servidor cuando se envía el formulario. -->
+		      <input  type="hidden" id="codigo" name="codigo" th:field="*{codigo}" class="form-control">
 		    </div>
 		    
-		    <div style="margin-bottom: 10px; margin-right: 20px">
+		    <div class="mb-3">
 		      <label for="nombre" style="display: block; font-weight: bold;">Nombre:</label>
-		      <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required style="width: 100%; padding: 8px;">
+		      <input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control">
 		    </div>
 		    
-		    <div style="margin-bottom: 10px;margin-right: 20px">
+		     <div class="mb-3">
 		      <label for="categoria" style="display: block; font-weight: bold;">Categoria:</label>
-		      <input type="text" id="categoria" name="categoria" th:field="*{categoria}" required style="width: 100%; padding: 8px;">
+		      <input type="text" id="categoria" name="categoria" th:field="*{categoria}" class="form-control">
 		    </div>
 		    
-		     <div style="margin-bottom: 10px;margin-right: 20px">
+		      <div class="mb-3">
 		      <label for="precio" style="display: block; font-weight: bold;">Precio:</label>
-		      <input type="number" id="precio" name="precio" th:field="*{precio}" required style="width: 100%; padding: 8px;">
+		      <input type="number" id="precio" name="precio" th:field="*{precio}" class="form-control">
 		    </div>
 		    
-		     <div style="margin-bottom: 10px;margin-right: 20px">
+		      <div class="mb-3">
 		      <label for="descuento" style="display: block; font-weight: bold;">Descuento:</label>
-		      <input type="number" id="descuento" name="descuento" th:field="*{descuento}" required style="width: 100%; padding: 8px; " min="0" max="50">
+		      <input type="number" id="descuento" name="descuento" th:field="*{descuento}" class="form-control">
 		    </div>
 		    
-		    <div style="text-align: center; ">
-				<button type="submit" style="display:block;background-color: #4CAF50; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;" th:text="${edicion}?'Modificar':'Guardar'"></button>
+		  	 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+ 				<button type="submit" class="btn btn-success" th:text="${edicion}?'Modificar':'Guardar'"></button>
+				<a class="btn btn-secondary " role="button" th:href="@{/producto/volver}" >Cancelar</a>		
 			</div>
-
 		  </form>  
-		 <div style="text-align: left;">
-			<a th:href="@{/producto/volver}" style="text-transform:none;font-family: sans-serif;margin-right:74%;margin-top:2%;display:block;background-color: blue; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">Cancelar</a>		
-		</div>
+		 
 
 		  
 </div>
 		</section>
 		
 		<footer th:replace="~{layouts/footer :: footer}"></footer>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	</div>			
 	
 </body>
