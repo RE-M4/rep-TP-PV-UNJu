@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import ar.edu.unju.fi.listas.ListasSucursales;
 import ar.edu.unju.fi.model.Sucursal;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/sucursales")
 public class SucursalesController {
-	ListasSucursales listaSucursales = new ListasSucursales();
 
+	@Autowired
+	ListasSucursales listaSucursales;
+	@Autowired
+	private Sucursal sucursal;
 	@GetMapping("/listado")
 	public String getListaSucursalesPage(Model model) {
 		model.addAttribute("sucursales", listaSucursales.getSucursales());
@@ -23,7 +27,7 @@ public class SucursalesController {
 	@GetMapping("/nuevo")
 	public String getNuevaSucursalPage(Model model) {
 		boolean edicion = false;
-		model.addAttribute("sucursal", new Sucursal());
+		model.addAttribute("sucursal", sucursal);
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("sucursales", listaSucursales.getSucursales());
 		return "nueva_sucursal";

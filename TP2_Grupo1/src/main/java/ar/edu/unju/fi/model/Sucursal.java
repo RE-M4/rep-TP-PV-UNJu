@@ -1,7 +1,9 @@
 package ar.edu.unju.fi.model;
 
-import java.time.LocalTime;
+import org.springframework.stereotype.Component;
 
+import java.time.LocalTime;
+@Component
 public class Sucursal {
     private String nombre;
     private String calle;
