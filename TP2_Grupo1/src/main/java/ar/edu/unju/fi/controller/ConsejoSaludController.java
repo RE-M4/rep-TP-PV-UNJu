@@ -1,7 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,12 @@ import ar.edu.unju.fi.model.ConsejoSalud;
 @RequestMapping("/ConsejoSalud")
 public class ConsejoSaludController {
 	
-	ListaConsejoSalud lista = new ListaConsejoSalud();
+	
+	@Autowired
+	private ListaConsejoSalud lista;
+	
+	@Autowired
+	private ConsejoSalud consejoSalud;
 	
 	/**
 	 * Este metodo envia la lista de consejos usando como peticion /consejoSalud
@@ -38,7 +43,7 @@ public class ConsejoSaludController {
 	@GetMapping("/nuevo_consejo")
 	public ModelAndView getNuevoConsejo() {
 		ModelAndView modelAndView = new ModelAndView("nuevo_consejo");
-		modelAndView.addObject("Consejo", new ConsejoSalud());
+		modelAndView.addObject("Consejo",consejoSalud);
 		boolean edicion=false;
 		modelAndView.addObject("edicion", edicion);
 		return modelAndView;
@@ -65,7 +70,7 @@ public class ConsejoSaludController {
 	@GetMapping("/modificar_consejo/{id}")
 	public ModelAndView getModificarConsejo(@PathVariable(value="id")Integer id) {
 		ModelAndView modelAndView = new ModelAndView("nuevo_consejo");
-		ConsejoSalud consejoEncontrado = new ConsejoSalud();
+		ConsejoSalud consejoEncontrado = consejoSalud;
 		for(ConsejoSalud consejo: lista.getListaConsejoSalud()) {
 			if(consejo.getId().equals(id)) {
 				consejoEncontrado = consejo;
