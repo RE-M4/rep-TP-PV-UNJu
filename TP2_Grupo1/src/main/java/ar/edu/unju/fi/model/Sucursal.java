@@ -33,10 +33,12 @@ public class Sucursal {
     @NotBlank(message = "El teléfono no debe estar en blanco")
     private String telefono;
 
+    private Integer id;
+
     public Sucursal() {
 
     }
-	public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre,String telefono) {
+	public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre,String telefono, int id) {
 
 				this.nombre = nombre;
         this.calle = calle;
@@ -46,6 +48,15 @@ public class Sucursal {
         this.horaApertura = horaApertura;
         this.horaCierre = horaCierre;
         this.telefono = telefono;
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
