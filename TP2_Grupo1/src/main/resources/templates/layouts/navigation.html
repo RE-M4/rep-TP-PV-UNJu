@@ -2,10 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang= "es">
 <head>
 	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 	<link rel="stylesheet" href="@{/css/estilos.css}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 	<body>
-		<nav class="navbar">
+		<!-- <nav class="navbar">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    	<span class="navbar-toggler-icon"></span>
 		 	 </button>
@@ -31,6 +36,36 @@
 				  </li>
 				</ul>
 		</div>
+		</nav> -->
+		<nav class="navbar navbar-expand-lg" th:fragment="navigation">
+		  <div class="container-fluid">
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+		      <ul class="navbar-nav">
+		        <li class="nav-item">
+		          <a class="nav-link active" aria-current="page" th:href="@{../index}">Principal</a>
+		        </li>
+		        <li class="nav-item">
+			    	<a class="nav-link" th:href="@{../producto/productos}">Productos</a>
+				</li>
+				<li class="nav-item">
+				    <a class="nav-link" th:href="@{../servicioDePaseos/listado}">Servicios</a>
+				</li>
+				<li class="nav-item">
+				    <a class="nav-link" th:href="@{../ConsejoSalud/listado}">Consejos</a>
+				</li>
+				<li class="nav-item">
+				    <a class="nav-link" th:href="@{../sucursales/listado}">Sucursales</a>
+				</li>
+				<li class="nav-item">
+				    <a class="nav-link" th:href="@{../contacto/contacto}">Contacto</a>
+				</li>
+		      </ul>
+		    </div>
+		  </div>
 		</nav>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>	
 	</body>
 </html>

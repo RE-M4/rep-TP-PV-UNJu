@@ -22,14 +22,17 @@
 							<div class="form-group">
 								<label for="dato_paseador">Nombre del Paseador: </label>
 								<input class="form-control" type="text" id="paseador" name="dato_paseador" th:field="*{paseador}">
+								<div class="text-danger" th:if="${#fields.hasErrors('paseador')}" th:errors="*{paseador}"></div>
 							</div>
 							<div class="form-group">
 								<label for="dato_dia">Día: </label>
 								<input class="form-control" type="text" id="dia" name="dato_dia" th:field="*{dia}">
+								<div class="text-danger" th:if="${#fields.hasErrors('dia')}" th:errors="*{dia}"></div>
 							</div>
 							<div class="form-group">
 								<label for="dato_horario">Horario: </label>
 								<input class="form-control" type="text" id="horario" name="dato_horario" th:field="*{horario}">
+								<div class="text-danger" th:if="${#fields.hasErrors('horario')}" th:errors="*{horario}"></div>
 							</div>
 							<div>
 								<p><input id="formServiciosEnviar" type="submit" class="button" value="Guardar"></p>
