@@ -1,24 +1,44 @@
 package ar.edu.unju.fi.model;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
 
-import java.time.LocalTime;
-
+@Component
 public class Sucursal {
+    @NotBlank(message = "El nombre es requerido")
     private String nombre;
+
+    @NotBlank(message = "La calle es requerida")
     private String calle;
+
+    @NotEmpty(message = "La provincia no debe estar vacía")
     private String provincia;
+
+    @NotEmpty(message = "El día de apertura no debe estar vacío")
     private String diaApertura;
+
+    @NotEmpty(message = "El día de cierre no debe estar vacío")
     private String diaCierre;
+
+    @Min(value = 0, message = "La hora de apertura debe ser mayor o igual a 0")
+    @Max(value = 23, message = "La hora de apertura debe ser menor o igual a 23")
     private int horaApertura;
+
+    @Min(value = 0, message = "La hora de cierre debe ser mayor o igual a 0")
+    @Max(value = 23, message = "La hora de cierre debe ser menor o igual a 23")
     private int horaCierre;
-    private boolean horariosEspeciales;
-    private LocalTime horaAperturaEspecial;
-    private LocalTime horaCierreEspecial;
+
+    @NotBlank(message = "El teléfono no debe estar en blanco")
     private String telefono;
+
+    private Integer id;
 
     public Sucursal() {
 
     }
-	public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre, boolean horariosEspeciales, LocalTime horaAperturaEspecial, LocalTime horaCierreEspecial, String telefono) {
+	public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre,String telefono, int id) {
 
 				this.nombre = nombre;
         this.calle = calle;
@@ -27,10 +47,16 @@ public class Sucursal {
         this.diaCierre = diaCierre;
         this.horaApertura = horaApertura;
         this.horaCierre = horaCierre;
-        this.horariosEspeciales = horariosEspeciales;
-        this.horaAperturaEspecial = horaAperturaEspecial;
-        this.horaCierreEspecial = horaCierreEspecial;
         this.telefono = telefono;
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -87,30 +113,6 @@ public class Sucursal {
 
     public void setHoraCierre(int horaCierre) {
         this.horaCierre = horaCierre;
-    }
-
-    public boolean isHorariosEspeciales() {
-        return horariosEspeciales;
-    }
-
-    public void setHorariosEspeciales(boolean horariosEspeciales) {
-        this.horariosEspeciales = horariosEspeciales;
-    }
-
-    public LocalTime getHoraAperturaEspecial() {
-        return horaAperturaEspecial;
-    }
-
-    public void setHoraAperturaEspecial(LocalTime horaAperturaEspecial) {
-        this.horaAperturaEspecial = horaAperturaEspecial;
-    }
-
-    public LocalTime getHoraCierreEspecial() {
-        return horaCierreEspecial;
-    }
-
-    public void setHoraCierreEspecial(LocalTime horaCierreEspecial) {
-        this.horaCierreEspecial = horaCierreEspecial;
     }
 
     public String getTelefono() {

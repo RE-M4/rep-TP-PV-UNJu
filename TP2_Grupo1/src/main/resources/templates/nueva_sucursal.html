@@ -3,105 +3,118 @@
 <head>
 <meta charset="UTF-8">
 	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 <title>Nueva sucursal</title>
 </head>
-<body>
+<body class="container-fluid" style="background: rgb(242, 232, 196)">
 	<div class="encabezado">
 		<header th:replace="~{layouts/header :: header}"></header>
 	</div>
 
-<div id="container-form">
-	<section class="seccion-form">
-		<div class="formulario">
-			<h2 th:text="${edicion} ? 'Modificar Sucursal' : 'Nueva Sucursal'"></h2>
-			<form th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}" method="post">
-				<div>
-					<label for="nombre">Nombre:</label>
-					<input type="text" id="nombre" name="nombre" th:field="*{nombre}" required>
-				</div>
-				<!--Lugar sucursal-->
-				<div>
-					<label for="calle">Calle:</label>
-					<input type="text" id="calle" name="calle" th:field="*{calle}" required>
-				</div>
-				<div>
-					<label for="provincia">Selecciona una provincia:</label>
-					<select id="provincia" name="provincia" th:field="*{provincia}" required>
-						<option value="Buenos Aires">Buenos Aires</option>
-						<option value="Córdoba">Córdoba</option>
-						<option value="Santa Fe">Santa Fe</option>
-					</select>
-				</div>
-				<!-- Horario de Atencion -->
-				<div>
-					<label for="diaApertura">Día de apertura:</label>
-					<select id="diaApertura" name="diaApertura" th:field="*{diaApertura}">
-						<option th:each="dia : ${diasSemana}" th:value="${dia}" th:text="${dia}"></option>
-					</select>
-				</div>
-				<div>
-					<label for="diaCierre">Día de cierre:</label>
-					<select id="diaCierre" name="diaCierre" th:field="*{diaCierre}">
-						<option th:each="dia : ${diasSemana}" th:value="${dia}" th:text="${dia}"></option>
-					</select>
-				</div>
-				<div>
-					<label for="horaApertura">Hora de apertura:</label>
-					<input type="number" id="horaApertura" name="horaApertura" th:field="*{horaApertura}" min="0" max="23" required>
-				</div>
-				<div>
-					<label for="horaCierre">Hora de cierre:</label>
-					<input type="number" id="horaCierre" name="horaCierre" th:field="*{horaCierre}" min="0" max="23" required>
+	<section class="container rounded" style="background-color: #F5F5F5">
+		<form th:action="${edicion} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}" method="post">
+			<h2 style="text-align: center; margin-bottom: 20px;" th:text="${edicion} ? 'Modificar Sucursal' : 'Nueva Sucursal'"></h2>
 
-				</div>
-				<br>
-				<div>
-					<label for="telefono">Telefono:</label>
-					<input type="text" min="0" max="50" id="telefono" name="telefono" th:field="*{telefono}" required>
-				</div>
-				<!--	<button type="submit" style="display:block;background-color: #4CAF50; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;" th:text="${edicion}?'Modificar':'Guardar'"></button>-->
-				<input type="submit" th:value="${edicion}?'Modificar':'Guardar'"/>
-				<div style="text-align: left;">
-					<a th:href="@{/sucursales/listado}" style="text-transform:none;font-family: sans-serif;margin-right:74%;margin-top:2%;display:block;background-color: blue; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">Cancelar</a>
-				</div>
-			</form>
+			<div class="mb-3" th:if="${edicion} ? *{id}">
+				<label for="id" class="form-label">Id:</label>
+				<input type="hidden" id="id" name="id" th:field="*{id}" class="form-control">
+			</div>
+			<!-- Nombre sucursal -->
+			<div class="mb-3">
+				<label class="form-label" for="nombre">Nombre:</label>
+				<input class="form-control" type="text" id="nombre" name="nombre" th:field="*{nombre}">
+				<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+			</div>
+			<!--Lugar sucursal-->
+			<div class="mb-3">
+				<label class="form-label" for="calle">Calle:</label>
+				<input class="form-control" type="text" id="calle" name="calle" th:field="*{calle}">
+				<div class="text-danger" th:if="${#fields.hasErrors('calle')}" th:errors="*{calle}"></div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="provincia">Selecciona una provincia:</label>
+				<div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
+				<select id="provincia" name="provincia" th:field="*{provincia}">
+					<option value="Buenos Aires">Buenos Aires</option>
+					<option value="Córdoba">Córdoba</option>
+					<option value="Santa Fe">Santa Fe</option>
+				</select>
+			</div>
+			<!-- Horario de Atencion -->
+			<div class="mb-3">
+				<label class="form-label" for="diaApertura">Día de apertura:</label>
+				<div class="text-danger" th:if="${#fields.hasErrors('diaApertura')}" th:errors="*{diaApertura}"></div>
+				<select id="diaApertura" name="diaApertura" th:field="*{diaApertura}">
+					<option th:each="dia : ${diasSemana}" th:value="${dia}" th:text="${dia}"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="diaCierre">Día de cierre:</label>
+				<div class="text-danger" th:if="${#fields.hasErrors('diaCierre')}" th:errors="*{diaCierre}"></div>
+				<select id="diaCierre" name="diaCierre" th:field="*{diaCierre}">
+					<option th:each="dia : ${diasSemana}" th:value="${dia}" th:text="${dia}"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="horaApertura">Hora de apertura:</label>
+				<input class="form-control" type="number" id="horaApertura" name="horaApertura" th:field="*{horaApertura}">
+				<div class="text-danger" th:if="${#fields.hasErrors('horaApertura')}" th:errors="*{horaApertura}"></div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="horaCierre">Hora de cierre:</label>
+				<input class="form-control" type="number" id="horaCierre" name="horaCierre" th:field="*{horaCierre}">
+				<div class="text-danger" th:if="${#fields.hasErrors('horaCierre')}" th:errors="*{horaCierre}"></div>
+			</div>
+			<br>
+			<div class="mb-3">
+				<label class="form-label" for="telefono">Telefono:</label>
+				<input class="form-control" type="text" min="0" max="50" id="telefono" name="telefono" th:field="*{telefono}">
+				<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+			</div>
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				<input class="btn btn-success" type="submit" th:value="${edicion}?'Modificar':'Guardar'"/>
+				<a class="btn btn-secondary" th:href="@{/sucursales/listado}">Cancelar</a>
+			</div>
+		</form>
 
-		</div>
+		<table class="table-sucursal">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Calle</th>
+					<th>Provincia</th>
+					<th>Horario</th>
+					<th>Telefono</th>
+					<th>Operaciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="sucursal1: ${sucursales}">
+					<td	th:text="${sucursal1.id}"></td>
+					<td th:text="${sucursal1.nombre}"></td>
+					<td th:text="${sucursal1.calle}"></td>
+					<td th:text="${sucursal1.provincia}"></td>
+					<td
+						th:text="${sucursal1.diaApertura} + ' a ' + ${sucursal1.diaCierre} + ' de ' + ${sucursal1.horaApertura} + ' a ' + ${sucursal1.horaCierre} + 'hs'">
+					</td>
+					<td th:text="${sucursal1.telefono}"></td>
+	<!--				 Operaciones -->
+					<td>
+						<a class="btn btn-primary" th:href="@{/sucursales/modificar/{id}(id=${sucursal1.id})}" role="button">Editar</a>
+						<a class="btn btn-danger" th:href="@{/sucursales/eliminar/{id}(id=${sucursal1.id})}" role="button">Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</section>
-
-
-	<table class="table-sucursal">
-		<thead>
-			<tr>
-				<th>Nombre</th>
-				<th>Calle</th>
-				<th>Provincia</th>
-				<th>Horario</th>
-				<th>Telefono</th>
-				<th>Operaciones</th>
-			</tr>
-
-		</thead>
-		<tbody>
-			<tr th:each="sucursal1: ${sucursales}">
-				<td th:text="${sucursal1.nombre}"></td>
-				<td th:text="${sucursal1.calle}"></td>
- 				<td th:text="${sucursal1.provincia}"></td>
-				<td
-					th:text="${sucursal1.diaApertura} + ' a ' + ${sucursal1.diaCierre} + ' de ' + ${sucursal1.horaApertura} + ' a ' + ${sucursal1.horaCierre} + 'hs'">
-				</td>
-				<td th:text="${sucursal1.telefono}"></td>
-<!--				 Operaciones -->
-				<td>
-					<a th:href="@{/sucursales/modificar/{nombre}(nombre=${sucursal1.nombre})}">Editar</a>
-					<a th:href="@{/sucursales/eliminar/{nombre}(nombre=${sucursal1.nombre})}">Eliminar</a>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+	<div class="piePagina">
+		<footer th:replace="~{layouts/footer :: footer}"></footer>
+	</div>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
