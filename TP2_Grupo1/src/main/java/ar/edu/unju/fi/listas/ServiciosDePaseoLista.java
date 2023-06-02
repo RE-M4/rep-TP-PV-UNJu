@@ -3,8 +3,11 @@ package ar.edu.unju.fi.listas;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ar.edu.unju.fi.model.ServicioDePaseo;
 
+@Component
 public class ServiciosDePaseoLista {
 	/*Se crea una lista de tipo ServicioDePaseo*/
 	private List<ServicioDePaseo> serviciosDePaseo;

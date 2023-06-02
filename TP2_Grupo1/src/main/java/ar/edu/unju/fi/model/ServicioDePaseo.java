@@ -1,9 +1,21 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.*;
+
+@Component
 public class ServicioDePaseo {
 	/*Atributos*/
+	@NotEmpty(message=("Este campo no puede estar vacío"))
+	@Size(min=5, max = 20, message="Este campo tiene que tener al menos 5 caracteres")
 	private String horario;
+	@NotEmpty(message=("Este campo no puede estar vacío"))
+	@Pattern(regexp = "[a-z A-Z]*", message="Este campo solo debe tener letras")
 	private String paseador;
+	@NotEmpty(message=("Este campo no puede estar vacío"))
+	@Pattern(regexp = "[a-z A-Z]*", message="Este campo solo debe tener letras")
+	@Size(min=5, max = 20, message="Este campo tiene que tener al menos 5 caracteres")
 	private String dia;
 	/*Getters y setters*/
 	public String getHorario() {
