@@ -3,12 +3,19 @@ package ar.edu.unju.fi.listas;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ar.edu.unju.fi.model.ConsejoSalud;
 
+@Component
 public class ListaConsejoSalud {
 
 	private List<ConsejoSalud> listaConsejoSalud;
 	
+	
+	/**
+	 * constructor que carga una lista con objetos de tipo ConsejoSalud
+	 */
 	public ListaConsejoSalud() {
 		listaConsejoSalud = new ArrayList<ConsejoSalud>();
 		listaConsejoSalud.add(new ConsejoSalud("../images/saludMascotas4.jpg","La importancia de desparasitar a su paciente felino, incluso si no sale de casa","Los felinos, al igual que todos los animales de compañía e incluso los humanos, son \r\n"
@@ -41,6 +48,7 @@ public class ListaConsejoSalud {
 		
 	}
 
+	//getter and setter
 	public List<ConsejoSalud> getListaConsejoSalud() {
 		return listaConsejoSalud;
 	}

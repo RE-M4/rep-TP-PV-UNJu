@@ -149,17 +149,17 @@ footer {
 }/* Fin css consejoSalud*/
 
 /*---PRODUCTOS---*/
-.container-productos{
-	font-size: 62.5%; /*1rem = 10px*/
+.caja-productos{
+	/*font-size: 62.5%;
 	max-width: 120rem;
-	margin: 0 auto;
-	background-color:#f2e8c4;
+	margin: 0 auto;*/
+	background-color:#f2e8c4;font-family: 'Comic Neue', cursive;
 }
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
 	.container-productos{
 		grid-template-columns: repeat(3, 1fr);
 	}
-}
+}*/
 .productos-titulo{
 	text-align: center;
 	padding-top: 1rem;
@@ -167,7 +167,7 @@ footer {
 	text-transform: uppercase;
 	margin: 0 13%;
 }
-.productos{
+/*.productos{
 	display: grid;
 	gap: 3rem;
 	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -189,7 +189,7 @@ footer {
 }
 .producto-img img{
 	width: 100%;
-}
+}*/
 
 .producto-nombre, .producto-precio{
 	text-align: center;
@@ -361,21 +361,24 @@ footer {
     justify-content: center;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
-    padding: 10px;
+    padding-top: 20px;
 }
 
 #contenedorTabla td {
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     font-family: 'Comic Neue', cursive;
     color: #E1E1E1;
     border-radius: 10px;
 }
 #encabezadoTabla {
-    border: 3px solid #8a6f50;
+    /**border: 3px solid #8a6f50;*/
     background-color: #8D7B68;
     font-size: 20px;
     font-weight: bold;
+    text-align: center;
+    color: #E1E1E1;
+    border-radius: 10px;
 }
 #formatoCelda {
     background-color: #aa9f94;
@@ -553,4 +556,33 @@ footer {
 }
 #botonServicios {
 	color: black;
+	margin: 10px;
+	padding: 10px;
+	background-color: #8D7B68;
+	border-radius: 10px;
+	text-align: center;
+}
+#botonNuevoServicio {
+	color: black;
+	background-color: #8D7B68;
+	border-radius: 10px;
+	text-align: center;
+	margin-top: 10px;
+}
+#formServiciosBody {
+	background-color: #f2e8c4;
+}
+#formServicios {
+	background-color: #ccc;
+	margin: 30px;
+	margin-bottom: 10px;
+	padding: 20px;
+	border-style: solid;
+}
+#formServiciosEnviar{
+	margin-top:15px;
+}
+#formServiciosCancelar {
+	margin-left: 29px;
+	margin-bottom: 10px;
 }

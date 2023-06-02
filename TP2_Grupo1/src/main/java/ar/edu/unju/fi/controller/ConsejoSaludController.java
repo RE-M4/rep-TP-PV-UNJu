@@ -1,7 +1,8 @@
 package ar.edu.unju.fi.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,12 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ListaConsejoSalud;
 import ar.edu.unju.fi.model.ConsejoSalud;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/ConsejoSalud")
 public class ConsejoSaludController {
 	
-	ListaConsejoSalud lista = new ListaConsejoSalud();
+	
+	@Autowired
+	private ListaConsejoSalud lista;
+	
+	@Autowired
+	private ConsejoSalud consejoSalud;
 	
 	/**
 	 * Este metodo envia la lista de consejos usando como peticion /consejoSalud
@@ -26,8 +33,7 @@ public class ConsejoSaludController {
 	public ModelAndView index() {
 		ModelAndView modelAndView = new  ModelAndView("consejoSalud");
 		modelAndView.addObject("listaConsejo", lista.getListaConsejoSalud());
-		//System.out.println(lista.getListaConsejoSalud());
-		
+	
 		return modelAndView;
 	}
 	
@@ -38,21 +44,30 @@ public class ConsejoSaludController {
 	@GetMapping("/nuevo_consejo")
 	public ModelAndView getNuevoConsejo() {
 		ModelAndView modelAndView = new ModelAndView("nuevo_consejo");
-		modelAndView.addObject("Consejo", new ConsejoSalud());
+		modelAndView.addObject("Consejo",consejoSalud);
 		boolean edicion=false;
 		modelAndView.addObject("edicion", edicion);
 		return modelAndView;
 	}
 	/**
 	 * el metodo guarda un objeto en la lita q es enviado desde la vista por medio de la peticion /guardar_consejo
-	 * @param consejoSalud
+	 * @param consejoSalud parametro que se gurda en la lista
+	 * @param result parametro para consultar si esque hubo errores o no hubo errores
 	 * @return
 	 */
 	@PostMapping("/guardar_consejo")
-	public ModelAndView guardarConsejoSalud(@ModelAttribute("Consejo") ConsejoSalud consejoSalud) {
+	public ModelAndView guardarConsejoSalud(@Valid @ModelAttribute("Consejo") ConsejoSalud consejoSalud, BindingResult result) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
+		if(result.hasErrors()) {
+			modelAndView.setViewName("nuevo_consejo");
+			modelAndView.addObject("Consejo",consejoSalud);
+			boolean edicion=false;
+			modelAndView.addObject("edicion", edicion);
+			return modelAndView;
+		}
 		consejoSalud.setId(lista.getListaConsejoSalud().get(lista.getListaConsejoSalud().size()-1).getId()+1);
 		lista.getListaConsejoSalud().add(consejoSalud);
-		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
+		
 		modelAndView.addObject("listaConsejo", lista.getListaConsejoSalud());
 		return modelAndView;
 	}
@@ -65,7 +80,7 @@ public class ConsejoSaludController {
 	@GetMapping("/modificar_consejo/{id}")
 	public ModelAndView getModificarConsejo(@PathVariable(value="id")Integer id) {
 		ModelAndView modelAndView = new ModelAndView("nuevo_consejo");
-		ConsejoSalud consejoEncontrado = new ConsejoSalud();
+		ConsejoSalud consejoEncontrado = consejoSalud;
 		for(ConsejoSalud consejo: lista.getListaConsejoSalud()) {
 			if(consejo.getId().equals(id)) {
 				consejoEncontrado = consejo;
@@ -85,9 +100,17 @@ public class ConsejoSaludController {
 	 * @return
 	 */
 	@PostMapping("/modificar_consejo")
-	public ModelAndView modificarConsejoSalud(@ModelAttribute("Consejo") ConsejoSalud consejoSalud) {
+	public ModelAndView modificarConsejoSalud(@Valid @ModelAttribute("Consejo") ConsejoSalud consejoSalud,BindingResult result) {
 		System.out.println(consejoSalud);
 		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
+		if(result.hasErrors()) {
+			modelAndView.setViewName("nuevo_consejo");
+			boolean edicion = true;
+			modelAndView.addObject("edicion",edicion);
+			modelAndView.addObject("Consejo", consejoSalud);
+			
+			return modelAndView;
+		}
 		for(ConsejoSalud consejo: lista.getListaConsejoSalud()) {
 			if(consejo.getId().equals(consejoSalud.getId())) {
 				consejo.setTitulo(consejoSalud.getTitulo());
@@ -96,7 +119,6 @@ public class ConsejoSaludController {
 				break;
 			}
 		}
-		
 		modelAndView.addObject("listaConsejo", lista.getListaConsejoSalud());
 		return modelAndView;
 	}
@@ -121,7 +143,7 @@ public class ConsejoSaludController {
 	}
 	
 	/**
-	 * Este metodo redirique al template consejoSalud.html
+	 * Este metodo redirige al template consejoSalud.html
 	 * @return
 	 */
 	@GetMapping("/volver")

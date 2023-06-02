@@ -1,19 +1,45 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+@Component
 public class ConsejoSalud {
 	
-	private String img;
-	private String titulo;
-	private String descripcion;
+	@NotEmpty(message = "La imagen no puede estar vacia")
+	@NotBlank(message = "La imagen no puede estar en blanco")
+    private String img;
+
+	 @NotEmpty(message = "El título no puede estar vacio")
+    @NotBlank(message = "El título no puede estar en blanco")
+    private String titulo;
+
+	 @NotEmpty(message = "La descripción no puede estar vacio")
+    @NotBlank(message = "La descripción no puede estar en blanco")
+    private String descripcion;
+    
+    //Aca no agrego validacion porq en el controlador me aseguro que le estoy asignando el id adecuado
 	private Integer id;
 	
 	
-	
-	 
-	
+	/**
+	 * Constructor sin parametros
+	 */
 	public ConsejoSalud() {
 	}
 	
+	
+	/**
+	 * Constructor con parametros
+	 * @param img
+	 * @param titulo
+	 * @param descripcion
+	 * @param id
+	 */
 	public ConsejoSalud(String img, String titulo, String descripcion,Integer id) {
 		super();
 		this.img = img;
@@ -22,7 +48,7 @@ public class ConsejoSalud {
 		this.id=id;
 	}
 	
-	
+	//Getter and Setters
 	public Integer getId() {
 		return id;
 	}
@@ -50,6 +76,10 @@ public class ConsejoSalud {
 		this.descripcion = descripcion;
 	}
 
+	
+	/**
+	 * toString para mostrar el objeto
+	 */
 	@Override
 	public String toString() {
 		return "ConsejoSalud [img=" + img + ", titulo=" + titulo + ", descripcion=" + descripcion + ", id=" + id + "]";

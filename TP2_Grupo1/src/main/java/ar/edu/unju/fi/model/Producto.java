@@ -1,13 +1,43 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+@Component
 public class Producto {
 	/*Atributos*/
-	private String nombre, categoria,imagen;
-	private Integer codigo, descuento;
-	private Double precio;
+	@NotEmpty(message = "El nombre no puede estar vacio")
+	@NotBlank(message = "El nombre no puede estar en blanco")
+    private String nombre;
+    
+	@NotEmpty(message = "La categoría no puede estar en vacio")
+    @NotBlank(message = "La categoría no puede estar en blanco")
+    private String categoria;
+    
+	@NotEmpty(message = "La imagen no puede estar en vacio")
+    @NotBlank(message = "La imagen no puede estar en blanco")
+    private String imagen;
+
+    //el codigo no lleva validaciones porq en el controlador esta asegurado el codigo q corresponde
+    private Integer codigo;
+
+    @NotNull(message = "El descuento no puede ser nulo")
+    @Min(value = 0, message = "El descuento debe ser igual o mayor que 0")
+    @Max(value = 50, message = "El descuento no puede ser mayor que 50")
+    private Integer descuento;
+
+    @NotNull(message = "El precio no puede ser nulo")
+    @DecimalMin(value = "0.0", inclusive = false, message = "El precio debe ser mayor que 0")
+    private Double precio;
 	
 	
-	//private int codigoId = 0;
 	/*Getters y Setters*/
 	public String getNombre() {
 		return nombre;
