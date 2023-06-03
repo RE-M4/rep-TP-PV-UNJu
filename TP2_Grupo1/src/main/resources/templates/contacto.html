@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="es">
+
 <head>
-<meta charset="UTF-8">
-<title>Contacto</title>
-<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<meta charset="UTF-8">
+	<title>Contacto</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -11,40 +14,99 @@
 		<header th:replace="~{layouts/header :: header}"></header>
 		<nav th:replace="~{layouts/navigation :: navigation}"></nav>
 	</div>
-    <div class="bodyContacto" style="text-align: center">
-    	<div class="contacto">
-        <!-- Título-->
-        <h1>Contáctenos</h1>
-        <!-- Información para contactarnos-->
-        <p>3915 Av. General Belgrano. 388-4999999<br>
-            Lunes a Viernes: 9:00 a.m a 8:00 p.m<br>
-            Sábado a Domingo: 9:00 a.m a 12:30 p.m<br>
-            <a href="www.google.com">contactos@mail.com.ar</a>
-        </p>
-        <ul class="redes-sociales">
-            <li><a href="www.facebook.com">Facebook</a></li>
-            <li><a href="www.instagram.com">Instagram</a></li>
-            <li><a href="www.twitter.com">Twitter</a></li>
-        </ul>
-        <hr>
-        <!-- Formulario-->
-        <form th:action="@{/contacto/guardarMensaje}" th:object="${Contacto}" method="post">
-            <label for="Nombre">Nombre</label>
-            <input type="text" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Ingrese su nombre"><br>
+	<div class="bodyContacto" style="text-align: center">
+		<div class="contacto">
+			<!-- Título-->
+			<h1>Contáctenos</h1>
+			<!-- Información para contactarnos-->
+			<p>3915 Av. General Belgrano. 388-4999999<br>
+				Lunes a Viernes: 9:00 a.m a 8:00 p.m<br>
+				Sábado a Domingo: 9:00 a.m a 12:30 p.m<br>
+				<a href="www.google.com">contactos@mail.com.ar</a>
+			</p>
+			<ul class="redes-sociales">
+				<li><a href="www.facebook.com">Facebook</a></li>
+				<li><a href="www.instagram.com">Instagram</a></li>
+				<li><a href="www.twitter.com">Twitter</a></li>
+			</ul>
+			<hr>
+			<!-- Formulario-->
+			<form th:action="@{/contacto/guardarMensaje}" th:object="${Contacto}" method="post">
+				<label for="Nombre">Nombre</label>
+				<input type="text" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Ingrese su nombre"><br>
 
-            <label for="Email">Email</label>
-            <input type="email" th:field="*{email}" id="email" name="email" placeholder="Ingrese un email válido"><br>
+				<label for="Email">Email</label>
+				<input type="email" th:field="*{email}" id="email" name="email"
+					placeholder="Ingrese un email válido"><br>
 
-            <label for="Ciudad">Ciudad</label>
-            <input type="text" th:field="*{ciudad}" id="Ciudad" name="ciudad" placeholder="Ingrese su ciudad"><br>
+				<label for="Ciudad">Ciudad</label>
+				<input type="text" th:field="*{ciudad}" id="Ciudad" name="ciudad" placeholder="Ingrese su ciudad"><br>
 
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" th:field="*{mensaje}" name="mensaje"></textarea><br>
+				<label for="mensaje">Mensaje</label>
+				<textarea id="mensaje" th:field="*{mensaje}" name="mensaje"></textarea><br>
 
-            <input type="submit" value="Guardar">
-        </form>
-    </div>
-    </div>
-    <footer th:replace="~{layouts/footer :: footer}"></footer>
+				<input type="submit" value="Guardar">
+			</form>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="container"><br>
+		<form class="container rounded" style="background-color: #F5F5F5" th:action="@{/contacto/guardarMensaje}"
+			th:object="${Contacto}" method="post">
+
+
+
+
+
+			<div class="mb-3">
+				<label for="Nombre" style="display: block; font-weight: bold;">Nombre:</label>
+				<input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control">
+
+			</div>
+
+			<div class="mb-3">
+				<label for="Email" style="display: block; font-weight: bold;">Email</label>
+				<input type="email" id="email" name="email" th:field="*{email}" class="form-control">
+
+			</div>
+	</div>
+
+	<div class="mb-3">
+		<label for="Ciudad" style="display: block; font-weight: bold;">Ciudad</label>
+		<input type="text" id="Ciudad" name="ciudad" th:field="*{ciudad}" class="form-control">
+	</div>
+
+	<div class="mb-3">
+		<label for="mensaje" style="display: block; font-weight: bold;">Mensaje</label>
+		<textarea id="mensaje" name="mensaje" th:field="*{mensaje}" class="form-control"></textarea>
+
+	</div>
+
+
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<button type="submit" class="btn btn-success" th:text="${edicion}?'Modificar':'Guardar'"></button>
+		<a class="btn btn-secondary " role="button" th:href="@{/producto/volver}">Cancelar</a>
+	</div>
+	</form>
+
+
+
+
+
+
+
+
+
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
 
 </html>
