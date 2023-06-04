@@ -34,6 +34,25 @@ public class ContactoController {
 		model.addAttribute("listaMensajes" , listaMensajes.getListaMensaje());
     return "redirect:/contacto/listaMensaje";
 	}
+	/* 
+	 * @PostMapping(/guardarMensaje)
+	 * public ModelAndView postPageSaveMensaje(@Valid @ModelAttribute("Contacto")
+	 * Nuevo nuevo, BindingResult result){
+	 * ModelAndView mav;
+	 * if(result.hasErrors()){
+	 * mav= new ModelAndView("contacto");
+	 * 
+	 * }else {
+	 * if(nuevo.getnombre() != NULL && )
+	 * listaMensaje.addNuevo(nuevo);
+	 * mav=new ModelAndView("listaMensaje");
+	 * mav.addObject("mensajes",listaMensaje,getListaMensaje());
+	 * }
+	 * return mav;
+	 * }
+	 * 
+	 * 
+	 * */
 	
 	@GetMapping("/contacto")
 	public String getContacto(Model model ) {
