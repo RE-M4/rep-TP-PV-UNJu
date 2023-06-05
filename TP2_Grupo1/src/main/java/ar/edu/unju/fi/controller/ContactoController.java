@@ -1,12 +1,16 @@
 package ar.edu.unju.fi.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import ar.edu.unju.fi.listas.ListaContacto;
 
@@ -21,6 +25,15 @@ public class ContactoController {
 	
 	ListaContacto listaMensajes = new ListaContacto();
 	
+	/*
+	@Autowired 
+	ListaContacto listaMensaje;
+	
+	
+	@Autowired
+	private Contacto contacto;
+	
+*/
 	@GetMapping("/listaMensaje")
 	public String contacto(Model model) {
 		model.addAttribute("contacto", listaMensajes.getListaMensaje());
@@ -34,34 +47,35 @@ public class ContactoController {
 		model.addAttribute("listaMensajes" , listaMensajes.getListaMensaje());
     return "redirect:/contacto/listaMensaje";
 	}
-	/* 
-	 * @PostMapping(/guardarMensaje)
-	 * public ModelAndView postPageSaveMensaje(@Valid @ModelAttribute("Contacto")
-	 * Nuevo nuevo, BindingResult result){
-	 * ModelAndView mav;
-	 * if(result.hasErrors()){
-	 * mav= new ModelAndView("contacto");
-	 * 
-	 * }else {
-	 * if(nuevo.getnombre() != NULL && )
-	 * listaMensaje.addNuevo(nuevo);
-	 * mav=new ModelAndView("listaMensaje");
-	 * mav.addObject("mensajes",listaMensaje,getListaMensaje());
-	 * }
-	 * return mav;
-	 * }
-	 * 
-	 * 
-	 * */
 	
+	/*Falta resolver
+	  @PostMapping(/guardarMensaje)
+	  public String guardar(@Valid @ModelAttribute("contacto") Contacto contacto , BindingResult result , Model model){
+	  String destino="";
+	  if(result.hasErrors()){
+	  System.out.println();
+	  model.addAttribute("contacto",contacto);
+	  destino="contacto";
+	  }else {
+	  if(contacto.size()==1 %% contacto.get(0).getDni()==null){
+	  contacto.set(0,contacto);
+	  }else {
+	  contacto.add(contacto);
+	  }
+	  System.out.println(contacto.size());
+	  for(contacto a:contacto){
+	  System.out.println(a.toString());
+	  }
+	  destino="redirect:/contacto/listaMensaje";
+	  }
+	  return destino;
+	  }*/
+	 
 	@GetMapping("/contacto")
 	public String getContacto(Model model ) {
 		model.addAttribute("Contacto", new Contacto());
 		return "contacto";
 	}
-	
-	
-	
 	
 	@GetMapping("/eliminar_mensaje/{nombreMensaje}")
     public String eliminarMensaje(Model model, @PathVariable(value="nombreMensaje")String nombreMensaje) {
