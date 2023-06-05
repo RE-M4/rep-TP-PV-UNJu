@@ -31,41 +31,39 @@
 			</ul>
 			<hr>
 			<!-- Formulario  -->
+			
 			<form th:action="@{/contacto/guardarMensaje}" th:object="${Contacto}" method="post">
 			<div class="mb-3">	
 				<label for="Nombre" class="form-label">Nombre</label>
-				<input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Ingrese su nombre"
-				th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+				<input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+				<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 				</div>
 
 				<div class="mb-3">
 				<label for="Email" class="form-label">Email</label>
-				<input type="email" class="form-control" th:field="*{email}" id="email" name="email" placeholder="Ingrese su email"
-				th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''">
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+				<input type="email" class="form-control" th:field="*{email}" id="email" name="email" placeholder="Ingrese su email">
+				<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 				</div>	
 					
 
 				<div class="mb-3">
 				<label for="Ciudad" class="form-label">Ciudad</label>
-				<input type="text" class="form-control" th:field="*{ciudad}" id="Ciudad" name="ciudad" placeholder="Ingrese su ciudad"
-				th:classappend="${#fields.hasErrors('ciudad')} ? 'is-invalid' : ''">
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></p>
+				<input type="text" class="form-control" th:field="*{ciudad}" id="Ciudad" name="ciudad" placeholder="Ingrese su ciudad">
+				<div class="text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
 				</div>
 
 				<div class="mb-3">
 				<label for="mensaje" class="form-label">Mensaje</label>
-				<textarea id="mensaje"  class="form-control" th:field="*{mensaje}" name="mensaje"
-				th:classappend="${#fields.hasErrors('mensaje')} ? 'is-invalid' : ''">
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}"></p></textarea>
+				<textarea id="mensaje"  class="form-control" th:field="*{mensaje}" name="mensaje"></textarea>
+				<div class="text-danger" th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}"></div>
 				</div>
 
 				<input type="submit" value="Guardar">
-			</form>
+			</form>	
 		</div>
 	</div>
 
+ 
 
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
