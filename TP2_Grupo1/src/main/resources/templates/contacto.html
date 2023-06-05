@@ -30,99 +30,40 @@
 				<li><a href="www.twitter.com">Twitter</a></li>
 			</ul>
 			<hr>
-			<!-- Formulario-->
+			<!-- Formulario  -->
+			
 			<form th:action="@{/contacto/guardarMensaje}" th:object="${Contacto}" method="post">
 			<div class="mb-3">	
 				<label for="Nombre" class="form-label">Nombre</label>
-				<input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Ingrese su nombre"
-				th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+				<input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+				<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 				</div>
 
 				<div class="mb-3">
 				<label for="Email" class="form-label">Email</label>
-				<input type="email" class="form-control" th:field="*{email}" id="email" name="email" placeholder="Ingrese su email"
-				th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''">
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+				<input type="email" class="form-control" th:field="*{email}" id="email" name="email" placeholder="Ingrese su email">
+				<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 				</div>	
 					
 
 				<div class="mb-3">
 				<label for="Ciudad" class="form-label">Ciudad</label>
-				<input type="text" class="form-control" th:field="*{ciudad}" id="Ciudad" name="ciudad" placeholder="Ingrese su ciudad"
-				th:classappend="${#fields.hasErrors('ciudad')} ? 'is-invalid' : ''">
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></p>
+				<input type="text" class="form-control" th:field="*{ciudad}" id="Ciudad" name="ciudad" placeholder="Ingrese su ciudad">
+				<div class="text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
 				</div>
 
 				<div class="mb-3">
 				<label for="mensaje" class="form-label">Mensaje</label>
-				<textarea id="mensaje"  class="form-control" th:field="*{mensaje}" name="mensaje"
-				th:classappend="${#fields.hasErrors('mensaje')} ? 'is-invalid' : ''">
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}"></p></textarea>
+				<textarea id="mensaje"  class="form-control" th:field="*{mensaje}" name="mensaje"></textarea>
+				<div class="text-danger" th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}"></div>
 				</div>
 
 				<input type="submit" value="Guardar">
-			</form>
+			</form>	
 		</div>
 	</div>
 
-
-
-
-
-
-
-
-
-
-	<div class="container"><br>
-		<form class="container rounded" style="background-color: #F5F5F5" th:action="@{/contacto/guardarMensaje}"
-			th:object="${Contacto}" method="post">
-
-
-
-
-
-			<div class="mb-3">
-				<label for="Nombre" class="form-label" style="display: block; font-weight: bold;">Nombre:</label>
-				<input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" >
-
-			</div>
-
-			<div class="mb-3">
-				<label for="Email" style="display: block; font-weight: bold;">Email</label>
-				<input type="email" id="email" name="email" th:field="*{email}" class="form-control">
-
-			</div>
-	</div>
-
-	<div class="mb-3">
-		<label for="Ciudad" style="display: block; font-weight: bold;">Ciudad</label>
-		<!-- Título
-		<input type="text" id="Ciudad" name="ciudad" th:field="*{ciudad}" class="form-control">-->
-	</div>
-
-	<div class="mb-3">
-		<label for="mensaje" style="display: block; font-weight: bold;">Mensaje</label>
-		<!-- 
-		<textarea id="mensaje" name="mensaje" th:field="*{mensaje}" class="form-control"></textarea>
--->
-	</div>
-
-
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<button type="submit" class="btn btn-success" th:text="${edicion}?'Modificar':'Guardar'"></button>
-		<a class="btn btn-secondary " role="button" th:href="@{/producto/volver}">Cancelar</a>
-	</div>
-	</form>
-
-
-
-
-
-
-
-
+ 
 
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
