@@ -39,7 +39,7 @@ public class ContactoController {
 	@PostMapping("/guardarMensaje")
     public String guardar(Model model ,@Valid @ModelAttribute("Contacto") Contacto contacto,BindingResult result) {
         if(result.hasErrors()) {
-            model.addAttribute("Contacto", new Contacto());
+            model.addAttribute("Contacto",  contacto);
             return "contacto";
         }
 
