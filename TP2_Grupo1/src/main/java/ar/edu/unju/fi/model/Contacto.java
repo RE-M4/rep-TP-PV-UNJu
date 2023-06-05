@@ -1,26 +1,35 @@
 package ar.edu.unju.fi.model;
+/*
+import javax.validation.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 
-import org.springframework.stereotype.Component;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;*/
+import java.time.LocalDate;
 
-import jakarta.validation.constraints.NotBlank;
-
-@Component 
+/* @Component */
 public class Contacto {
-	
-	  @NotBlank(message="Debe ingresar nombre")
-	private String nombre;
-	
-	  
-	  @NotBlank(message="Debe ingresar email válido")
-	private String email;
-	  
-	  @NotBlank(message="Debe ingresar ciudad en la que recide")
-	private String ciudad;
-	  
-	  @NotBlank(message="Ingrese mensaje")
-	private String mensaje;
-	  
-
+	public String nombre;
+	/*
+	 * @NotBlank(message="Debe ingresar nombre")
+	 * @Size(min=3, message="El nombre debe contener como mínimo tres caracteres")
+	 * @Pattern(regexp= "[a-z A-Z]", message="Debe ingresar unicamente letras")
+	 *  */
+	public String email;
+	/* @NotBlank(message="Debe ingresar email válido")
+	 * @Email(message = "El correo electrónico no es válido")
+	 * @Size(min=1, message="Porfavor complete el campo correctamente")
+	 *  */
+	public String ciudad;
+	/*@NotBlank(message="Debe ingresar ciudad en la que recide")
+	 * @Size(min=1, message="Complete el campo con una ciudad válida")
+	 * @Pattern(regexp= "[a-z A-Z]", message="Debe ingresar unicamente letras")
+	 *  */
+	public String mensaje;
+	/*@NotBlank(message="Ingrese mensaje")
+	 * @Size(min=1,max=100, message="El mensaje debe contener menos de 100 caracteres")
+	 *  */
 	
 public Contacto(String nombre, String email, String ciudad, String mensaje) {
 	super();
@@ -63,8 +72,6 @@ public String getMensaje() {
 public void setMensaje(String mensaje) {
 	this.mensaje = mensaje;
 }
-
-
 	
 
 	
