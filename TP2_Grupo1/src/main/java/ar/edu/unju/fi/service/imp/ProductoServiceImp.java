@@ -52,8 +52,8 @@ public class ProductoServiceImp implements IProductoService {
 				producto2.setImagen(producto.getImagen());
 				producto2.setNombre(producto.getNombre());
 				producto2.setPrecio(producto.getPrecio());
-			}
 			break;
+			}
 		}
 	}
 
