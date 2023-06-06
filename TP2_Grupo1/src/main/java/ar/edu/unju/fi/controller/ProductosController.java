@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.controller;
 
+import ar.edu.unju.fi.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 //import java.util.ArrayList;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unju.fi.listas.ProductosList;
 import ar.edu.unju.fi.model.Producto;
 import jakarta.validation.Valid;
 
@@ -24,11 +23,8 @@ import jakarta.validation.Valid;
 public class ProductosController {
 	
 	@Autowired
-	private ProductosList productos;
-	
-	@Autowired
-	private Producto producto;
-	
+	private IProductoService serviceProductos;
+
 	/**
 	 * Este metodo nos devuelve
 	 * @return 
@@ -36,14 +32,15 @@ public class ProductosController {
 	@GetMapping("/productos")
 	public ModelAndView mostrarProductos() {
 		ModelAndView modelAndView = new ModelAndView("productos");
-		modelAndView.addObject("productos", productos.getProductos());
+		modelAndView.addObject("productos", serviceProductos.getListaProductos());
+		System.out.println(serviceProductos.getProducto());
 		return modelAndView;
 	}
 	
 	@GetMapping("/nuevo_producto")
 	public ModelAndView getNuevoConsejo() {
 		ModelAndView modelAndView = new ModelAndView("nuevo_producto");
-		modelAndView.addObject("Producto", producto);
+		modelAndView.addObject("Producto", serviceProductos.getProducto());
 		boolean edicion=false;
 		modelAndView.addObject("edicion", edicion);
 		return modelAndView;
@@ -58,72 +55,44 @@ public class ProductosController {
 			modelAndView.addObject("edicion", edicion);
 			return modelAndView;
 		}
-		producto.setCodigo(productos.getProductos().get(productos.getProductos().size()-1).getCodigo()+1);  
-		productos.getProductos().add(producto);
-		modelAndView.addObject("productos", productos.getProductos());
+		producto.setCodigo(serviceProductos.getListaProductos().get(serviceProductos.getListaProductos().size()-1).getCodigo()+1);//seteo el codigo id del producto
+		serviceProductos.guardarProducto(producto);
+		modelAndView.addObject("productos", serviceProductos.getListaProductos());
 		return modelAndView;
 	}
 	
 	@GetMapping("/modificar_producto/{codigo}")
 	public ModelAndView getModificarConsejo(@PathVariable(value="codigo")Integer codigo) {
 		ModelAndView modelAndView = new ModelAndView("nuevo_producto");
-		Producto productoEncontrado = producto;
-		for(Producto p: productos.getProductos()) {
-			if(p.getCodigo().equals(codigo)) {
-				productoEncontrado = p;
-				break;
-			}
-		}
+		Producto productoEncontrado = serviceProductos.getBuscarProducto(codigo);
 		boolean edicion = true;
 		modelAndView.addObject("edicion",edicion);
-		
 		modelAndView.addObject("Producto", productoEncontrado);
-		System.out.println(productoEncontrado);
-		
 		return modelAndView;
 	}
-	
+
 	@PostMapping("/modificar_producto")
 	public ModelAndView modificarConsejoSalud(@Valid @ModelAttribute("Producto") Producto producto,BindingResult result) {
-		System.out.println(producto);
 		ModelAndView modelAndView = new ModelAndView("redirect:/producto/productos");
 		if(result.hasErrors()) {
 			modelAndView.setViewName("nuevo_producto");
-			boolean edicion = true;
-			modelAndView.addObject("edicion",edicion);
 			modelAndView.addObject("Producto", producto);
-			
 			return modelAndView;
 		}
-		
-		for(Producto p: productos.getProductos()) {
-			if(p.getCodigo().equals(producto.getCodigo())) {
-				p.setCategoria(producto.getCategoria());
-				p.setDescuento(producto.getDescuento());
-				p.setImagen(producto.getImagen());
-				p.setNombre(producto.getNombre());
-				p.setPrecio(producto.getPrecio());
-				break;
-			}
-		}
-		
-		modelAndView.addObject("productos", productos.getProductos());
+		serviceProductos.modificarProducto(producto);
+		modelAndView.addObject("productos", serviceProductos.getListaProductos());
+		System.out.println(producto.getCodigo());
 		return modelAndView;
 	}
-	
+
 	@GetMapping("eliminar_producto/{codigo}")
 	public ModelAndView eliminarConsejoSalud(@PathVariable(value="codigo")Integer codigo) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/producto/productos");
-		for(Producto p: productos.getProductos()) {
-			if(p.getCodigo().equals(codigo)) {
-				productos.getProductos().remove(p);
-				break;
-			}
-		}
+		serviceProductos.eliminarProducto(serviceProductos.getBuscarProducto(codigo));
 		return modelAndView;
 	}
-	
-	
+
+
 	@GetMapping("/volver")
 	public String volverConsejoSalud() {
 		return "redirect:/producto/productos";
