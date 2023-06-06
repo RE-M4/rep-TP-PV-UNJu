@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ServiciosDePaseoLista;
 import ar.edu.unju.fi.model.ServicioDePaseo;
+import ar.edu.unju.fi.service.IServicioDePaseosService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,82 +20,92 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/servicioDePaseos") /*Hace falta esta línea para no mezclar los GetMapping o PostMapping de otros Controllers*/
 public class ServicioDePaseosController {
-	/*Se crea un objeto tipo lista*/
+	/*Se crea un objeto tipo lista (AL USAR CAPA SERVICE, ESTA LINEA YA NO ES VÁLIDA)
 	@Autowired
-	private ServiciosDePaseoLista serviciosLista;
+	private ServiciosDePaseoLista serviciosLista;*/
 	/*Se crea una variable controladora para saber que función tendrá el formulario cuando se lo invoque*/
 	Boolean edicion = false;
 	/*GetMapping que usa el método "get" del objeto tipo lista y lo carga en el HTML*/
+	/*Se crea un objeto tipo ServicioDePaseo (AL USAR CAPA SERVICE, ESTA LINEA YA NO ES VÁLIDA)
 	@Autowired
-	private ServicioDePaseo servicioDePaseo;
+	private ServicioDePaseo servicioDePaseo;*/
+	/*Se inyecta el servicio para reemplazar la inyección del Model y de la Lista*/
+	@Autowired
+	private IServicioDePaseosService paseosService;
+	
 	@GetMapping("/listado")
 	public String getServicioDePaseos(Model model) {
-		model.addAttribute("servicios", serviciosLista.getServiciosDePaseo());
+		model.addAttribute("servicios", paseosService.getListaServicios());
 		return "servicioDePaseos";
 	}
 	@GetMapping("/modificarDatos/{nombrePaseador}")
 	public String getModificarDatos(Model model, @PathVariable(value="nombrePaseador")String nombrePaseador) { /*PathVariable se obtiene de la línea 28 de servicioDePaseos.html*/
 		edicion = true;
-		System.out.println(edicion);
-		ServicioDePaseo servicioEncontrado = servicioDePaseo;
-		for(ServicioDePaseo servicio : serviciosLista.getServiciosDePaseo()) {/*Se busca un objeto dentro del Array tienendo en cuenta el nombre*/
+		//System.out.println(edicion);
+		/*ServicioDePaseo servicioEncontrado = paseosService.getServicio();
+		for(ServicioDePaseo servicio : paseosService.getListaServicios()) {/*Se busca un objeto dentro del Array tienendo en cuenta el nombre
 			if(servicio.getPaseador().equals(nombrePaseador)) {
 				servicioEncontrado = servicio;
 				break;
 			}
-		}
-		model.addAttribute("ServicioDePaseo", servicioEncontrado);/*El objeto encontrado se envía a modificar_servicios.html | La etiqueta sirve para identificar dentro de th:object*/
+		}*/
+		model.addAttribute("ServicioDePaseo", paseosService.buscarServicio(nombrePaseador));/*El objeto encontrado se envía a modificar_servicios.html | La etiqueta sirve para identificar dentro de th:object*/
 		model.addAttribute("edicion", edicion);
 		return "modificar_servicios";
 	}
 	@PostMapping("/modificarDatos")
 	public String modificarDatos(@Valid @ModelAttribute("ServicioDePaseo")ServicioDePaseo servicioModificado, BindingResult result, Model model) {/*ModelAttribute sirve para identificar un objeto a modificar | ServicioDePaseo (o sea, la etiqueta servicioModificado) es el th:object de modificar_servicios.html con sus atributos cambiados al momento de cambiar los inputs y pulsar "Guardar"*/
-		System.out.println(edicion);
+		//System.out.println(edicion);
 		if(result.hasErrors()) {
+			edicion = true;
 			model.addAttribute("ServicioDePaseo", servicioModificado);
+			model.addAttribute("edicion", edicion);
 			return "modificar_servicios";
 		}
-		for(ServicioDePaseo servicioOriginal : serviciosLista.getServiciosDePaseo()) {
+		/*for(ServicioDePaseo servicioOriginal : paseosService.getListaServicios()) {
 			if(servicioOriginal.getPaseador().equals(servicioModificado.getPaseador())) {
-				//servicioOriginal = servicioModificado /*Esta línea no modifica los datos de un objeto con otro objeto, solo crea 2 punteros al mismo objeto*/
-				servicioOriginal.setPaseador(servicioModificado.getPaseador()); /*Al momento de querer cambiar este atributo, queda como está porque sirve como identificador, se debe usar un identificador único que no pueda ser modificado*/
+				//servicioOriginal = servicioModificado /*Esta línea no modifica los datos de un objeto con otro objeto, solo crea 2 punteros al mismo objeto
+				servicioOriginal.setPaseador(servicioModificado.getPaseador()); Al momento de querer cambiar este atributo, queda como está porque sirve como identificador, se debe usar un identificador único que no pueda ser modificado
 				servicioOriginal.setDia(servicioModificado.getDia());
 				servicioOriginal.setHorario(servicioModificado.getHorario());
+				break;
 			}
-		}
+		}*/
+		paseosService.modificarServicio(servicioModificado);
 		return "redirect:/servicioDePaseos/listado";
 	}
 	@GetMapping("/eliminarDatos/{nombrePaseador}")
 	public String eliminarDatos(Model model, @PathVariable(value="nombrePaseador")String nombrePaseador){
-		ServicioDePaseo servicioEncontrado = servicioDePaseo;
-		for(ServicioDePaseo servicio : serviciosLista.getServiciosDePaseo()) {
+		/*ServicioDePaseo servicioEncontrado = paseosService.getServicio();
+		for(ServicioDePaseo servicio : paseosService.getListaServicios()) {
 			if(servicio.getPaseador().equals(nombrePaseador)) {
 				servicioEncontrado = servicio;
-				serviciosLista.getServiciosDePaseo().remove(servicioEncontrado);
+				paseosService.getListaServicios().remove(servicioEncontrado);
 				break;
 			}
-		}
+		}*/
+		paseosService.borrarServicio(nombrePaseador);
 		return "redirect:/servicioDePaseos/listado";
 	}
 	@GetMapping("/nuevoServicio")
 	public String nuevaSucursal(Model model) {
 		edicion = false;
-		System.out.println(edicion);
-		model.addAttribute("ServicioDePaseo", servicioDePaseo);//Se envia un nuevo objeto "ServicioDePaseo" que será el th:object de modificar_servicios.html.
+		//System.out.println(edicion);
+		model.addAttribute("ServicioDePaseo", paseosService.getServicio());//Se envia un nuevo objeto "ServicioDePaseo" que será el th:object de modificar_servicios.html.
 		model.addAttribute("edicion", edicion);
 		return "modificar_servicios";
 	}
 	@PostMapping("/guardarDato")
 	public ModelAndView guardarNuevoDato(@Valid @ModelAttribute("ServicioDePaseo")ServicioDePaseo nuevoServicio, BindingResult result) {
-		System.out.println(edicion);
+		//System.out.println(edicion);
 		ModelAndView modelAndView = new ModelAndView("redirect:/servicioDePaseos/listado"); //Se crea un objeto ModelAndView, lo que está entre comillas es la página HTML a la que se va a redirigir.
 		if(result.hasErrors()) {
 			modelAndView.setViewName("modificar_servicios");
 			modelAndView.addObject("ServicioDePaseo", nuevoServicio); //"ServicioDePaseo" tiene que coincidir con el th:object de modificar_servicios.html
 			return modelAndView;
 		}
-		serviciosLista.getServiciosDePaseo().add(nuevoServicio);
-		modelAndView.addObject("serviciosDePaseo", serviciosLista.getServiciosDePaseo());
+		paseosService.guardarServicio(nuevoServicio);
+		modelAndView.addObject("serviciosDePaseo", paseosService.getListaServicios());
 		return modelAndView;
 	}
 }
