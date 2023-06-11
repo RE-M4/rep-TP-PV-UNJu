@@ -23,6 +23,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/contacto")
 public class ContactoController {
+	
 	@Autowired
 	private IContactoService contactoservice;
 	/*ahora hay q conectarlo con el servicio.
