@@ -9,23 +9,41 @@ import ar.edu.unju.fi.listas.ServiciosDePaseoLista;
 import ar.edu.unju.fi.model.ServicioDePaseo;
 import ar.edu.unju.fi.service.IServicioDePaseosService;
 
+/*
+ * Archivo de la capa service que contiene los métodos solicitados por ServicioDePaseoController.
+ * La palabra reservada "implements" hace que se cree un contrato entre IServicioDePaseosService y este archivo
+ * por lo que todos los métodos declarados dentro del service deben existir dentro de este archivo también.
+ * Se agrega esta etiqueta para declarar el archivo como parte de la capa service.
+ */
 @Service
 public class ServicioDePaseosImp implements IServicioDePaseosService{
+	//Inyección del objeto lista
 	@Autowired
 	private ServiciosDePaseoLista serviciosLista;
+	
+	//Inyección del objeto
 	@Autowired
 	private ServicioDePaseo servicioDePaseo;
 	
+	/**
+	 * Método que devuelve el Array de objetos
+	 */
 	@Override
 	public List<ServicioDePaseo> getListaServicios() {
 		return serviciosLista.getServiciosDePaseo();
 	}
-
+	
+	/**
+	 * Método que devuelve un objeto vacío
+	 */
 	@Override
 	public ServicioDePaseo getServicio() {
 		return this.servicioDePaseo;
 	}
-
+	
+	/**
+	 * Método que recibe un String, busca un objeto en particular y lo devuelve
+	 */
 	public ServicioDePaseo buscarServicio (String nombreBuscado) {
 		ServicioDePaseo servicioEncontrado = servicioDePaseo;
 		for(ServicioDePaseo servicio : serviciosLista.getServiciosDePaseo()) {/*Se busca un objeto dentro del Array tienendo en cuenta el nombre*/
@@ -36,7 +54,12 @@ public class ServicioDePaseosImp implements IServicioDePaseosService{
 		}
 		return servicioEncontrado;
 	}
-
+	
+	/**
+	 * Método que recibe un objeto en particular con datos cambiados, lo busca en 
+	 * el Array de objetos (con un valor único que lo identifique) y, de encontrarlo, cambia sus valores originales
+	 * por los que llegan como parámetro.
+	 */
 	public void modificarServicio(ServicioDePaseo servicioAModificar) {
 		for(ServicioDePaseo servicioOriginal : serviciosLista.getServiciosDePaseo()) {
 			if(servicioOriginal.getPaseador().equals(servicioAModificar.getPaseador())) {
@@ -48,12 +71,18 @@ public class ServicioDePaseosImp implements IServicioDePaseosService{
 			}
 		}
 	}
-
+	
+	/**
+	 * Método que recibe un objeto en particular, lo busca en el Array y, de encontrarlo, lo elimina.
+	 */
 	public void borrarServicio(String servicioABorrar) {
 		ServicioDePaseo servicioEncontrado = buscarServicio(servicioABorrar);
 		serviciosLista.getServiciosDePaseo().remove(servicioEncontrado);
 	}
 
+	/**
+	 * Método que recibe un objeto nuevo y lo guarda en el Array de objetos
+	 */
 	public void guardarServicio(ServicioDePaseo servicioAGuardar) {
 		serviciosLista.getServiciosDePaseo().add(servicioAGuardar);
 	}

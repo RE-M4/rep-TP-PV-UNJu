@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import ar.edu.unju.fi.model.ServicioDePaseo;
 
+//Se agrega esta etiqueta para que el objeto sirva como inyección de dependencia dentro de la capa service
 @Component
 public class ServiciosDePaseoLista {
 	/*Se crea una lista de tipo ServicioDePaseo*/
@@ -26,5 +27,4 @@ public class ServiciosDePaseoLista {
 	public void setServiciosDePaseo(List<ServicioDePaseo> serviciosDePaseo) {
 		this.serviciosDePaseo = serviciosDePaseo;
 	}
-	
 }
