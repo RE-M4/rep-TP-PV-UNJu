@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-import ar.edu.unju.fi.listas.ListaContacto;
+
 
 import ar.edu.unju.fi.controller.ContactoController;
 
@@ -59,14 +59,12 @@ public class ContactoController {
 	}
 	@GetMapping("/eliminar_mensaje/{nombreMensaje}")
     public String eliminarMensaje(Model model, @PathVariable(value="nombreMensaje")String nombreMensaje) {
-		/*metodo buscar*/
 	for (Contacto contacto  : contactoservice.getlistaMensajes()) {
 		if (contacto.getNombre().equals(nombreMensaje)) {
-			contactoservice.getlistaMensajes().remove(contacto);
+			contactoservice.borrarMensajes(contacto);/*contactoservice.getlistaMensajes().remove(contacto)*/
 			break;
 		}
 	}
 	return "redirect:/contacto/listaMensaje";
-	}
-	
+	}	
 }	
