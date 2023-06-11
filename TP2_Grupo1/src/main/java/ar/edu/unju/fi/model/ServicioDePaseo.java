@@ -4,9 +4,10 @@ import org.springframework.stereotype.Component;
 
 import jakarta.validation.constraints.*;
 
+//Se agrega esta etiqueta para que el objeto sirva como inyección de dependencia dentro de la capa service
 @Component
 public class ServicioDePaseo {
-	/*Atributos*/
+	/*Atributos con validaciones*/
 	@NotEmpty(message=("Este campo no puede estar vacío"))
 	@Size(min=5, max = 20, message="Este campo tiene que tener al menos 5 caracteres")
 	private String horario;
