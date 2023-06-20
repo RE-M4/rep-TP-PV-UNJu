@@ -1,12 +1,20 @@
-package ar.edu.unju.fi.model;
+package ar.edu.unju.fi.entity;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
-
 @Component
+@Entity
+@Table(name="sucursal")
 public class Sucursal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="con_id")
+    private Long id;
+    @Column(name="con_estado")
+    private boolean estado;
     @NotBlank(message = "El nombre es requerido")
     private String nombre;
 
@@ -33,12 +41,11 @@ public class Sucursal {
     @NotBlank(message = "El teléfono no debe estar en blanco")
     private String telefono;
 
-    private Integer id;
 
     public Sucursal() {
 
     }
-	public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre,String telefono, int id) {
+	public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre,String telefono, long id) {
 
 				this.nombre = nombre;
         this.calle = calle;
@@ -51,12 +58,20 @@ public class Sucursal {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public String getNombre() {
