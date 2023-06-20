@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.ServicioDePaseo;
+import ar.edu.unju.fi.entity.ServicioDePaseo;
 
 @Component
 public class ServiciosDePaseoLista {

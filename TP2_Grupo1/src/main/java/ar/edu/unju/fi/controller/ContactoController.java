@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ar.edu.unju.fi.listas.ListaContacto;
 
-import ar.edu.unju.fi.controller.ContactoController;
-
-import ar.edu.unju.fi.model.Contacto;
+import ar.edu.unju.fi.entity.Contacto;
 
 import jakarta.validation.Valid;
 

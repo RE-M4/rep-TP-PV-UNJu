@@ -1,5 +1,5 @@
 package ar.edu.unju.fi.listas;
-import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,7 +12,6 @@ public class ListasSucursales {
         sucursales = new ArrayList<>();
 
         Sucursal sucursal1 = new Sucursal();
-        sucursal1.setId(1);
         sucursal1.setNombre("Sucursal Humberto 1°");
         sucursal1.setCalle("CASTRO BARROS 1639");
         sucursal1.setProvincia("Córdoba");
@@ -24,7 +23,6 @@ public class ListasSucursales {
         sucursales.add(sucursal1);
 
         Sucursal sucursal2 = new Sucursal();
-        sucursal2.setId(2);
         sucursal2.setNombre("Sucursal Cerro 1°");
         sucursal2.setCalle("AV. RAFAEL NUÑEZ 4460");
         sucursal2.setProvincia("Córdoba");
@@ -36,7 +34,6 @@ public class ListasSucursales {
         sucursales.add(sucursal2);
 
         Sucursal sucursal3 = new Sucursal();
-        sucursal3.setId(3);
         sucursal3.setNombre("Sucursal Nuevo Mundo 1°");
         sucursal3.setCalle("SAN MARTÍN 1600");
         sucursal3.setProvincia("Córdoba");
@@ -48,7 +45,6 @@ public class ListasSucursales {
         sucursales.add(sucursal3);
 
         Sucursal sucursal4 = new Sucursal();
-        sucursal4.setId(4);
         sucursal4.setNombre("Sucursal Nueva Cordoba 1°");
         sucursal4.setCalle("AV. 9 DE SEPTIEMBRE 25");
         sucursal4.setProvincia("Córdoba");

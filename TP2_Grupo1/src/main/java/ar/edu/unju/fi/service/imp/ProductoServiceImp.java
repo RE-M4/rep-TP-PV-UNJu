@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import ar.edu.unju.fi.service.IProductoService;
-import ar.edu.unju.fi.model.Producto;
+import ar.edu.unju.fi.entity.Producto;
 import java.util.List;
 
 @Service

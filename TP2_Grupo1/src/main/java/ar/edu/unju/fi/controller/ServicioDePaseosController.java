@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ServiciosDePaseoLista;
-import ar.edu.unju.fi.model.ServicioDePaseo;
+import ar.edu.unju.fi.entity.ServicioDePaseo;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;

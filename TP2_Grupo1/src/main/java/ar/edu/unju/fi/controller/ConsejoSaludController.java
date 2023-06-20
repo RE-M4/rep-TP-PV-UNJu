@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ListaConsejoSalud;
-import ar.edu.unju.fi.model.ConsejoSalud;
+import ar.edu.unju.fi.entity.ConsejoSalud;
 import jakarta.validation.Valid;
 
 @Controller
