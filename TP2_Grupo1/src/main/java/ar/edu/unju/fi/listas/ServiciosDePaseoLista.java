@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.ServicioDePaseo;
+import ar.edu.unju.fi.entity.ServicioDePaseo;
 
 //Se agrega esta etiqueta para que el objeto sirva como inyección de dependencia dentro de la capa service
 @Component

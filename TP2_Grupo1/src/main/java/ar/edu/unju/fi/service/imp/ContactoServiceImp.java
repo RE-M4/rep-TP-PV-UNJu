@@ -1,8 +1,8 @@
 package ar.edu.unju.fi.service.imp;
 
 
+import ar.edu.unju.fi.entity.Contacto;
 import ar.edu.unju.fi.listas.ListaContacto;
-import ar.edu.unju.fi.model.Contacto;
 import ar.edu.unju.fi.service.IContactoService;
 
 import java.util.List;

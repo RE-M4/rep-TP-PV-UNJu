@@ -7,8 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-//import ar.edu.unju.fi.listas.ServiciosDePaseoLista;
-import ar.edu.unju.fi.model.ServicioDePaseo;
+import ar.edu.unju.fi.entity.ServicioDePaseo;
 import ar.edu.unju.fi.service.IServicioDePaseosService;
 import jakarta.validation.Valid;
 

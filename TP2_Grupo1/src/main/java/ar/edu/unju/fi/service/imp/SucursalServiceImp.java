@@ -1,7 +1,7 @@
 package ar.edu.unju.fi.service.imp;
 
+import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.listas.ListasSucursales;
-import ar.edu.unju.fi.model.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

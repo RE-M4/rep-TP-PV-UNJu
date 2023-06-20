@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.entity.ConsejoSalud;
 import ar.edu.unju.fi.listas.ListaConsejoSalud;
-import ar.edu.unju.fi.model.ConsejoSalud;
 import ar.edu.unju.fi.service.IConsejoSaludService;
 
 
