@@ -2,7 +2,7 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
-import ar.edu.unju.fi.model.ServicioDePaseo;
+import ar.edu.unju.fi.entity.ServicioDePaseo;
 
 /*
  * Archivo de la capa service que sirve para ser inyectada dentro de ServicioDePaseoController.

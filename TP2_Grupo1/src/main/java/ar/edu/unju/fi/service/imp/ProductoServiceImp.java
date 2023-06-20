@@ -1,13 +1,14 @@
 package ar.edu.unju.fi.service.imp;
 
 
+import ar.edu.unju.fi.entity.Producto;
 import ar.edu.unju.fi.listas.ProductosList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import ar.edu.unju.fi.service.IProductoService;
-import ar.edu.unju.fi.model.Producto;
+
 import java.util.List;
 
 @Service

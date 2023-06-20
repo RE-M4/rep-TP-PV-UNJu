@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.model;
+package ar.edu.unju.fi.entity;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;

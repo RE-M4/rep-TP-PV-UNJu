@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.listas;
-import ar.edu.unju.fi.model.Sucursal;
 import org.springframework.stereotype.Component;
+
+import ar.edu.unju.fi.entity.Sucursal;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.entity.ServicioDePaseo;
 import ar.edu.unju.fi.listas.ServiciosDePaseoLista;
-import ar.edu.unju.fi.model.ServicioDePaseo;
 import ar.edu.unju.fi.service.IServicioDePaseosService;
 
 /*
@@ -15,7 +15,7 @@ import ar.edu.unju.fi.service.IServicioDePaseosService;
  * por lo que todos los métodos declarados dentro del service deben existir dentro de este archivo también.
  * Se agrega esta etiqueta para declarar el archivo como parte de la capa service.
  */
-@Service
+@Service("servicioDePaseoServiceImp")
 public class ServicioDePaseosImp implements IServicioDePaseosService{
 	//Inyección del objeto lista
 	@Autowired
