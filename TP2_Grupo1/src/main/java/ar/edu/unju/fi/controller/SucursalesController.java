@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/sucursales")
 public class SucursalesController {
-
 	@Autowired
 	@Qualifier("sucursalServiceImp")
 	private ISucursalService sucursalServiceImp;
