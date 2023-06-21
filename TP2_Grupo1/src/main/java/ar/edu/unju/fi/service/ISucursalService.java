@@ -1,7 +1,8 @@
 package ar.edu.unju.fi.service;
 import ar.edu.unju.fi.entity.Sucursal;
-
 import java.util.List;
+
+import ar.edu.unju.fi.entity.Sucursal;
 
 public interface ISucursalService {
 	Sucursal getBuscarSucursal(Long id);

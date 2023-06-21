@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.service.imp;
 
+import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.listas.ListasSucursales;
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;

@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.controller;
 
+import ar.edu.unju.fi.entity.Producto;
 import ar.edu.unju.fi.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ar.edu.unju.fi.entity.Producto;
 import jakarta.validation.Valid;
 
 @Controller

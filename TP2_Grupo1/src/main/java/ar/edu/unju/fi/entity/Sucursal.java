@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.entity;
 import jakarta.persistence.*;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;
@@ -40,7 +41,6 @@ public class Sucursal {
     @Min(value = 0, message = "La hora de apertura debe ser mayor o igual a 0")
     @Max(value = 23, message = "La hora de apertura debe ser menor o igual a 23")
     private int horaApertura;
-
     @Column(name="con_horaCierre")
     @Min(value = 0, message = "La hora de cierre debe ser mayor o igual a 0")
     @Max(value = 23, message = "La hora de cierre debe ser menor o igual a 23")
@@ -49,7 +49,6 @@ public class Sucursal {
     @Column(name="con_telefono")
     @NotBlank(message = "El teléfono no debe estar en blanco")
     private String telefono;
-
 
     public Sucursal() {
 
@@ -66,7 +65,6 @@ public class Sucursal {
         this.telefono = telefono;
         this.id = id;
     }
-
     public Long getId() {
         return id;
     }
@@ -82,7 +80,6 @@ public class Sucursal {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
     public String getNombre() {
         return nombre;
     }

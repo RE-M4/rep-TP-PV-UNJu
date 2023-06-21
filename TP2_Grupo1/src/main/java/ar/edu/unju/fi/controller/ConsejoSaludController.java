@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.listas.ListaConsejoSalud;
 import ar.edu.unju.fi.entity.ConsejoSalud;
+import ar.edu.unju.fi.listas.ListaConsejoSalud;
+import ar.edu.unju.fi.service.IConsejoSaludService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -20,31 +21,32 @@ public class ConsejoSaludController {
 	
 	
 	@Autowired
-	private ListaConsejoSalud lista;
-	
-	@Autowired
-	private ConsejoSalud consejoSalud;
+	IConsejoSaludService consejoSaludService;
 	
 	/**
-	 * Este metodo envia la lista de consejos usando como peticion /consejoSalud
-	 * @return
+	 * Método que maneja la petición para mostrar la lista de consejos de salud.
+	 * Retorna un objeto ModelAndView que representa la vista "consejoSalud" con la lista de consejos.
+	 * 
+	 * @return Vista "consejoSalud" con la lista de consejos de salud.
 	 */
 	@GetMapping("/listado")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new  ModelAndView("consejoSalud");
-		modelAndView.addObject("listaConsejo", lista.getListaConsejoSalud());
+		modelAndView.addObject("listaConsejo", consejoSaludService.getListaConsejo());
 	
 		return modelAndView;
 	}
 	
 	/**
-	 * este metdo linkea al template nuevo_consejo y lleva como parametro un objeto de tipo ConsejoSalud y una bandera edicion
-	 * @return
+	 * Método que maneja la petición para mostrar el formulario de creación de un nuevo consejo de salud.
+	 * Retorna un objeto ModelAndView que representa la vista "nuevo_consejo" con los datos necesarios.
+	 * 
+	 * @return Vista "nuevo_consejo" con el objeto ConsejoSalud y la bandera de edición.
 	 */
 	@GetMapping("/nuevo_consejo")
 	public ModelAndView getNuevoConsejo() {
 		ModelAndView modelAndView = new ModelAndView("nuevo_consejo");
-		modelAndView.addObject("Consejo",consejoSalud);
+		modelAndView.addObject("Consejo",consejoSaludService.getConsejoSalud());
 		boolean edicion=false;
 		modelAndView.addObject("edicion", edicion);
 		return modelAndView;
@@ -65,28 +67,25 @@ public class ConsejoSaludController {
 			modelAndView.addObject("edicion", edicion);
 			return modelAndView;
 		}
-		consejoSalud.setId(lista.getListaConsejoSalud().get(lista.getListaConsejoSalud().size()-1).getId()+1);
-		lista.getListaConsejoSalud().add(consejoSalud);
+		consejoSalud.setId(consejoSaludService.getAsignarId());
+		consejoSaludService.guardarConsejo(consejoSalud);
 		
-		modelAndView.addObject("listaConsejo", lista.getListaConsejoSalud());
+		modelAndView.addObject("listaConsejo", consejoSaludService.getListaConsejo());
 		return modelAndView;
 	}
 	
 	/**
+	 * Método que maneja la petición para obtener la vista de modificación de un consejo de salud.
+	 * Recibe como parámetro el ID del consejo a modificar.
+	 * Carga los datos del consejo encontrado y los muestra en la vista "nuevo_consejo" en modo edición.
 	 * 
-	 * @param titulo
-	 * @return
+	 * @param id El ID del consejo a modificar.
+	 * @return ModelAndView con la vista "nuevo_consejo" y los datos del consejo a modificar.
 	 */
 	@GetMapping("/modificar_consejo/{id}")
 	public ModelAndView getModificarConsejo(@PathVariable(value="id")Integer id) {
 		ModelAndView modelAndView = new ModelAndView("nuevo_consejo");
-		ConsejoSalud consejoEncontrado = consejoSalud;
-		for(ConsejoSalud consejo: lista.getListaConsejoSalud()) {
-			if(consejo.getId().equals(id)) {
-				consejoEncontrado = consejo;
-				break;
-			}
-		}
+		ConsejoSalud consejoEncontrado = consejoSaludService.getBuscarConsejoSalud(id);
 		boolean edicion = true;
 		modelAndView.addObject("edicion",edicion);
 		modelAndView.addObject("Consejo", consejoEncontrado);
@@ -111,15 +110,8 @@ public class ConsejoSaludController {
 			
 			return modelAndView;
 		}
-		for(ConsejoSalud consejo: lista.getListaConsejoSalud()) {
-			if(consejo.getId().equals(consejoSalud.getId())) {
-				consejo.setTitulo(consejoSalud.getTitulo());
-				consejo.setImg(consejoSalud.getImg());
-				consejo.setDescripcion(consejoSalud.getDescripcion());
-				break;
-			}
-		}
-		modelAndView.addObject("listaConsejo", lista.getListaConsejoSalud());
+		consejoSaludService.modificarConsejo(consejoSalud);
+		modelAndView.addObject("listaConsejo", consejoSaludService.getListaConsejo());
 		return modelAndView;
 	}
 	
@@ -133,18 +125,14 @@ public class ConsejoSaludController {
 	@GetMapping("eliminar_consejo/{titulo}")
 	public ModelAndView eliminarConsejoSalud(@PathVariable(value="titulo")String titulo) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
-		for(ConsejoSalud consejo: lista.getListaConsejoSalud()) {
-			if(consejo.getTitulo().equals(titulo)) {
-				lista.getListaConsejoSalud().remove(consejo);
-				break;
-			}
-		}
+		consejoSaludService.eliminarConsejo(consejoSaludService.getBuscarConsejoxTirulo(titulo));
 		return modelAndView;
 	}
 	
 	/**
-	 * Este metodo redirige al template consejoSalud.html
-	 * @return
+	 * Método que maneja la petición para redirigir a la página de listado de consejos de salud.
+	 * 
+	 * @return Redirección a la página de listado de consejos de salud.
 	 */
 	@GetMapping("/volver")
 	public String volverConsejoSalud() {

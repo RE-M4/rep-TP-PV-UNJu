@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import ar.edu.unju.fi.entity.ServicioDePaseo;
 
+//Se agrega esta etiqueta para que el objeto sirva como inyección de dependencia dentro de la capa service
 @Component
 public class ServiciosDePaseoLista {
 	/*Se crea una lista de tipo ServicioDePaseo*/
@@ -14,9 +15,9 @@ public class ServiciosDePaseoLista {
 	/*La lista se transforma en un ArrayList y se cargan datos*/
 	public ServiciosDePaseoLista() {
 		serviciosDePaseo = new ArrayList<ServicioDePaseo>();
-		serviciosDePaseo.add(new ServicioDePaseo("9 a 12 - 16 a 18", "Juan Perez", "Lunes y Miércoles"));
-		serviciosDePaseo.add(new ServicioDePaseo("9 a 12 - 16 a 18", "Lucas Díaz", "Martes"));
-		serviciosDePaseo.add(new ServicioDePaseo("9 a 12 - 16 a 18", "María Mamani", "Jueves y Sábado"));
+		serviciosDePaseo.add(new ServicioDePaseo("9 a 12 - 16 a 18", "Juan Perez", "Lunes y Miercoles"));
+		serviciosDePaseo.add(new ServicioDePaseo("9 a 12 - 16 a 18", "Lucas Diaz", "Martes"));
+		serviciosDePaseo.add(new ServicioDePaseo("9 a 12 - 16 a 18", "Maria Mamani", "Jueves y Sabado"));
 		serviciosDePaseo.add(new ServicioDePaseo("9 a 12 - 16 a 18", "Josefina Lopez", "Viernes"));
 	}
 	/*Getters y setters*/
@@ -26,5 +27,4 @@ public class ServiciosDePaseoLista {
 	public void setServiciosDePaseo(List<ServicioDePaseo> serviciosDePaseo) {
 		this.serviciosDePaseo = serviciosDePaseo;
 	}
-	
 }
