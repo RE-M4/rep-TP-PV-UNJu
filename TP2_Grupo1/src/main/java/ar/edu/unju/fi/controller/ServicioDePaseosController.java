@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,6 +37,7 @@ public class ServicioDePaseosController {
 	
 	/*Se inyecta el servicio para reemplazar la inyección del Objeto y de la Lista*/
 	@Autowired
+	@Qualifier("servicioDePaseoServiceImp")
 	private IServicioDePaseosService paseosService;
 	
 	/**
