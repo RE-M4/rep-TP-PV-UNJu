@@ -10,7 +10,7 @@ import ar.edu.unju.fi.listas.ListaConsejoSalud;
 import ar.edu.unju.fi.service.IConsejoSaludService;
 
 
-@Service
+@Service("ConsejoSaludServiceImp")
 public class ConsejoSaludServiceImp implements IConsejoSaludService {
 
 	@Autowired	
@@ -45,7 +45,7 @@ public class ConsejoSaludServiceImp implements IConsejoSaludService {
 	 * @return el objeto ConsejoSalud correspondiente al id dado
 	 */
 	@Override
-	public ConsejoSalud getBuscarConsejoSalud(int id) {
+	public ConsejoSalud getBuscarConsejoSalud(long id) {
 		// TODO Auto-generated method stub
 		for(ConsejoSalud consejo: listaConsejoSalud.getListaConsejoSalud()) {
 			if(consejo.getId().equals(id)) {
@@ -118,11 +118,5 @@ public class ConsejoSaludServiceImp implements IConsejoSaludService {
 	 *
 	 * @return un nuevo id generado
 	 */
-	@Override
-	public int getAsignarId() {
-		// TODO Auto-generated method stub
-		if(listaConsejoSalud.getListaConsejoSalud().size()== 0) {
-			return 1;
-		}else return listaConsejoSalud.getListaConsejoSalud().get(listaConsejoSalud.getListaConsejoSalud().size()-1).getId()+1;
-	}
+	
 }
