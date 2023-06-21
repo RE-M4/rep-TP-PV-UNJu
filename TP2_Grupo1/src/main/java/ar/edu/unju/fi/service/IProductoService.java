@@ -1,7 +1,6 @@
 package ar.edu.unju.fi.service;
 
 import javax.swing.*;
-
 import ar.edu.unju.fi.entity.Producto;
 
 import java.util.List;
