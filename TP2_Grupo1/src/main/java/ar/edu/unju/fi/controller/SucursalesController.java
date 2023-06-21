@@ -1,9 +1,10 @@
 package ar.edu.unju.fi.controller;
 
-import ar.edu.unju.fi.model.Sucursal;
+import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,11 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class SucursalesController {
 
 	@Autowired
-	private ISucursalService sucursalService;
+	@Qualifier("sucursalServiceImp")
+	private ISucursalService sucursalServiceImp;
 
 	@GetMapping("/listado")
 	public String getListaSucursalesPage(Model model) {
-		model.addAttribute("sucursales", sucursalService.getListaSucursales());
+		model.addAttribute("sucursales", sucursalServiceImp.getListaSucursales());
 		return "sucursales";
 
 	}
@@ -28,9 +30,9 @@ public class SucursalesController {
 	@GetMapping("/nuevo")
 	public String getNuevaSucursalPage(Model model) {
 		boolean edicion = false;
-		model.addAttribute("sucursal", sucursalService.getSucursal());
+		model.addAttribute("sucursal", sucursalServiceImp.getSucursal());
 		model.addAttribute("edicion", edicion);
-		model.addAttribute("sucursales", sucursalService.getListaSucursales());
+		model.addAttribute("sucursales", sucursalServiceImp.getListaSucursales());
 		return "nueva_sucursal";
 	}
 
@@ -40,19 +42,19 @@ public class SucursalesController {
 		if (resultadoValidacion.hasErrors()) {
 			modelView.addObject("sucursal", sucursal);
 			modelView.addObject("edicion", false);
-			modelView.addObject("sucursales", sucursalService.getListaSucursales());
+			modelView.addObject("sucursales", sucursalServiceImp.getListaSucursales());
 			return modelView;
 		}
-		sucursal.setId(sucursalService.getListaSucursales().get(sucursalService.getListaSucursales().size() - 1).getId() + 1);
-		sucursalService.guardarSucursal(sucursal);
-		modelView.addObject("sucursales", sucursalService.getListaSucursales());
+//		sucursal.setId(sucursalService.getListaSucursales().get(sucursalService.getListaSucursales().size() - 1).getId() + 1);
+		sucursalServiceImp.guardarSucursal(sucursal);
+		modelView.addObject("sucursales", sucursalServiceImp.getListaSucursales());
 		modelView.addObject("sucursal", new Sucursal());
 		return modelView;
 	}
 @GetMapping("/modificar/{id}")
-public ModelAndView getModificarSucursalPage(@PathVariable(value = "id") Integer id) {
+public ModelAndView getModificarSucursalPage(@PathVariable(value = "id") Long id) {
 	ModelAndView modelAndView = new ModelAndView("nueva_sucursal");
-	Sucursal sucursalEncontrada = sucursalService.getBuscarSucursal(id);
+	Sucursal sucursalEncontrada = sucursalServiceImp.getBuscarSucursal(id);
 	boolean edicion = true;
 	modelAndView.addObject("edicion", edicion);
 	modelAndView.addObject("sucursal", sucursalEncontrada);
@@ -65,15 +67,15 @@ public ModelAndView getModificarSucursalPage(@PathVariable(value = "id") Integer
 		if (resultadoValidacion.hasErrors()) {
 			return "nueva_sucursal";
 		}
-		sucursalService.modificar(sucursal);
+		sucursalServiceImp.modificar(sucursal);
 		return "redirect:/sucursales/listado";
 	}
 
 
 		@GetMapping("/eliminar/{id}")
-	public String eliminarSucursal(@PathVariable(value = "id") Integer id) {
-			Sucursal sucursal = sucursalService.getBuscarSucursal(id);
-			sucursalService.eliminar(sucursal);
+	public String eliminarSucursal(@PathVariable(value = "id") Long id) {
+			Sucursal sucursal = sucursalServiceImp.getBuscarSucursal(id);
+			sucursalServiceImp.eliminar(sucursal);
 			return "redirect:/sucursales/listado";
 	}
 

@@ -17,17 +17,19 @@ public class SucursalServiceMysqlImp implements ISucursalService {
 
 	@Override
 	public List<Sucursal> getListaSucursales() {
-		return sucursalRepository.findByEstado(true);
+		return sucursalRepository.findAllByEstado(true);
 	}
 
 	@Override
 	public void guardarSucursal(Sucursal sucursal) {
 		sucursalRepository.save(sucursal);
 	}
+
 	@Override
 	public Sucursal getBuscarSucursal(Long id) {
-		return sucursalRepository.findById(id).get();
+		return sucursalRepository.findById(id).orElse(null);
 	}
+
 	@Override
 	public void modificar(Sucursal sucursal) {
 		sucursalRepository.save(sucursal);

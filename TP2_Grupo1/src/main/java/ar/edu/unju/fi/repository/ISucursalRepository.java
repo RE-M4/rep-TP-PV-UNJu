@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ISucursalRepository extends CrudRepository<Sucursal,Long> {
-			public List<Sucursal> findByEstado(boolean estado);
+	List<Sucursal> findAllByEstado(boolean estado);
 
 }

@@ -15,29 +15,38 @@ public class Sucursal {
     private Long id;
     @Column(name="con_estado")
     private boolean estado;
+
+    @Column(name="con_nombre")
     @NotBlank(message = "El nombre es requerido")
     private String nombre;
 
+    @Column(name="con_calle")
     @NotBlank(message = "La calle es requerida")
     private String calle;
 
+    @Column(name="con_provincia")
     @NotEmpty(message = "La provincia no debe estar vacía")
     private String provincia;
 
+    @Column(name="con_diaApertura")
     @NotEmpty(message = "El día de apertura no debe estar vacío")
     private String diaApertura;
 
+    @Column(name="con_diaCierre")
     @NotEmpty(message = "El día de cierre no debe estar vacío")
     private String diaCierre;
 
+    @Column(name="con_horaApertura")
     @Min(value = 0, message = "La hora de apertura debe ser mayor o igual a 0")
     @Max(value = 23, message = "La hora de apertura debe ser menor o igual a 23")
     private int horaApertura;
 
+    @Column(name="con_horaCierre")
     @Min(value = 0, message = "La hora de cierre debe ser mayor o igual a 0")
     @Max(value = 23, message = "La hora de cierre debe ser menor o igual a 23")
     private int horaCierre;
 
+    @Column(name="con_telefono")
     @NotBlank(message = "El teléfono no debe estar en blanco")
     private String telefono;
 
