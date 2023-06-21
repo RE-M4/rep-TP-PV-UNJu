@@ -22,7 +22,7 @@ public class ListaConsejoSalud {
 				+ "					afectados por una amplia gama de parásitos. Por definición, el parásito produce\r\n"
 				+ "					efectos dañinos en su hospedador y se considera que aquellos que viven en la \r\n"
 				+ "					superficie externa del hospedador o en la piel, denominados ectoparásitos, \r\n"
-				+ "					causan infestaciones.",1));
+				+ "					causan infestaciones."));
 		listaConsejoSalud.add(new ConsejoSalud("../images/saludMascotas2.jpg","La importancia de la prevención parasitaria continuada","La consulta veterinaria es una oportunidad para llevar a cabo\r\n"
 				+ "					medicina preventiva y generar recomendaciones que pueden evitar \r\n"
 				+ "					enfermedades a largo plazo en animales de compañía.\r\n"
@@ -30,7 +30,7 @@ public class ListaConsejoSalud {
 				+ "					cuidados generales, nutrición, estado físico del animal y prevención\r\n"
 				+ "					de enfermedades. También, es una oportunidad para educar a los \r\n"
 				+ "					propietarios sobre la importancia del control parasitario y la \r\n"
-				+ "					selección y uso periódico de los diferentes antiparasitarios.",2));
+				+ "					selección y uso periódico de los diferentes antiparasitarios."));
 		
 		listaConsejoSalud.add(new ConsejoSalud("../images/saludMascotas3.jpg","Manejo de la Diabetes en Perros y Gatos","La diabetes mellitus es una enfermedad endocrina que requiere un monitoreo\r\n"
 				+ "					continuo y ajustes en el estilo de vida de las mascotas y de sus propietarios.\r\n"
@@ -43,7 +43,7 @@ public class ListaConsejoSalud {
 				+ "					Aunque algunos de los signos pueden variar entre perros y gatos, \r\n"
 				+ "					los principios básicos de manejo clínico son similares y abarcan la \r\n"
 				+ "					modificación del estilo de vida de las mascotas y el tratamiento con \r\n"
-				+ "					insulina a largo plazo.",3));
+				+ "					insulina a largo plazo."));
 		
 		
 	}

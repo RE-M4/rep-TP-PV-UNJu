@@ -19,9 +19,10 @@
 		
 			
 	<div class="container "><br>
-		  <form class="container rounded" style="background-color: #F5F5F5" th:action="${edicion}?@{/ConsejoSalud/modificar_consejo} : @{/ConsejoSalud/guardar_consejo}" th:object="${Consejo}" method="post">
+		  <form class="container rounded" style="background-color: #F5F5F5" th:action="${edicion}?@{/ConsejoSalud/modificar_consejo} : @{/ConsejoSalud/guardar_consejo}" th:object="${Consejo}" method="post" enctype="multipart/form-data">
 		    <h2 th:text="${edicion}?'Modificar Consejo':'Nuevo Consejo'"style="text-align: center; margin-bottom: 20px;"></h2>
-		    <div class="mb-3">
+		   
+		   <!--  <div class="mb-3">
 		     <label for="img" class="form-label">imagen:</label>
 			    <select id="img" class="form-select" name="img" th:field="*{img}" aria-label="Seleccione imagen">
 				 	<option value="../images/saludMascota.jpg">Imagen de salud 1</option>
@@ -29,8 +30,14 @@
 			        <option th:value="*{img}"  th:if="${edicion}">imagen actual</option>
 				</select>
 				  <div class="text-danger" th:if="${#fields.hasErrors('img')}" th:errors="*{img}"></div>
-			</div>
-		 	
+			</div> -->
+			
+		 	<div class="mb-3">
+		     <label for="img" class="form-label">imagen:</label>
+			    <input type="file" name="file" id="img" class="form-control">
+				  <div class="text-danger" th:if="${#fields.hasErrors('img')}" th:errors="*{img}"></div>  
+		    </div>
+		    
 		    
 		     <div class="mb-3" >
 		     <!-- La principal utilidad de utilizar hidden en formularios es ocultar campos que no deben ser visibles o 

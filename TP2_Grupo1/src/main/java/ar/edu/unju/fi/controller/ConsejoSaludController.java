@@ -1,6 +1,12 @@
 package ar.edu.unju.fi.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ListaConsejoSalud;
@@ -21,7 +29,9 @@ public class ConsejoSaludController {
 	
 	
 	@Autowired
+	@Qualifier("ConsejoSaludServiceMysqlImp")
 	IConsejoSaludService consejoSaludService;
+	
 	
 	/**
 	 * Método que maneja la petición para mostrar la lista de consejos de salud.
@@ -58,16 +68,33 @@ public class ConsejoSaludController {
 	 * @return
 	 */
 	@PostMapping("/guardar_consejo")
-	public ModelAndView guardarConsejoSalud(@Valid @ModelAttribute("Consejo") ConsejoSalud consejoSalud, BindingResult result) {
+	public ModelAndView guardarConsejoSalud(@Valid @ModelAttribute("Consejo") ConsejoSalud consejoSalud, BindingResult result,@RequestParam("file") MultipartFile imagen) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
+		consejoSalud.setImg(imagen.getOriginalFilename());
 		if(result.hasErrors()) {
+			System.out.println(consejoSalud);
 			modelAndView.setViewName("nuevo_consejo");
 			modelAndView.addObject("Consejo",consejoSalud);
 			boolean edicion=false;
 			modelAndView.addObject("edicion", edicion);
 			return modelAndView;
 		}
-		consejoSalud.setId(consejoSaludService.getAsignarId());
+		
+		if(!imagen.isEmpty()) {
+			Path directorioImagenes = Paths.get("src//main//resources//static/images");
+			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+			
+			try {
+				byte[] bytesImg = imagen.getBytes();
+				Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
+				Files.write(rutaCompleta, bytesImg);
+				consejoSalud.setImg(imagen.getOriginalFilename());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println(consejoSalud);
 		consejoSaludService.guardarConsejo(consejoSalud);
 		
 		modelAndView.addObject("listaConsejo", consejoSaludService.getListaConsejo());

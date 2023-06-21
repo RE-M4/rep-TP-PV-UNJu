@@ -24,7 +24,7 @@
 				</div>
 				<article class="articulo-salud" th:each="consejo : ${listaConsejo}">
 					<div class="card mb-3">
-				  		<img alt="aca una imagen" th:src="@{${consejo.img}}" >
+				  		<img alt="aca una imagen" th:src="@{'/images/' + ${consejo.img}}" >
 				 	 	<div class="card-body">
 				    		<h5 class="card-title" th:text="${consejo.titulo}">Card title</h5>
 				    		<p class="card-text" th:text="${consejo.descripcion}"></p>

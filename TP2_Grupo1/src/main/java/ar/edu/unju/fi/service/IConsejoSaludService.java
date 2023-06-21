@@ -26,7 +26,7 @@ public interface IConsejoSaludService {
 	 * @param id el identificador del Consejo de Salud a buscar
 	 * @return el objeto ConsejoSalud correspondiente al id dado
 	 */
-	public ConsejoSalud getBuscarConsejoSalud(int id);
+	public ConsejoSalud getBuscarConsejoSalud(long id);
 
 	
 	/**
@@ -63,6 +63,6 @@ public interface IConsejoSaludService {
 	 *
 	 * @return un nuevo id generado
 	 */
-	public int getAsignarId();
+	public long getAsignarId();
 	
 }
