@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,7 @@ import jakarta.validation.Valid;
 public class ContactoController {
 	
 	@Autowired
+	@Qualifier("contactoServiceMySql")
 	private IContactoService contactoservice;
 	/*ahora hay q conectarlo con el servicio.
 	@Autowired
@@ -48,13 +50,13 @@ public class ContactoController {
         }
         
         System.out.println(contacto);
-        contactoservice.getlistaMensajes().add(contacto); 
+        contactoservice.guardarMensaje(contacto);
         model.addAttribute("listaMensajes" , contactoservice.getlistaMensajes());
     return "redirect:/contacto/listaMensaje";
     } 
 	@GetMapping("/contacto")
 	public String getContacto(Model model ) {
-		model.addAttribute("Contacto", new Contacto());
+		model.addAttribute("Contacto", contactoservice.getContacto());
 		return "contacto";
 	}
 	@GetMapping("/eliminar_mensaje/{nombreMensaje}")

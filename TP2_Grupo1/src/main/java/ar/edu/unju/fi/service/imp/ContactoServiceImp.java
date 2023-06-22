@@ -10,7 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("contactoServiceImp")
 public class ContactoServiceImp implements IContactoService{
 	@Autowired
 	private Contacto contacto;
@@ -29,5 +29,10 @@ public class ContactoServiceImp implements IContactoService{
 	@Override
 	public void borrarMensajes(Contacto contacto) {
 		listaMensajes.getListaMensaje().remove(contacto);
+	}
+	@Override
+	public void guardarMensaje(Contacto contacto) {
+		// TODO Auto-generated method stub
+		
 	}
 }
