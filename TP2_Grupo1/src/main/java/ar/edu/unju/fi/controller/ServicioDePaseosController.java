@@ -37,6 +37,7 @@ public class ServicioDePaseosController {
 	
 	/*Se inyecta el servicio para reemplazar la inyección del Objeto y de la Lista*/
 	@Autowired
+	//@Qualifier("servicioDePaseoServiceImpMysql")
 	@Qualifier("servicioDePaseoServiceImp")
 	private IServicioDePaseosService paseosService;
 	
