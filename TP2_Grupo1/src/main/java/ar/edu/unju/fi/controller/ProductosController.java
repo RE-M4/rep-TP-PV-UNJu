@@ -3,6 +3,7 @@ package ar.edu.unju.fi.controller;
 import ar.edu.unju.fi.entity.Producto;
 import ar.edu.unju.fi.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 //import java.util.ArrayList;
 //import java.util.List;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import jakarta.validation.Valid;
 
 @Controller
@@ -24,6 +24,7 @@ import jakarta.validation.Valid;
 public class ProductosController {
 	
 	@Autowired
+	@Qualifier("ProductoServiceMysqlImp")
 	private IProductoService serviceProductos;
 
 	/**
@@ -56,14 +57,14 @@ public class ProductosController {
 			modelAndView.addObject("edicion", edicion);
 			return modelAndView;
 		}
-		producto.setCodigo(serviceProductos.getListaProductos().get(serviceProductos.getListaProductos().size()-1).getCodigo()+1);//seteo el codigo id del producto
+		//producto.setCodigo(serviceProductos.getListaProductos().get(serviceProductos.getListaProductos().size()-1).getCodigo()+1);//seteo el codigo id del producto
 		serviceProductos.guardarProducto(producto);
 		modelAndView.addObject("productos", serviceProductos.getListaProductos());
 		return modelAndView;
 	}
 	
 	@GetMapping("/modificar_producto/{codigo}")
-	public ModelAndView getModificarConsejo(@PathVariable(value="codigo")Integer codigo) {
+	public ModelAndView getModificarConsejo(@PathVariable(value="codigo")Long codigo) {
 		ModelAndView modelAndView = new ModelAndView("nuevo_producto");
 		Producto productoEncontrado = serviceProductos.getBuscarProducto(codigo);
 		boolean edicion = true;

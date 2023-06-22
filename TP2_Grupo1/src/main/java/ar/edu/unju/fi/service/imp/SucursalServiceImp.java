@@ -2,13 +2,14 @@ package ar.edu.unju.fi.service.imp;
 
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.listas.ListasSucursales;
+import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("sucursalServiceImp")
 public class SucursalServiceImp implements ISucursalService {
 	@Autowired
 	private ListasSucursales listasSucursales;
@@ -25,7 +26,7 @@ public class SucursalServiceImp implements ISucursalService {
 		listasSucursales.getSucursales().add(sucursal);
 	}
 	@Override
-	public Sucursal getBuscarSucursal(int id) {
+	public Sucursal getBuscarSucursal(Long id) {
 		for (Sucursal sucursal : listasSucursales.getSucursales()) {
 			if (sucursal.getId().equals(id)) {
 				return sucursal;

@@ -15,10 +15,10 @@ public class ProductosList {
 	 * constructor que carga una lista con objetos de tipo productos 
 	 */
 	public ProductosList() {
-		productos = new ArrayList<Producto>();
-		productos.add(new Producto("OLYMPIC PERRO ADULTO 19KG","Alimento canino",50,5750.00,"../images/producto1.jpg",1));
-		productos.add(new Producto("COMPLETE PERRO CACHORRO RAZA PEQUEÑA 20 KG","Alimento canino cachorro",25,10837.00,"../images/producto2.jpg",2));
-		productos.add(new Producto("OLYMPIC PERRO ADULTO 19KG","Alimento canino",0,5750.00,"../images/producto1.jpg",3));
+		//productos = new ArrayList<Producto>();
+		//productos.add(new Producto("OLYMPIC PERRO ADULTO 19KG","Alimento canino",50,5750.00,"../images/producto1.jpg",1));
+		//productos.add(new Producto("COMPLETE PERRO CACHORRO RAZA PEQUEÑA 20 KG","Alimento canino cachorro",25,10837.00,"../images/producto2.jpg",2));
+		//productos.add(new Producto("OLYMPIC PERRO ADULTO 19KG","Alimento canino",0,5750.00,"../images/producto1.jpg",3));
 	}
 	
 	//getter and setter

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 
 import ar.edu.unju.fi.service.IProductoService;
-
+import ar.edu.unju.fi.entity.Producto;
 import java.util.List;
 
-@Service
+@Service("ProductoServiceImp")
 public class ProductoServiceImp implements IProductoService {
 
 	@Autowired
@@ -33,7 +33,7 @@ public class ProductoServiceImp implements IProductoService {
 		listaProductos.getProductos().add(producto);
 	}
 	@Override
-	public Producto getBuscarProducto(int codigo) {
+	public Producto getBuscarProducto(long codigo) {
 		Producto productoEncontrado = null;
 		for(Producto p: listaProductos.getProductos()) {
 			if(p.getCodigo().equals(codigo)) {

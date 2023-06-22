@@ -2,6 +2,12 @@ package ar.edu.unju.fi.entity;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -10,34 +16,50 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+
 @Component
+@Entity
+@Table(name="productos")
 public class Producto {
+	
+	
 	/*Atributos*/
 	@NotEmpty(message = "El nombre no puede estar vacio")
 	@NotBlank(message = "El nombre no puede estar en blanco")
-    private String nombre;
+	@Column(name="prod_nombre")
+	private String nombre;
     
 	@NotEmpty(message = "La categoría no puede estar en vacio")
     @NotBlank(message = "La categoría no puede estar en blanco")
-    private String categoria;
+	@Column(name="prod_categoria")
+	private String categoria;
     
 	@NotEmpty(message = "La imagen no puede estar en vacio")
     @NotBlank(message = "La imagen no puede estar en blanco")
-    private String imagen;
+	@Column(name="prod_imagen")
+	private String imagen;
 
     //el codigo no lleva validaciones porq en el controlador esta asegurado el codigo q corresponde
-    private Integer codigo;
+
+	@Id
+	@Column(name="prod_codigo")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long codigo;
 
     @NotNull(message = "El descuento no puede ser nulo")
     @Min(value = 0, message = "El descuento debe ser igual o mayor que 0")
     @Max(value = 50, message = "El descuento no puede ser mayor que 50")
+    @Column(name="prod_descuento")
     private Integer descuento;
 
     @NotNull(message = "El precio no puede ser nulo")
     @DecimalMin(value = "0.0", inclusive = false, message = "El precio debe ser mayor que 0")
+    @Column(name="prod_precio")
     private Double precio;
 	
-	
+    @Column(name="prod_estado")
+    private boolean estado;
+    
 	/*Getters y Setters*/
 	public String getNombre() {
 		return nombre;
@@ -51,10 +73,10 @@ public class Producto {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public Integer getDescuento() {
@@ -75,18 +97,28 @@ public class Producto {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+	
+	
+	
+	
+	public boolean isEstado() {
+		return estado;
+	}
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 	/*Constructores*/
-	public Producto(String nombre, String categoria, Integer descuento, Double precio ,String imagen,Integer codigo) { /*String imagen*/
+	public Producto(String nombre, String categoria, Integer descuento, Double precio ,String imagen) { /*String imagen*/
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.descuento = descuento;
 		this.precio = precio;
 		this.imagen = imagen;
-		this.codigo=codigo;
+		this.estado=true;
 	}
 	public Producto() {
-	
+		this.estado=true;
 	}
 	
 	/*Métodos*/

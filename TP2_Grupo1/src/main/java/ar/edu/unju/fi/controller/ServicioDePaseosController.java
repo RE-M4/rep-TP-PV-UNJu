@@ -8,10 +8,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.listas.ServiciosDePaseoLista;
 import ar.edu.unju.fi.entity.ServicioDePaseo;
 import ar.edu.unju.fi.service.IServicioDePaseosService;
-import jakarta.validation.Valid;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,8 @@ public class ServicioDePaseosController {
 	
 	/*Se inyecta el servicio para reemplazar la inyección del Objeto y de la Lista*/
 	@Autowired
-	@Qualifier("servicioDePaseoServiceImpMysql")
+	//@Qualifier("servicioDePaseoServiceImpMysql")
+	@Qualifier("servicioDePaseoServiceImp")
 	private IServicioDePaseosService paseosService;
 	
 	/**
