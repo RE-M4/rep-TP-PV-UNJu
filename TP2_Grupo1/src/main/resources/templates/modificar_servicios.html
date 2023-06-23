@@ -19,6 +19,11 @@
 				<div class="container">
 					<div class="row col-12">
 						<form id="formServicios" th:action="${edicion}?@{/servicioDePaseos/modificarDatos}:@{/servicioDePaseos/guardarDato}" th:object="${ServicioDePaseo}" method="post"> <!-- th:action es el identificador para el PostMapping(/modificarDatos) |  th:object es el identificador para el GetMapping(/modificarDatos) y el PostMapping(/modificarDatos)-->
+							<div class="form-group" >
+						     <!-- La principal utilidad de utilizar hidden en formularios es ocultar campos que no deben ser visibles o 
+						 		modificables por los usuarios, pero que aún se deben enviar al servidor cuando se envía el formulario. -->
+							    <input type="hidden" id="id" name="id" th:field="*{id}" class="form-control" >
+							</div>
 							<div class="form-group">
 								<label for="dato_paseador">Nombre del Paseador: </label>
 								<input class="form-control" type="text" id="paseador" name="dato_paseador" th:field="*{paseador}">

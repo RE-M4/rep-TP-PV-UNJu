@@ -36,9 +36,11 @@ public class ServicioDePaseosController {
 	private ServicioDePaseo servicioDePaseo;*/
 	
 	/*Se inyecta el servicio para reemplazar la inyección del Objeto y de la Lista*/
+	/*Se debe agregar la etiqueta "Qualifier" para que el controller sepa cual de las 2 implementaciones
+	 * debe usar*/
 	@Autowired
-	//@Qualifier("servicioDePaseoServiceImpMysql")
-	@Qualifier("servicioDePaseoServiceImp")
+	@Qualifier("servicioDePaseoServiceImpMysql")
+	/*@Qualifier("servicioDePaseoServiceImp")*/
 	private IServicioDePaseosService paseosService;
 	
 	/**
@@ -59,8 +61,11 @@ public class ServicioDePaseosController {
 	 * @param nombrePaseador
 	 * @return Un objeto de ServicioDePaseoLista.java
 	 */
-	@GetMapping("/modificarDatos/{nombrePaseador}")
-	public String getModificarDatos(Model model, @PathVariable(value="nombrePaseador")String nombrePaseador) { //PathVariable se obtiene de la línea 44 de servicioDePaseos.html
+	@GetMapping("/modificarDatos/{id}")
+	public String getModificarDatos(Model model, @PathVariable(value="id")Long id) { //PathVariable se obtiene de la línea 44 de servicioDePaseos.html
+		System.out.println("Nombre: " + paseosService.getBy(id).getPaseador());
+		System.out.println("ID: " + paseosService.getBy(id).getId());
+		System.out.println("Nombre: " + paseosService.getBy(id).isEstado());
 		edicion = true; //Se cambia el valor a true.
 		
 		//ESTE CÓDIGO SE DEBE INSERTAR EN LA CAPA SERVICE
@@ -72,7 +77,7 @@ public class ServicioDePaseosController {
 			}
 		}*/
 		
-		model.addAttribute("ServicioDePaseo", paseosService.buscarServicio(nombrePaseador)); //El objeto encontrado se envía al formulario de modificar_servicios.html | La etiqueta "ServicioDePaseo" sirve para identificar y usar al objeto dentro del th:object del formulario de modificar_servicios.html
+		model.addAttribute("ServicioDePaseo", paseosService.getBy(id)); //El objeto encontrado se envía al formulario de modificar_servicios.html | La etiqueta "ServicioDePaseo" sirve para identificar y usar al objeto dentro del th:object del formulario de modificar_servicios.html
 		model.addAttribute("edicion", edicion); //La variable se envía al formulario de modificar_servicios.html para modificar su funcionalidad
 		return "modificar_servicios";
 	}
@@ -90,6 +95,9 @@ public class ServicioDePaseosController {
 	 */
 	@PostMapping("/modificarDatos") //Esta funcionalidad se implementa dentro del formulario de modificar_servicios.html (línea 21)
 	public String modificarDatos(@Valid @ModelAttribute("ServicioDePaseo")ServicioDePaseo servicioModificado, BindingResult result, Model model) {//ModelAttribute sirve para identificar el objeto traido de modificar_servicios.html | ServicioDePaseo (o su etiqueta servicioModificado) es el th:object recuperado del formulario de modificar_servicios.html con sus atributos cambiados al momento de cambiar los inputs y pulsar "Guardar"
+		System.out.println("--------------------");
+		System.out.println(servicioModificado.getId());
+		System.out.println("--------------------");
 		if(result.hasErrors()) { //Validación que vuelve a modificar_servicios.html mostrando los mensajes de error 
 			edicion = true; //Se debe volver a instanciar la variable para que el formulario siga con la funcionalidad de modificar
 			model.addAttribute("ServicioDePaseo", servicioModificado); //El objeto que llega como parámetro se envía al formulario de modificar_servicios.html | La etiqueta "ServicioDePaseo" sirve para identificar y usar al objeto dentro del th:object del formulario de modificar_servicios.html
@@ -119,8 +127,8 @@ public class ServicioDePaseosController {
 	 * @param nombrePaseador
 	 * @return Array de objetos de ServiciosDePaseoLista.java
 	 */
-	@GetMapping("/eliminarDatos/{nombrePaseador}")
-	public String eliminarDatos(Model model, @PathVariable(value="nombrePaseador")String nombrePaseador){ //PathVariable se obtiene de la línea 45 de servicioDePaseos.html
+	@GetMapping("/eliminarDatos/{id}")
+	public String eliminarDatos(Model model, @PathVariable(value="id")Long id){ //PathVariable se obtiene de la línea 45 de servicioDePaseos.html
 		
 		//ESTE CÓDIGO SE DEBE INSERTAR EN LA CAPA SERVICE
 		/*ServicioDePaseo servicioEncontrado = paseosService.getServicio();
@@ -132,7 +140,7 @@ public class ServicioDePaseosController {
 			}
 		}*/
 		
-		paseosService.borrarServicio(nombrePaseador);
+		paseosService.borrarServicio(paseosService.getBy(id));
 		return "redirect:/servicioDePaseos/listado";
 	}
 	

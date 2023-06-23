@@ -1,6 +1,6 @@
 package ar.edu.unju.fi.listas;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -13,6 +13,7 @@ public class ServiciosDePaseoLista {
 	/*Se crea una lista de tipo ServicioDePaseo*/
 	private List<ServicioDePaseo> serviciosDePaseo;
 	/*La lista se transforma en un ArrayList y se cargan datos*/
+	/*Se comenta la línea de código pues ahora esto pasa a ser controlado por la BD*/
 	/*public ServiciosDePaseoLista() {
 		serviciosDePaseo = new ArrayList<ServicioDePaseo>();
 		serviciosDePaseo.add(new ServicioDePaseo("9 a 12 - 16 a 18", "Juan Perez", "Lunes y Miercoles"));

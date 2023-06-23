@@ -15,6 +15,9 @@ import ar.edu.unju.fi.service.IServicioDePaseosService;
  * por lo que todos los métodos declarados dentro del service deben existir dentro de este archivo también.
  * Se agrega esta etiqueta para declarar el archivo como parte de la capa service.
  */
+/*Se debe agregar un nombre en la etiqueta "Service" ya que hace un contrato con el archivo service (al igual
+que ServiciosDePaseoServiceMysqlImp.java y el controller tiene conflictos para saber cual de los 2 usar*/
+
 @Service("servicioDePaseoServiceImp")
 public class ServicioDePaseosImp implements IServicioDePaseosService{
 	//Inyección del objeto lista
