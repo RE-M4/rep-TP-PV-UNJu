@@ -41,8 +41,8 @@
 				                <td id="formatoCelda" th:text="${servicio.dia}"></td>
 				                <td id="formatoCelda" th:text="${servicio.horario}"></td>
 				                <td>
-				                	<a class="d-none d-lg-block" id="botonServicios" th:href="@{/servicioDePaseos/modificarDatos/}+${servicio.paseador}">Modificar</a>
-				                	<a class="d-none d-lg-block" id="botonServicios" th:href="@{/servicioDePaseos/eliminarDatos/}+${servicio.paseador}">Eliminar</a>
+				                	<a class="d-none d-lg-block" id="botonServicios" th:href="@{/servicioDePaseos/modificarDatos/}+${servicio.id}">Modificar</a>
+				                	<a class="d-none d-lg-block" id="botonServicios" th:href="@{/servicioDePaseos/eliminarDatos/}+${servicio.id}">Eliminar</a>
 				                </td>
 			            	</tr>
 			            </tbody>

@@ -12,19 +12,25 @@ import jakarta.validation.constraints.*;
 public class ServicioDePaseo {
 	/*Atributos con validaciones*/
 	/* El nuevo atributo "id" se crea a partir de la implementación de la capa repository*/
+	/* La etiqueta "Column" sirve para poner nombres personalizados a las columnas de la tabla en MySQL*/
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Esta etiqueta hace que se generen ids automáticamente al momento de crear la tabla en MySQL
-    private Long id;
+    @Column(name="serv_id")
+	private Long id;
 	@NotEmpty(message=("Este campo no puede estar vacío"))
 	@Size(min=5, max = 20, message="Este campo tiene que tener al menos 5 caracteres")
+	@Column(name="serv_horario")
 	private String horario;
 	@NotEmpty(message=("Este campo no puede estar vacío"))
 	@Pattern(regexp = "[a-z A-Z]*", message="Este campo solo debe tener letras")
+	@Column(name="serv_paseador")
 	private String paseador;
 	@NotEmpty(message=("Este campo no puede estar vacío"))
 	@Pattern(regexp = "[a-z A-Z]*", message="Este campo solo debe tener letras")
 	@Size(min=5, max = 20, message="Este campo tiene que tener al menos 5 caracteres")
+	@Column(name="serv_dia")
 	private String dia;
+	@Column(name="serv_estado")
 	private boolean estado;
 	/*Getters y setters*/
 	public String getHorario() {
@@ -66,6 +72,6 @@ public class ServicioDePaseo {
 		this.estado = true;
 	}
 	public ServicioDePaseo() {
-		
+		this.estado = true;
 	}
 }
