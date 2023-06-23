@@ -13,7 +13,7 @@ public class ServicioDePaseo {
 	/*Atributos con validaciones*/
 	/* El nuevo atributo "id" se crea a partir de la implementación de la capa repository*/
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//Esta etiqueta hace que se generen id automáticamente al momento de crear la tabla en MySQL
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//Esta etiqueta hace que se generen ids automáticamente al momento de crear la tabla en MySQL
     private Long id;
 	@NotEmpty(message=("Este campo no puede estar vacío"))
 	@Size(min=5, max = 20, message="Este campo tiene que tener al menos 5 caracteres")
