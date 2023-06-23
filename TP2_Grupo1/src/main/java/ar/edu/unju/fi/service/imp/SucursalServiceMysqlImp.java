@@ -17,7 +17,7 @@ public class SucursalServiceMysqlImp implements ISucursalService {
 
 	@Override
 	public List<Sucursal> getListaSucursales() {
-		return sucursalRepository.findAllByEstado(true);
+		return sucursalRepository.findByEstado(true);
 	}
 
 	@Override

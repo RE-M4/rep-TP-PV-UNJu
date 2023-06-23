@@ -13,9 +13,12 @@ import java.util.List;
 public class SucursalServiceImp implements ISucursalService {
 	@Autowired
 	private ListasSucursales listasSucursales;
+	@Autowired
+	private Sucursal sucursal;
+
 	@Override
 	public Sucursal getSucursal() {
-		return new Sucursal();
+		return sucursal;
 	}
 	@Override
 	public List<Sucursal> getListaSucursales(){

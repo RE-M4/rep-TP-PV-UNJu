@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,19 +36,33 @@ public class SucursalesController {
 		return "nueva_sucursal";
 	}
 
+//	@PostMapping("/guardar")
+//	public ModelAndView getGuardarSucursalPage(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult resultadoValidacion) {
+//		ModelAndView modelView = new ModelAndView("nueva_sucursal");
+//		if (resultadoValidacion.hasErrors()) {
+//			modelView.addObject("sucursal", sucursal);
+//			modelView.addObject("edicion", false);
+//			modelView.addObject("sucursales", sucursalServiceImp.getListaSucursales());
+//			return modelView;
+//		}
+////		sucursal.setId(sucursalService.getListaSucursales().get(sucursalService.getListaSucursales().size() - 1).getId() + 1);
+//		sucursalServiceImp.guardarSucursal(sucursal);
+//		modelView.addObject("sucursales", sucursalServiceImp.getListaSucursales());
+//		modelView.addObject("sucursal", new Sucursal());
+//		return modelView;
+//	}
 	@PostMapping("/guardar")
 	public ModelAndView getGuardarSucursalPage(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult resultadoValidacion) {
 		ModelAndView modelView = new ModelAndView("nueva_sucursal");
 		if (resultadoValidacion.hasErrors()) {
+			modelView.addObject("nueva_sucursal");
 			modelView.addObject("sucursal", sucursal);
-			modelView.addObject("edicion", false);
-			modelView.addObject("sucursales", sucursalServiceImp.getListaSucursales());
 			return modelView;
 		}
 //		sucursal.setId(sucursalService.getListaSucursales().get(sucursalService.getListaSucursales().size() - 1).getId() + 1);
 		sucursalServiceImp.guardarSucursal(sucursal);
 		modelView.addObject("sucursales", sucursalServiceImp.getListaSucursales());
-		modelView.addObject("sucursal", new Sucursal());
+
 		return modelView;
 	}
 @GetMapping("/modificar/{id}")

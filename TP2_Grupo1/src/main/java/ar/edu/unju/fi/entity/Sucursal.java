@@ -51,7 +51,7 @@ public class Sucursal {
     private String telefono;
 
     public Sucursal() {
-
+        this.estado = true;
     }
 	public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre,String telefono, long id) {
 
@@ -64,6 +64,7 @@ public class Sucursal {
         this.horaCierre = horaCierre;
         this.telefono = telefono;
         this.id = id;
+        this.estado = true;
     }
     public Long getId() {
         return id;
