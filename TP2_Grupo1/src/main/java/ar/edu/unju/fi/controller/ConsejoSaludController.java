@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class ConsejoSaludController {
 	
 	
 	@Autowired
+	@Qualifier("ConsejoSaludServiceMysqlImp")
 	IConsejoSaludService consejoSaludService;
 	
 	/**
@@ -67,7 +69,7 @@ public class ConsejoSaludController {
 			modelAndView.addObject("edicion", edicion);
 			return modelAndView;
 		}
-		consejoSalud.setId(consejoSaludService.getAsignarId());
+		//consejoSalud.setId(consejoSaludService.getAsignarId());
 		consejoSaludService.guardarConsejo(consejoSalud);
 		
 		modelAndView.addObject("listaConsejo", consejoSaludService.getListaConsejo());

@@ -11,8 +11,8 @@ import ar.edu.unju.fi.entity.Contacto;
 public class ListaContacto {
 	private List<Contacto> listaMensaje;
 	public ListaContacto () {
-		listaMensaje = new ArrayList<Contacto>();
-		listaMensaje.add(new Contacto("Juan","juan@gmail.com","San Salvador de Jujuy","Estoy muy conforme con los servicios brindados."));
+		//listaMensaje = new ArrayList<Contacto>();
+		//listaMensaje.add(new Contacto("Juan","juan@gmail.com","San Salvador de Jujuy","Estoy muy conforme con los servicios brindados."));
 		
 	}
 	
