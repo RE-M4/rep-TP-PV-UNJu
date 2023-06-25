@@ -1,4 +1,5 @@
 /**@charset "ISO-8859-1";*/
+
 *{
 	font-family: 'Comic Neue', sans-serif;
 	margin: 0;
@@ -37,6 +38,24 @@ li {
 	border-radius: 10px;
 	border-color: #746556;
 	animation: aparicionBtn 2s forwards;
+}
+li.gestionDeDatos {
+	display: inline;
+	margin-left: 0px;
+	margin-right: 0px;
+	border: none;
+	padding: 0px;
+	border-radius: 0px;
+	border-color: white;
+	animation: none;
+	background-color: #746556;
+	color: white;
+}
+ul.dropdown-menu{
+	background-color: #f2e8c4;
+	
+	
+
 }
 
 a {
@@ -586,3 +605,5 @@ footer {
 	margin-left: 29px;
 	margin-bottom: 10px;
 }
+
+
