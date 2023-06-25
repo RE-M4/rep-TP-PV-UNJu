@@ -14,31 +14,45 @@ public class SucursalServiceMysqlImp implements ISucursalService {
 	private ISucursalRepository sucursalRepository;
 	@Autowired
 	private Sucursal sucursal;
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Sucursal> getListaSucursales() {
-		return sucursalRepository.findAllByEstado(true);
+		return sucursalRepository.findByEstado(true);
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void guardarSucursal(Sucursal sucursal) {
 		sucursalRepository.save(sucursal);
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Sucursal getBuscarSucursal(Long id) {
 		return sucursalRepository.findById(id).orElse(null);
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void modificar(Sucursal sucursal) {
 		sucursalRepository.save(sucursal);
 	}
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void eliminar(Sucursal sucursal) {
 		sucursal.setEstado(false);
 		sucursalRepository.save(sucursal);
 	}
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Sucursal getSucursal() {
 		return sucursal;

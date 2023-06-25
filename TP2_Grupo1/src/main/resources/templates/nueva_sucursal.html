@@ -67,7 +67,7 @@
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="horaCierre">Hora de cierre:</label>
-					<input class="form-control" type="number" id="horaCierre" name="horaCierre" th:field="*{horaCierre}">
+					<input class="form-control" type="text" id="horaCierre" name="horaCierre" th:value="${horaCierre != 0} ? ${horaCierre} : '00'">
 					<div class="text-danger" th:if="${#fields.hasErrors('horaCierre')}" th:errors="*{horaCierre}"></div>
 				</div>
 				<br>
@@ -102,9 +102,10 @@
 								<td th:text="${sucursal1.nombre}"></td>
 								<td th:text="${sucursal1.calle}"></td>
 								<td th:text="${sucursal1.provincia}"></td>
-								<td
-									th:text="${sucursal1.diaApertura} + ' a ' + ${sucursal1.diaCierre} + ' de ' + ${sucursal1.horaApertura} + ' a ' + ${sucursal1.horaCierre} + 'hs'">
-								</td>
+<!--								<td-->
+<!--									th:text="${sucursal1.diaApertura} + ' a ' + ${sucursal1.diaCierre} + ' de ' + ${sucursal1.horaApertura} + ' a ' + ${sucursal1.horaCierre} + 'hs'">-->
+<!--								</td>-->
+								<td th:text="${sucursal1.diaApertura} + ' a ' + ${sucursal1.diaCierre} + ' de ' + ${sucursal1.horaApertura} + ' a ' + (${sucursal1.horaCierre} != 0 ? sucursal1.horaCierre : '00') + 'hs'"></td>
 								<td th:text="${sucursal1.telefono}"></td>
 				<!--				 Operaciones -->
 								<td>
