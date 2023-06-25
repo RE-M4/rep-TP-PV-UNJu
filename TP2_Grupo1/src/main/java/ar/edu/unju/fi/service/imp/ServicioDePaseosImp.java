@@ -89,4 +89,16 @@ public class ServicioDePaseosImp implements IServicioDePaseosService{
 	public void guardarServicio(ServicioDePaseo servicioAGuardar) {
 		serviciosLista.getServiciosDePaseo().add(servicioAGuardar);
 	}
+
+	@Override
+	public ServicioDePaseo getBy(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void borrarServicio(ServicioDePaseo servicio) {
+		// TODO Auto-generated method stub
+		
+	}
 }
