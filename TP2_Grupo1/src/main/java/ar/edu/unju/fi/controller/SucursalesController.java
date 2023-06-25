@@ -2,7 +2,6 @@ package ar.edu.unju.fi.controller;
 
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.ISucursalService;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/sucursales")
 public class SucursalesController {
 	@Autowired
-	@Qualifier("sucursalServiceImp")
+	@Qualifier("sucursalServiceMysqlImp")
 	private ISucursalService sucursalServiceImp;
 	/**
 	 * Método que devuelve la vista de la lista de sucursales.
