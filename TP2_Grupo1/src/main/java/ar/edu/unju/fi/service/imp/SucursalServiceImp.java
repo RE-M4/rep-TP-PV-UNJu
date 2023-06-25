@@ -16,18 +16,30 @@ public class SucursalServiceImp implements ISucursalService {
 	@Autowired
 	private Sucursal sucursal;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Sucursal getSucursal() {
 		return sucursal;
 	}
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Sucursal> getListaSucursales(){
 		return listasSucursales.getSucursales();
 	}
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void guardarSucursal(Sucursal sucursal) {
 		listasSucursales.getSucursales().add(sucursal);
 	}
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Sucursal getBuscarSucursal(Long id) {
 		for (Sucursal sucursal : listasSucursales.getSucursales()) {
@@ -37,6 +49,9 @@ public class SucursalServiceImp implements ISucursalService {
 		}
 		return null;
 	}
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void modificar(Sucursal sucursal) {
 		for (Sucursal sucursal2 : listasSucursales.getSucursales()) {
@@ -61,11 +76,11 @@ public class SucursalServiceImp implements ISucursalService {
 			}
 		}
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void eliminar(Sucursal sucursal) {
 		listasSucursales.getSucursales().remove(sucursal);
 	}
-
-
 }
