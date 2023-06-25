@@ -9,7 +9,10 @@ import java.util.List;
 @Component
 public class ListasSucursales {
     public List<Sucursal> sucursales;
-
+    /**
+     * Constructor de la clase ListasSucursales
+     * Se crea una lista de tipo Sucursal
+     */
     public ListasSucursales(){
      sucursales = new ArrayList<>();
 
@@ -58,11 +61,17 @@ public class ListasSucursales {
 //        sucursales.add(sucursal4);
 
     }
-
+    /**
+     * Método que retorna la lista de sucursales
+     * @return lista de sucursales
+     */
     public List<Sucursal> getSucursales() {
         return sucursales;
     }
-
+    /**
+     * Método que permite asignarle valor a la lista de sucursales
+     * @param sucursales lista de sucursales
+     */
     public void setSucursales(List<Sucursal> sucursales) {
         this.sucursales = sucursales;
     }
