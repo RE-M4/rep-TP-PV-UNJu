@@ -18,7 +18,7 @@
 		<section class="seccion-salud"  >
 		
 			
-	<div class="container"><br>
+	<div class="container" style="padding-left: 20%;padding-right: 20%"><br>
 		  <form class="container rounded" style="background-color: #F5F5F5" th:action="${edicion}?@{/producto/modificar_producto} : @{/producto/guardar_producto}" th:object="${Producto}" method="post">
 		    <h2 th:text="${edicion}?'Modificar Producto':'Nuevo Producto'"style="text-align: center; margin-bottom: 20px;"></h2>
 		    <div class="mb-3">
