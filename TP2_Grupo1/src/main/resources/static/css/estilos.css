@@ -479,6 +479,15 @@ footer {
 	text-align: center;
 	padding-top: 10px;
 }
+@media (max-width: 768px) {
+  .redes-sociales {
+    flex-wrap: wrap;
+  }
+  .redes-sociales li {
+    margin: 5px;
+  }
+}
+
 /*Icono engranaje sucursales*/
 .gear-button {
 	background-color: transparent;
