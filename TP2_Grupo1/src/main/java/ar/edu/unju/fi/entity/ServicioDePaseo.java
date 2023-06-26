@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
-//Se agrega esta etiqueta para que el objeto sirva como inyección de dependencia dentro de la capa service
+/*Se agrega "Component", esta etiqueta sirve para que el objeto sirva como inyección de dependencia dentro de la capa service*/
+/*"Entity" y "Table" sirve para que ahora actuen como tablas para MySQL*/
 @Component
 @Entity
 @Table(name = "servicios")
@@ -71,6 +72,7 @@ public class ServicioDePaseo {
 		this.dia = dia;
 		this.estado = true;
 	}
+	/*Se actualiza este constructor para que cada objeto nuevo que se cree, siempre tenga estado en true*/
 	public ServicioDePaseo() {
 		this.estado = true;
 	}
