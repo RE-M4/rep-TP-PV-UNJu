@@ -46,7 +46,7 @@ public class Sucursal {
     private int horaCierre;
 
     @Column(name="con_telefono")
-    @NotBlank(message = "El teléfono no debe estar en blanco")
+    @NotNull(message = "El teléfono no debe estar en blanco")
     private String telefono;
 
     /**

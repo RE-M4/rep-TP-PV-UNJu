@@ -67,7 +67,7 @@
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="horaCierre">Hora de cierre:</label>
-					<input class="form-control" type="text" id="horaCierre" name="horaCierre" th:value="${horaCierre != 0} ? ${horaCierre} : '00'">
+					<input class="form-control" type="number" id="horaCierre" name="horaCierre" th:field="*{horaCierre}">
 					<div class="text-danger" th:if="${#fields.hasErrors('horaCierre')}" th:errors="*{horaCierre}"></div>
 				</div>
 				<br>
