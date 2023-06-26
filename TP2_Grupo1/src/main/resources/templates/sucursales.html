@@ -42,9 +42,9 @@
 					<div class="sucursal-scroll">
 						<article class="container-fluid d-flex flex-column sucursal-contenido" th:each="sucursal2: ${sucursales}">
 							<h3 class="sucursal-nombre" th:text="${sucursal2.nombre}"></h3>
-							<p class="sucursal-calle" th:text="${sucursal2.calle + ' | ' + sucursal2.provincia}"></p>
+							<p class="sucursal-calle" th:text="${sucursal2.calle + ' | ' + sucursal2.provincia.nombre}"></p>
 <!--							<p class="sucursal-horario" th:text="'Horario: ' + ${sucursal2.diaApertura} + ' a ' + ${sucursal2.diaCierre} + ' de ' + ${sucursal2.horaApertura} + ' a ' + ${sucursal2.horaCierre} + 'hs'"></p>-->
-							<p class="sucursal-horario" th:text="'Horario: ' + ${sucursal1.diaApertura} + ' a ' + ${sucursal1.diaCierre} + ' de ' + ${sucursal1.horaApertura} + ' a ' + (${sucursal1.horaCierre} != 0 ? sucursal1.horaCierre : '00') + 'hs'"></p>
+							<p class="sucursal-horario" th:text="'Horario: ' + ${sucursal2.diaApertura} + ' a ' + ${sucursal2.diaCierre} + ' de ' + ${sucursal2.horaApertura} + ' a ' + (${sucursal2.horaCierre} != 0 ? sucursal2.horaCierre : '00') + 'hs'"></p>
 							<p class="sucursal-tel" th:text="${sucursal2.telefono}"></p>
 						</article>
 					</div>

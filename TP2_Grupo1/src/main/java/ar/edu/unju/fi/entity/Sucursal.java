@@ -1,10 +1,7 @@
 package ar.edu.unju.fi.entity;
 import jakarta.persistence.*;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import org.springframework.stereotype.Component;
 @Component
 @Entity
@@ -17,24 +14,32 @@ public class Sucursal {
     @Column(name="con_estado")
     private boolean estado;
 
+    @JoinColumn(name="pro_id")
+    @OneToOne(cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+    private Provincia provincia;
+
+
+    @NotEmpty(message = "El nombre no puede estar vacio")
+    @NotBlank(message = "El nombre no puede estar en blanco")
     @Column(name="con_nombre")
-    @NotNull(message = "El nombre es requerido")
     private String nombre;
 
-    @Column(name="con_calle")
     @NotNull(message = "La calle es requerida")
+    @NotEmpty(message = "La calle no puede estar vacio")
+    @NotBlank(message = "La calle no puede estar en blanco")
+    @Column(name="con_calle")
     private String calle;
 
-    @Column(name="con_provincia")
-    @NotNull(message = "La provincia no debe estar vacía")
-    private String provincia;
 
+    @NotEmpty(message = "El día de apertura  no puede estar vacio")
+    @NotBlank(message = "El día de apertura  no puede estar en blanco")
     @Column(name="con_diaApertura")
-    @NotNull(message = "El día de apertura no debe estar vacío")
     private String diaApertura;
 
+
+    @NotEmpty(message = "El día de cierre  no puede estar vacio")
+    @NotBlank(message = "El día de cierre  no puede estar en blanco")
     @Column(name="con_diaCierre")
-    @NotNull(message = "El día de cierre no debe estar vacío")
     private String diaCierre;
 
     @Min(value = 1, message = "La hora de apertura debe ser igual o mayor a 0")
@@ -45,8 +50,10 @@ public class Sucursal {
     @Max(value = 23, message = "La hora de cierre debe ser igual o menor a 23")
     private int horaCierre;
 
-    @Column(name="con_telefono")
     @NotNull(message = "El teléfono no debe estar en blanco")
+    @NotEmpty(message = "El teléfono no puede estar vacio")
+    @NotBlank(message = "El teléfono no puede estar en blanco")
+    @Column(name="con_telefono")
     private String telefono;
 
     /**
@@ -55,6 +62,13 @@ public class Sucursal {
      */
     public Sucursal() {
         this.estado = true;
+    }
+
+    public Provincia getProvincia() {
+        return provincia;
+    }
+    public void setProvincia(Provincia provincia) {
+        this.provincia = provincia;
     }
 
     /**
@@ -69,7 +83,7 @@ public class Sucursal {
      * @param telefono numero telefono de la sucursal
      * @param id identificador de la sucursal
      */
-	public Sucursal(String nombre, String calle, String provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre,String telefono, long id) {
+	public Sucursal(String nombre, String calle, Provincia provincia, String diaApertura, String diaCierre, int horaApertura, int horaCierre,String telefono, long id) {
 
 				this.nombre = nombre;
         this.calle = calle;
@@ -145,22 +159,6 @@ public class Sucursal {
      */
     public void setCalle(String calle) {
         this.calle = calle;
-    }
-
-    /**
-     * Devuelve la provincia donde se encuentra la sucursal.
-     * @return provincia donde se encuentra la sucursal
-     */
-    public String getProvincia() {
-        return provincia;
-    }
-
-    /**
-     * Establece la provincia donde se encuentra la sucursal.
-     * @param provincia provincia donde se encuentra la sucursal
-     */
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
     }
 
     /**
