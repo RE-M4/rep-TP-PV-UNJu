@@ -20,7 +20,7 @@
 			<div class="container">
 				<h2>CONSEJOS DE SALUD</h2>
 				<div class="contenedor" style="margin-top: 3%; text-align:left; ">
-					<a th:href="@{/ConsejoSalud/nuevo_consejo}" class="btn btn-warning" >Nuevo Consejo</a>
+					<a th:href="@{/consejo_salud/nuevo_consejo}" class="btn btn-warning" >Nuevo Consejo</a>
 				</div>
 				<article class="articulo-salud" th:each="consejo : ${listaConsejo}">
 					<div class="card mb-3">
@@ -29,8 +29,8 @@
 				    		<h5 class="card-title" th:text="${consejo.titulo}">Card title</h5>
 				    		<p class="card-text" th:text="${consejo.descripcion}"></p>
 						<div class="d-grid gap-2 d-sm-flex justify-content-sm-end">
-  							<a class="btn btn-primary btn-sm" th:href="@{/ConsejoSalud/modificar_consejo/}+${consejo.id}" role="button">Modificar</a>
-  							<a class="btn btn-danger btn-sm" th:href="@{/ConsejoSalud/eliminar_consejo/}+${consejo.titulo}" onclick="return confirm('¿Estás seguro de que deseas eliminar este consejo?')"role="button">Eliminar</a>
+  							<a class="btn btn-primary btn-sm" th:href="@{/consejo_salud/modificar_consejo/}+${consejo.id}" role="button">Modificar</a>
+  							<a class="btn btn-danger btn-sm" th:href="@{/consejo_salud/eliminar_consejo/}+${consejo.titulo}" onclick="return confirm('¿Estás seguro de que deseas eliminar este consejo?')"role="button">Eliminar</a>
 						</div>
 
 				  		</div>

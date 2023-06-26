@@ -19,7 +19,7 @@
 		
 			
 	<div class="container "><br>
-		  <form class="container rounded" style="background-color: #F5F5F5" th:action="${edicion}?@{/ConsejoSalud/modificar_consejo} : @{/ConsejoSalud/guardar_consejo}" th:object="${Consejo}" method="post">
+		  <form class="container rounded" style="background-color: #F5F5F5" th:action="${edicion}?@{/consejo_salud/modificar_consejo} : @{/consejo_salud/guardar_consejo}" th:object="${Consejo}" method="post">
 		    <h2 th:text="${edicion}?'Modificar Consejo':'Nuevo Consejo'"style="text-align: center; margin-bottom: 20px;"></h2>
 		    <div class="mb-3">
 		     <label for="img" class="form-label">imagen:</label>
@@ -53,7 +53,7 @@
 			
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			    <button type="submit" class="btn btn-success" th:text="${edicion}?'Modificar':' GUARDAR '"></button>
-			    <a  class="btn btn-secondary " role="button" th:href="@{/ConsejoSalud/volver}"  >Cancelar</a>	
+			    <a  class="btn btn-secondary " role="button" th:href="@{/consejo_salud/volver}"  >Cancelar</a>	
 		   	</div>
 		  </form>  
   
