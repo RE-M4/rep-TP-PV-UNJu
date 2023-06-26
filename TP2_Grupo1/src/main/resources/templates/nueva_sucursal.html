@@ -38,11 +38,9 @@
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="provincia">Selecciona una provincia:</label>
-					<div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
+<!--					<div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>-->
 					<select id="provincia" name="provincia" th:field="*{provincia}">
-						<option value="Buenos Aires">Buenos Aires</option>
-						<option value="Córdoba">Córdoba</option>
-						<option value="Santa Fe">Santa Fe</option>
+						<option th:each="provincia : ${Provincias}" th:text="${provincia.nombre}" th:value="${provincia.id}"></option>
 					</select>
 				</div>
 				<!-- Horario de Atencion -->
@@ -67,7 +65,7 @@
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="horaCierre">Hora de cierre:</label>
-					<input class="form-control" type="text" id="horaCierre" name="horaCierre" th:value="${horaCierre != 0} ? ${horaCierre} : '00'">
+					<input class="form-control" type="number" id="horaCierre" name="horaCierre" th:field="*{horaCierre}">
 					<div class="text-danger" th:if="${#fields.hasErrors('horaCierre')}" th:errors="*{horaCierre}"></div>
 				</div>
 				<br>
@@ -101,7 +99,7 @@
 								<td	th:text="${sucursal1.id}"></td>
 								<td th:text="${sucursal1.nombre}"></td>
 								<td th:text="${sucursal1.calle}"></td>
-								<td th:text="${sucursal1.provincia}"></td>
+								<td th:text="${sucursal1.provincia.nombre}"></td>
 <!--								<td-->
 <!--									th:text="${sucursal1.diaApertura} + ' a ' + ${sucursal1.diaCierre} + ' de ' + ${sucursal1.horaApertura} + ' a ' + ${sucursal1.horaCierre} + 'hs'">-->
 <!--								</td>-->

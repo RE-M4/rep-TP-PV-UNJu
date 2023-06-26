@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import ar.edu.unju.fi.entity.Sucursal;
+import ar.edu.unju.fi.service.IProvinciaService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class SucursalesController {
 	@Autowired
 	@Qualifier("sucursalServiceMysqlImp")
 	private ISucursalService sucursalServiceImp;
+	@Autowired
+	private IProvinciaService provinciaService;
 	/**
 	 * Método que devuelve la vista de la lista de sucursales.
 	 * @param model Modelo pasa los datos a la vista.
@@ -36,8 +39,9 @@ public class SucursalesController {
 	 */
 	@GetMapping("/nuevo")
 	public String getNuevaSucursalPage(Model model) {
-		boolean edicion = false;
 		model.addAttribute("sucursal", sucursalServiceImp.getSucursal());
+		model.addAttribute("Provincias", provinciaService.getListaProvincias());
+		boolean edicion = false;
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("sucursales", sucursalServiceImp.getListaSucursales());
 		return "nueva_sucursal";
@@ -52,8 +56,11 @@ public class SucursalesController {
 	public ModelAndView getGuardarSucursalPage(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult resultadoValidacion) {
 		ModelAndView modelView = new ModelAndView("nueva_sucursal");
 		if (resultadoValidacion.hasErrors()) {
-			modelView.addObject("nueva_sucursal");
+			modelView.setViewName("nueva_sucursal");
 			modelView.addObject("sucursal", sucursal);
+			boolean edicion = false;
+			modelView.addObject("edicion", edicion);
+			modelView.addObject("Provincias", provinciaService.getListaProvincias());
 			return modelView;
 		}
 //		sucursal.setId(sucursalService.getListaSucursales().get(sucursalService.getListaSucursales().size() - 1).getId() + 1);
@@ -74,6 +81,7 @@ public class SucursalesController {
 		boolean edicion = true;
 		modelAndView.addObject("edicion", edicion);
 		modelAndView.addObject("sucursal", sucursalEncontrada);
+		modelAndView.addObject("Provincias", provinciaService.getListaProvincias());
 		return modelAndView;
 
 	}
@@ -84,12 +92,17 @@ public class SucursalesController {
 	 * @return nombre de la vista a redireccionar.
 	 */
 	@PostMapping("/modificar")
-	public String modificarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult resultadoValidacion) {
+	public ModelAndView modificarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult resultadoValidacion) {
+		ModelAndView modelAndView = new ModelAndView("nueva_sucursal");
 		if (resultadoValidacion.hasErrors()) {
-			return "nueva_sucursal";
+			modelAndView.setViewName("nueva_sucursal");
+			modelAndView.addObject("sucursal", sucursal);
+			modelAndView.addObject("Provincias", provinciaService.getListaProvincias());
+			return modelAndView;
 		}
 		sucursalServiceImp.modificar(sucursal);
-		return "redirect:/sucursales/listado";
+		modelAndView.addObject("sucursales", sucursalServiceImp.getListaSucursales());
+		return modelAndView;
 	}
 
 	/**

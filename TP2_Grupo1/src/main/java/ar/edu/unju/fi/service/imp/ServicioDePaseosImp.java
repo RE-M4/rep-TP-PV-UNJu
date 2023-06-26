@@ -89,7 +89,6 @@ public class ServicioDePaseosImp implements IServicioDePaseosService{
 	public void guardarServicio(ServicioDePaseo servicioAGuardar) {
 		serviciosLista.getServiciosDePaseo().add(servicioAGuardar);
 	}
-	
 	/*ESTOS MÉTODOS NUNCA SON UTILIZADOS, PERO SON NECESARIOS PARA QUE EL ARCHIVO NO DE ERROR*/
 	@Override
 	public ServicioDePaseo getBy(Long id) {
