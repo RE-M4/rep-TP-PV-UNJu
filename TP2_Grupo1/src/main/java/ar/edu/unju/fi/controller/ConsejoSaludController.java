@@ -17,7 +17,7 @@ import ar.edu.unju.fi.service.IConsejoSaludService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/ConsejoSalud")
+@RequestMapping("/consejo_salud")
 public class ConsejoSaludController {
 	
 	
@@ -61,7 +61,7 @@ public class ConsejoSaludController {
 	 */
 	@PostMapping("/guardar_consejo")
 	public ModelAndView guardarConsejoSalud(@Valid @ModelAttribute("Consejo") ConsejoSalud consejoSalud, BindingResult result) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
+		ModelAndView modelAndView = new ModelAndView("redirect:/consejo_salud/listado");
 		if(result.hasErrors()) {
 			modelAndView.setViewName("nuevo_consejo");
 			modelAndView.addObject("Consejo",consejoSalud);
@@ -103,7 +103,7 @@ public class ConsejoSaludController {
 	@PostMapping("/modificar_consejo")
 	public ModelAndView modificarConsejoSalud(@Valid @ModelAttribute("Consejo") ConsejoSalud consejoSalud,BindingResult result) {
 		System.out.println(consejoSalud);
-		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
+		ModelAndView modelAndView = new ModelAndView("redirect:/consejo_salud/listado");
 		if(result.hasErrors()) {
 			modelAndView.setViewName("nuevo_consejo");
 			boolean edicion = true;
@@ -126,7 +126,7 @@ public class ConsejoSaludController {
 	 */
 	@GetMapping("eliminar_consejo/{titulo}")
 	public ModelAndView eliminarConsejoSalud(@PathVariable(value="titulo")String titulo) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/ConsejoSalud/listado");
+		ModelAndView modelAndView = new ModelAndView("redirect:/consejo_salud/listado");
 		consejoSaludService.eliminarConsejo(consejoSaludService.getBuscarConsejoxTirulo(titulo));
 		return modelAndView;
 	}
@@ -138,6 +138,6 @@ public class ConsejoSaludController {
 	 */
 	@GetMapping("/volver")
 	public String volverConsejoSalud() {
-		return "redirect:/ConsejoSalud/listado";
+		return "redirect:/consejo_salud/listado";
 	}
 }

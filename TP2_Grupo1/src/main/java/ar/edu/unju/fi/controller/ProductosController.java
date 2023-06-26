@@ -58,6 +58,7 @@ public class ProductosController {
 		if(result.hasErrors()) {
 			modelAndView.setViewName("nuevo_producto");
 			modelAndView.addObject("Producto", producto);
+			modelAndView.addObject("Categorias", serviceCategoria.getListaCategorias());
 			boolean edicion=false;
 			modelAndView.addObject("edicion", edicion);
 			return modelAndView;
@@ -86,6 +87,7 @@ public class ProductosController {
 		if(result.hasErrors()) {
 			modelAndView.setViewName("nuevo_producto");
 			modelAndView.addObject("Producto", producto);
+			modelAndView.addObject("Categorias", serviceCategoria.getListaCategorias());
 			return modelAndView;
 		}
 		serviceProductos.modificarProducto(producto);
