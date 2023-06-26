@@ -22,10 +22,10 @@ public class ServicioDePaseo {
 	@Size(min=5, max = 20, message="Este campo tiene que tener al menos 5 caracteres")
 	@Column(name="serv_horario")
 	private String horario;
-	@NotEmpty(message=("Este campo no puede estar vacío"))
+	/*@NotEmpty(message=("Este campo no puede estar vacío"))
 	@Pattern(regexp = "[a-z A-Z]*", message="Este campo solo debe tener letras")
 	@Column(name="serv_paseador")
-	private String paseador;
+	private String paseador;*/
 	@NotEmpty(message=("Este campo no puede estar vacío"))
 	@Pattern(regexp = "[a-z A-Z]*", message="Este campo solo debe tener letras")
 	@Size(min=5, max = 20, message="Este campo tiene que tener al menos 5 caracteres")
@@ -33,6 +33,11 @@ public class ServicioDePaseo {
 	private String dia;
 	@Column(name="serv_estado")
 	private boolean estado;
+	
+	@JoinColumn(name="emp_id")
+	@OneToOne(cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+	private Empleado empleado;
+	
 	/*Getters y setters*/
 	public String getHorario() {
 		return horario;
@@ -40,12 +45,12 @@ public class ServicioDePaseo {
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
-	public String getPaseador() {
+	/*public String getPaseador() {
 		return paseador;
 	}
 	public void setPaseador(String paseador) {
 		this.paseador = paseador;
-	}
+	}*/
 	public String getDia() {
 		return dia;
 	}
@@ -64,11 +69,20 @@ public class ServicioDePaseo {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+	
+	
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
+	
 	/*Constructores*/
-	public ServicioDePaseo(String horario, String paseador, String dia, Boolean estado) {
+	public ServicioDePaseo(String horario, String dia, Boolean estado) { //String paseador
 		super();
 		this.horario = horario;
-		this.paseador = paseador;
+		//this.paseador = paseador;
 		this.dia = dia;
 		this.estado = true;
 	}

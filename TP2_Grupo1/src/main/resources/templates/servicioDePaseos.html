@@ -37,7 +37,7 @@
 			            </thead>
 			            <tbody>
 			            	<tr th:each="servicio : ${servicios}">
-				            	<td id="formatoCelda" th:text="${servicio.paseador}"></td>
+				            	<td id="formatoCelda" th:text="${servicio.empleado.nombre +' '+servicio.empleado.apellido}" ></td>
 				                <td id="formatoCelda" th:text="${servicio.dia}"></td>
 				                <td id="formatoCelda" th:text="${servicio.horario}"></td>
 				                <td>
