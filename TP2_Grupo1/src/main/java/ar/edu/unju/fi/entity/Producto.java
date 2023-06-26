@@ -1,12 +1,19 @@
 package ar.edu.unju.fi.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
@@ -28,11 +35,15 @@ public class Producto {
 	@NotBlank(message = "El nombre no puede estar en blanco")
 	@Column(name="prod_nombre")
 	private String nombre;
+	
+	
     
-	@NotEmpty(message = "La categoría no puede estar en vacio")
-    @NotBlank(message = "La categoría no puede estar en blanco")
-	@Column(name="prod_categoria")
-	private String categoria;
+	
+	@JoinColumn(name="cat_id")
+	@OneToOne(cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
+	private Categoria categoria;
+	
+	
     
 	@NotEmpty(message = "La imagen no puede estar en vacio")
     @NotBlank(message = "La imagen no puede estar en blanco")
@@ -67,10 +78,10 @@ public class Producto {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 	public Long getCodigo() {
@@ -108,7 +119,7 @@ public class Producto {
 		this.estado = estado;
 	}
 	/*Constructores*/
-	public Producto(String nombre, String categoria, Integer descuento, Double precio ,String imagen) { /*String imagen*/
+	public Producto(String nombre, Categoria categoria, Integer descuento, Double precio ,String imagen) { /*String imagen*/
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
