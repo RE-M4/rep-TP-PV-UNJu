@@ -35,6 +35,8 @@ public class ServicioDePaseosController {
 	@Autowired
 	private ServicioDePaseo servicioDePaseo;*/
 	
+	/*Al implementar la capa repository, se usa "Qualifier" para apuntar al servicio que contiene métodos
+	 * de BD*/
 	/*Se inyecta el servicio para reemplazar la inyección del Objeto y de la Lista*/
 	/*Se debe agregar la etiqueta "Qualifier" para que el controller sepa cual de las 2 implementaciones
 	 * debe usar*/
