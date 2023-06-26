@@ -45,8 +45,11 @@
 		    
 		     <div class="mb-3">
 		      <label for="categoria" style="display: block; font-weight: bold;">Categoria:</label>
-		      <input type="text" id="categoria" name="categoria" th:field="*{categoria}" class="form-control">
-		     		   <div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>		   
+		      <select id="categoria" name="categoria" th:field="*{categoria}" class="form-control">
+		      	<option th:each="categoria : ${Categorias}" th:text=${categoria.nombre} th:value="${categoria.id}"></option>
+		      </select>
+		     <!--  <input type="text" id="categoria" name="categoria" th:field="*{categoria}" class="form-control"> 
+		     		   <div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>-->		   
 		    </div>
 		    
 		    <div class="mb-3">

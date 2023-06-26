@@ -29,6 +29,7 @@
 					  <img class="card-img-top" th:src="@{${producto.imagen}}" alt="Producto alimento para perro" title="Producto alimento para perro">
 					  <div class="card-body">
 					    <h5 class="card-title producto-nombre" th:text="${producto.nombre}" >Card title</h5>
+					    <p th:text="${producto.categoria.nombre}"></p>
 					    <div th:if="${producto.descuento == 0}">
 							<p style="font-size: 20px" class="producto-precio" th:text="'Precio: $ '+${producto.precio}"></p>
 						</div>
