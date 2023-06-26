@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import ar.edu.unju.fi.entity.Producto;
+import ar.edu.unju.fi.service.ICategoriaService;
 import ar.edu.unju.fi.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,6 +27,9 @@ public class ProductosController {
 	@Autowired
 	@Qualifier("ProductoServiceMysqlImp")
 	private IProductoService serviceProductos;
+	
+	@Autowired 
+	private ICategoriaService serviceCategoria;
 
 	/**
 	 * Este metodo nos devuelve
@@ -43,6 +47,7 @@ public class ProductosController {
 	public ModelAndView getNuevoConsejo() {
 		ModelAndView modelAndView = new ModelAndView("nuevo_producto");
 		modelAndView.addObject("Producto", serviceProductos.getProducto());
+		modelAndView.addObject("Categorias", serviceCategoria.getListaCategorias());
 		boolean edicion=false;
 		modelAndView.addObject("edicion", edicion);
 		return modelAndView;
@@ -59,6 +64,7 @@ public class ProductosController {
 		}
 		//producto.setCodigo(serviceProductos.getListaProductos().get(serviceProductos.getListaProductos().size()-1).getCodigo()+1);//seteo el codigo id del producto
 		serviceProductos.guardarProducto(producto);
+		System.out.println(producto.getCategoria());
 		modelAndView.addObject("productos", serviceProductos.getListaProductos());
 		return modelAndView;
 	}
@@ -70,6 +76,7 @@ public class ProductosController {
 		boolean edicion = true;
 		modelAndView.addObject("edicion",edicion);
 		modelAndView.addObject("Producto", productoEncontrado);
+		modelAndView.addObject("Categorias", serviceCategoria.getListaCategorias());
 		return modelAndView;
 	}
 
