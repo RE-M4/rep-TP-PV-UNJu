@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ServiciosDePaseoLista;
 import ar.edu.unju.fi.entity.ServicioDePaseo;
+import ar.edu.unju.fi.service.IEmpleadoService;
 import ar.edu.unju.fi.service.IServicioDePaseosService;
 
 import jakarta.validation.Valid;
@@ -35,6 +36,8 @@ public class ServicioDePaseosController {
 	@Autowired
 	private ServicioDePaseo servicioDePaseo;*/
 	
+	/*Al implementar la capa repository, se usa "Qualifier" para apuntar al servicio que contiene métodos
+	 * de BD*/
 	/*Se inyecta el servicio para reemplazar la inyección del Objeto y de la Lista*/
 	/*Se debe agregar la etiqueta "Qualifier" para que el controller sepa cual de las 2 implementaciones
 	 * debe usar*/
@@ -42,6 +45,9 @@ public class ServicioDePaseosController {
 	@Qualifier("servicioDePaseoServiceImpMysql")
 	/*@Qualifier("servicioDePaseoServiceImp")*/
 	private IServicioDePaseosService paseosService;
+	
+	@Autowired
+	private IEmpleadoService empleadoService;
 	
 	/**
 	 * GetMapping que carga una lista en servicioDePaseos.html (utilizado en navigation.html).
@@ -63,7 +69,7 @@ public class ServicioDePaseosController {
 	 */
 	@GetMapping("/modificarDatos/{id}")
 	public String getModificarDatos(Model model, @PathVariable(value="id")Long id) { //PathVariable se obtiene de la línea 44 de servicioDePaseos.html
-		System.out.println("Nombre: " + paseosService.getBy(id).getPaseador());
+		//System.out.println("Nombre: " + paseosService.getBy(id).getPaseador());
 		System.out.println("ID: " + paseosService.getBy(id).getId());
 		System.out.println("Nombre: " + paseosService.getBy(id).isEstado());
 		edicion = true; //Se cambia el valor a true.
@@ -78,6 +84,7 @@ public class ServicioDePaseosController {
 		}*/
 		
 		model.addAttribute("ServicioDePaseo", paseosService.getBy(id)); //El objeto encontrado se envía al formulario de modificar_servicios.html | La etiqueta "ServicioDePaseo" sirve para identificar y usar al objeto dentro del th:object del formulario de modificar_servicios.html
+		model.addAttribute("Empleados", empleadoService.getListaEmpleados());
 		model.addAttribute("edicion", edicion); //La variable se envía al formulario de modificar_servicios.html para modificar su funcionalidad
 		return "modificar_servicios";
 	}
@@ -101,6 +108,7 @@ public class ServicioDePaseosController {
 		if(result.hasErrors()) { //Validación que vuelve a modificar_servicios.html mostrando los mensajes de error 
 			edicion = true; //Se debe volver a instanciar la variable para que el formulario siga con la funcionalidad de modificar
 			model.addAttribute("ServicioDePaseo", servicioModificado); //El objeto que llega como parámetro se envía al formulario de modificar_servicios.html | La etiqueta "ServicioDePaseo" sirve para identificar y usar al objeto dentro del th:object del formulario de modificar_servicios.html
+			model.addAttribute("Empleados", empleadoService.getListaEmpleados());
 			model.addAttribute("edicion", edicion); //Se envía la variable para cambiar la funcionalidad del formulario de modificar_servicios.html
 			return "modificar_servicios";
 		}
@@ -154,6 +162,7 @@ public class ServicioDePaseosController {
 	public String nuevaSucursal(Model model) {
 		edicion = false; //Se cambia el valor a false
 		model.addAttribute("ServicioDePaseo", paseosService.getServicio()); //El objeto nuevo se envía al formulario de modificar_servicios.html | La etiqueta "ServicioDePaseo" sirve para identificar y usar al objeto dentro del th:object del formulario de modificar_servicios.html
+		model.addAttribute("Empleados", empleadoService.getListaEmpleados());
 		model.addAttribute("edicion", edicion); //Se envía la variable para cambiar la funcionalidad del formulario de modificar_servicios.html
 		return "modificar_servicios";
 	}
@@ -173,6 +182,7 @@ public class ServicioDePaseosController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/servicioDePaseos/listado"); //Se crea un objeto ModelAndView, lo que está entre comillas es la página HTML a la que se va a redirigir.
 		if(result.hasErrors()) { //Validación que vuelve a modificar_servicios.html mostrando los mensajes de error
 			modelAndView.setViewName("modificar_servicios");
+			modelAndView.addObject("Empleados", empleadoService.getListaEmpleados());
 			modelAndView.addObject("ServicioDePaseo", nuevoServicio); //El objeto que llega como parámetro se envía al formulario de modificar_servicios.html | La etiqueta "ServicioDePaseo" sirve para identificar y usar al objeto dentro del th:object del formulario de modificar_servicios.html
 			return modelAndView;
 		}
