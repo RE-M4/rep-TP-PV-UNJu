@@ -25,9 +25,13 @@
 							    <input type="hidden" id="id" name="id" th:field="*{id}" class="form-control" >
 							</div>
 							<div class="form-group">
-								<label for="dato_paseador">Nombre del Paseador: </label>
-								<input class="form-control" type="text" id="paseador" name="dato_paseador" th:field="*{paseador}">
-								<div class="text-danger" th:if="${#fields.hasErrors('paseador')}" th:errors="*{paseador}"></div>
+								<!-- <label for="dato_paseador">Elegir paseador: </label>
+								<input class="form-control" type="text" id="paseador" name="dato_paseador" th:field="*{paseador}"> -->
+								<label for="dato_paseador" style="display: block; font-weight: bold;">Elegir paseador: </label>
+							    <select id="empleado" name="dato_empleado" th:field="*{empleado}" class="form-control">
+							      <option th:each="empleado : ${Empleados}" th:text="${empleado.nombre +' '+ empleado.apellido}" th:value="${empleado.id}"></option>
+							    </select>
+							    <!--<div class="text-danger" th:if="${#fields.hasErrors('paseador')}" th:errors="*{paseador}"></div> -->
 							</div>
 							<div class="form-group">
 								<label for="dato_dia">Día: </label>
