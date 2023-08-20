@@ -1,2 +1,2 @@
-# rep-TP2-PV-UNJu
-Repositorio para el TP2 de Programación Visual.
+# rep-TPs-PV-UNJu
+Repositorio para los trabajos prácticos de Programación Visual - UNJu 2023.
